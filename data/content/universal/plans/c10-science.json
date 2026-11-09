@@ -1,0 +1,273 @@
+{
+  "plan_version": 1,
+  "class": 10,
+  "subject_id": "science",
+  "book": "Science (jesc1), NCERT, current edition",
+  "made": "2026-11-07, from each chapter's own section headings (https://ncert.nic.in/textbook/pdf/jesc1NN.pdf)",
+  "templates": {
+    "beaker": { "status": "built (prototype)", "name": "Beaker bench", "adds_here": "spirit-lamp heating, electrolysis cell, pH meter with universal indicator, gas tests (pop test, lime water)" },
+    "optics": { "status": "to build", "name": "Optics bench", "what": "Place a candle, mirror, lens, slab or prism on a rail; drag the object; rays and the image are drawn from the real formulas (mirror and lens formula, Snell's law); eye mode for the human eye and its defects" },
+    "circuit": { "status": "to build", "name": "Circuit builder", "what": "Drag cells, bulbs, resistors, keys, ammeter and voltmeter onto a board and wire them; readings from Ohm's law; series and parallel; power and energy; a house wiring mode with fuse, MCB and earth" },
+    "field": { "status": "to build", "name": "Magnetic field", "what": "Iron filings and compasses around a bar magnet, a straight wire, a loop and a solenoid; switch the current and reverse it; Fleming's left-hand rule on a wire in a field" },
+    "molecule": { "status": "to build", "name": "Molecule builder", "what": "Build molecules from atoms with electron-dot and ball-and-stick views; covalent and ionic bonding; carbon chains, rings, double and triple bonds; names from the structure" },
+    "body": { "status": "to build", "name": "Body explorer", "what": "Turn and open organ systems in layers (from the 3DM images); animate the path of food, air, blood, urine and a nerve signal; tap a part for its name and job" },
+    "scope": { "status": "to build", "name": "Microscope", "what": "Choose a slide, focus and zoom; stomata opening, yeast budding, amoeba dividing, spores; draw-what-you-see check" },
+    "cross": { "status": "to build", "name": "Genetics cross", "what": "Pick parent pea plants, cross them, fill the Punnett square, grow the offspring and count the ratio; one trait and two traits; XX and XY" },
+    "eco": { "status": "to build", "name": "Ecosystem", "what": "Build a food chain and a food web from organism cards; watch energy pass up (10 per cent rule); sort waste into biodegradable and non-biodegradable" },
+    "sort": { "status": "to build", "name": "Sort and classify", "what": "Drag cards into labelled bins with instant explanations; used across subjects (reaction types, metals and non-metals, acids and bases)" }
+  },
+  "chapters": [
+    {
+      "key": "u.c10.science.jesc1.ch01", "title": "Chemical Reactions and Equations",
+      "topics": ["1.1 Chemical equations: writing and balancing", "1.2 Types of chemical reactions: combination, decomposition, displacement, double displacement, oxidation and reduction", "1.3 Effects of oxidation in everyday life: corrosion and rancidity"],
+      "labs": [
+        { "template": "beaker", "lab": "signs-of-reaction", "status": "built", "does": "Adds zinc to dilute acid, mixes lead nitrate with potassium iodide", "sees": "Gas, heat, colour change, precipitate" },
+        { "template": "beaker", "lab": "displacement", "status": "built", "does": "Drops an iron nail in copper sulphate; tries copper in iron sulphate", "sees": "Brown copper coat, blue to green; no reaction the other way" },
+        { "template": "beaker", "lab": "decomposition-by-heat-light-electricity", "status": "new settings", "does": "Heats ferrous sulphate, passes current through water, leaves silver chloride in sunlight", "sees": "Green to brown with a sulphur smell; hydrogen twice the volume of oxygen; white to grey" },
+        { "template": "balancer", "lab": "balance-equations", "status": "built in the Chapter 1 reader", "does": "Changes coefficients until every atom matches", "sees": "Atom counter turns green" },
+        { "template": "sort", "lab": "reaction-types", "status": "new settings", "does": "Sorts ten real reactions into the five types", "sees": "Each card explains its type" }
+      ],
+      "images": [
+        { "n": 1, "kind": "SCN", "topic": "1.3", "use": "Hook of the chapter", "shows": "An old iron gate of an Indian house after the monsoon, its paint peeling and the iron rusted reddish-brown", "view": "Eye level, gate fills the frame, wet ground, soft overcast light", "right": "Rust reddish-brown and flaky, not black; painted parts unrusted", "avoid": "People, house numbers, signs" },
+        { "n": 2, "kind": "SEQ", "topic": "1.3.1", "use": "Corrosion step and the 7-day review", "shows": "The same iron nail on a damp cloth on day 1, day 3, day 7 and day 14, rust spreading", "view": "Identical framing and light in all four, nail on a white cloth, from above", "right": "Rust starts as orange-brown spots and spreads; never black", "avoid": "Changing the nail or the angle between frames" },
+        { "n": 3, "kind": "SEQ", "topic": "1.1", "use": "Recognising a reaction: magnesium burning", "shows": "Magnesium ribbon held in tongs: before, burning with a dazzling white flame over a watch glass, and the white powder left", "view": "Side view, dark plain background, an adult's gloved hand with tongs", "right": "Flame brilliant white; ash white powder; tongs, not fingers", "avoid": "A child holding it; looking straight at the flame" },
+        { "n": 4, "kind": "SCN", "topic": "1.2.1", "use": "Combination reaction: whitewash", "shows": "A painter whitewashing a wall of an Indian house before Diwali, a bucket of slaked lime beside him", "view": "Wide view, the bucket and the fresh white wall both visible", "right": "Bucket of milky white lime; adult painter", "avoid": "Brand names on buckets" },
+        { "n": 5, "kind": "SEQ", "topic": "1.2.2", "use": "Thermal decomposition: ferrous sulphate", "shows": "A boiling tube held in a holder over a spirit lamp: pale green crystals, then whitish, then a reddish-brown solid", "view": "Side view, same framing in three frames", "right": "Crystals pale green; residue reddish-brown (ferric oxide)", "avoid": "Open flame near a face" },
+        { "n": 6, "kind": "SEQ", "topic": "1.2.2", "use": "Photolytic decomposition: silver chloride", "shows": "White silver chloride on a watch glass in sunlight, turning grey over time", "view": "From above, sunlight on the glass, three frames", "right": "White to grey (not black, not brown)", "avoid": "Coloured backgrounds that change the grey" },
+        { "n": 7, "kind": "SEQ", "topic": "1.2.3", "use": "Displacement: iron nail in copper sulphate", "shows": "A test tube of blue copper sulphate with a clean grey iron nail; after 20 minutes the nail is coated reddish-brown and the blue has faded towards pale green", "view": "Front view, test tube in a stand, white background, two frames", "right": "Coating reddish-brown copper; solution paler and greenish, not dark", "avoid": "Rust colours on the nail" },
+        { "n": 8, "kind": "MAC", "topic": "1.2.4", "use": "Precipitation: lead iodide", "shows": "A test tube in which a bright yellow precipitate of lead iodide is forming and settling in a clear liquid", "view": "Close-up, front view, white background", "right": "Bright yellow solid, clear liquid above as it settles", "avoid": "Hands without gloves (lead is poisonous)" },
+        { "n": 9, "kind": "SCN", "topic": "1.3.2", "use": "Rancidity", "shows": "A sealed puffed-up chips packet next to an open plate of stale, darkened oily namkeen", "view": "Table top, from slightly above, kitchen setting", "right": "Packet visibly puffed with gas; no brand", "avoid": "Logos, printed text" },
+        { "n": 10, "kind": "DIA", "topic": "1.2.2", "use": "Electrolysis of water (base for the lab)", "shows": "A plastic mug of water with two carbon electrodes through the bottom, two inverted test tubes over them and wires to a battery", "view": "Front view, clean white background, realistic render", "right": "Two separate tubes, one over each electrode; no gas drawn (the app animates it)", "avoid": "Labels, plus and minus signs" }
+      ]
+    },
+    {
+      "key": "u.c10.science.jesc1.ch02", "title": "Acids, Bases and Salts",
+      "topics": ["2.1 Chemical properties of acids and bases: indicators, reactions with metals, carbonates, each other, metal and non-metal oxides", "2.2 What all acids and bases have in common; acids and bases in water", "2.3 Strength of solutions: the pH scale; importance of pH in everyday life", "2.4 More about salts: families, pH of salts, chemicals from common salt, water of crystallisation"],
+      "labs": [
+        { "template": "beaker", "lab": "indicator-test", "status": "built", "does": "Tests acids and bases with litmus and phenolphthalein", "sees": "Red, blue, pink, colourless" },
+        { "template": "beaker", "lab": "ph-meter", "status": "new settings", "does": "Dips universal indicator paper in lemon juice, vinegar, water, baking soda solution, soap solution, sodium hydroxide", "sees": "The colour and the pH number on a scale" },
+        { "template": "beaker", "lab": "acid-plus-metal-and-carbonate", "status": "new settings", "does": "Adds zinc and then sodium carbonate to acid; tests the gases", "sees": "Hydrogen pops; carbon dioxide turns lime water milky" },
+        { "template": "beaker", "lab": "water-of-crystallisation", "status": "new settings", "does": "Heats blue copper sulphate crystals, then adds water back", "sees": "Blue to white and back to blue" }
+      ],
+      "images": [
+        { "n": 1, "kind": "SCN", "topic": "2.1", "use": "Hook: acids and bases at home", "shows": "An Indian kitchen counter with a cut lemon, a bowl of curd, tamarind, a bottle of vinegar, a box of baking soda and a bar of soap", "view": "From slightly above, warm daylight, uncluttered", "right": "Real foods; no labels on containers", "avoid": "Brands" },
+        { "n": 2, "kind": "SEQ", "topic": "2.1.1", "use": "Indicators", "shows": "Four test tubes in a stand: blue litmus turning red in acid, red litmus turning blue in base, phenolphthalein colourless in acid, pink in base", "view": "Front view, white background", "right": "Litmus red and blue; phenolphthalein pink only in the base", "avoid": "Wrong colours" },
+        { "n": 3, "kind": "MAC", "topic": "2.3.1", "use": "pH in nature: ant and nettle stings", "shows": "A red ant on a green leaf, extreme close-up", "view": "Macro, side view, blurred green background", "right": "A real red weaver or fire ant", "avoid": "Insects on skin" },
+        { "n": 4, "kind": "SCN", "topic": "2.3.1", "use": "pH of soil", "shows": "A farmer in an Indian field holding a soil sample and a small soil-testing kit", "view": "Medium shot, morning light, crops in the background", "right": "Realistic test kit with tubes; adult farmer", "avoid": "Close-up of the face; brands" },
+        { "n": 5, "kind": "DIA", "topic": "2.3", "use": "pH scale base", "shows": "A horizontal band of the universal indicator colours from strongly acidic to strongly basic, 15 equal blocks", "view": "Flat, front-on, white background", "right": "Red, orange, yellow, green at the middle (neutral), blue, indigo, violet, in that order", "avoid": "Numbers and words (the app adds them)" },
+        { "n": 6, "kind": "SEQ", "topic": "2.4.4", "use": "Water of crystallisation", "shows": "Blue copper sulphate crystals in a boiling tube being heated (turning white, water drops on the cooler part of the tube), then the white powder turning blue again when water is added", "view": "Side view, three frames, same framing", "right": "Water droplets near the mouth of the tube; white anhydrous salt", "avoid": "A child heating it" },
+        { "n": 7, "kind": "OBJ", "topic": "2.4.3", "use": "Chemicals from common salt", "shows": "Five separate cut-outs: baking soda powder, washing soda crystals, bleaching powder, plaster of Paris powder, and a plaster of Paris cast (a set plaster mould)", "view": "Each on a small watch glass from slightly above", "right": "Washing soda as clear-white crystals; bleaching powder off-white", "avoid": "Containers with labels" },
+        { "n": 8, "kind": "SCN", "topic": "2.4", "use": "Where common salt comes from", "shows": "Salt pans in Gujarat with white heaps of salt and salt workers in the distance", "view": "Wide landscape, bright sun", "right": "Rectangular evaporation pans with brine and salt mounds", "avoid": "Identifiable faces" },
+        { "n": 9, "kind": "SEQ", "topic": "2.1.3", "use": "Test for carbon dioxide", "shows": "Gas from a reaction tube bubbling through clear lime water, which turns milky", "view": "Side view, two frames, white background", "right": "Lime water clear, then milky white", "avoid": "Coloured liquids" }
+      ]
+    },
+    {
+      "key": "u.c10.science.jesc1.ch03", "title": "Metals and Non-metals",
+      "topics": ["3.1 Physical properties of metals and non-metals", "3.2 Chemical properties of metals: with air, water, acids and other metals' salts; the reactivity series", "3.3 How metals and non-metals react: ionic compounds and their properties", "3.4 Occurrence and extraction of metals; enrichment, reduction and refining", "3.5 Corrosion and its prevention"],
+      "labs": [
+        { "template": "beaker", "lab": "reactivity-grid", "status": "new settings", "does": "Puts zinc, iron, copper and aluminium strips into each other's salt solutions", "sees": "Which displacements happen; builds the reactivity order" },
+        { "template": "molecule", "lab": "ionic-bond", "status": "new template", "does": "Moves an electron from sodium to chlorine and from magnesium to two chlorines", "sees": "Ions form and attract; a salt crystal grows" },
+        { "template": "sort", "lab": "metal-or-non-metal", "status": "new settings", "does": "Tests samples for shine, sound, conduction, malleability and sorts them", "sees": "Exceptions explained (graphite, iodine, mercury, sodium)" }
+      ],
+      "images": [
+        { "n": 1, "kind": "SCN", "topic": "3.1", "use": "Hook: metals at home", "shows": "Indian kitchen utensils: a steel plate, a copper lota, a brass diya, an aluminium pressure cooker, an iron tawa", "view": "Arranged on a wooden table, from slightly above, warm light", "right": "Each metal's real colour and shine", "avoid": "Brands" },
+        { "n": 2, "kind": "OBJ", "topic": "3.1", "use": "Samples for the sorting lab", "shows": "Separate cut-outs: iron, copper, aluminium, zinc, magnesium ribbon, a sulphur lump, a piece of coal (carbon), iodine crystals, a graphite pencil lead", "view": "Each from slightly above, same scale", "right": "Iodine dark violet-grey crystals; sulphur yellow", "avoid": "Labels" },
+        { "n": 3, "kind": "SEQ", "topic": "3.1.1", "use": "Sodium is soft and kept under kerosene", "shows": "A piece of sodium stored in a bottle of kerosene; then a fresh cut surface, shiny, being sliced with a knife on a tile by an adult wearing gloves", "view": "Close-up, two frames", "right": "Fresh cut silvery and shiny, dulling quickly", "avoid": "Sodium near water" },
+        { "n": 4, "kind": "SEQ", "topic": "3.2.2", "use": "Metals and water", "shows": "Calcium in a beaker of water, bubbles making it float", "view": "Front view, white background", "right": "Small bubbles clinging to the metal", "avoid": "Flames (calcium does not catch fire)" },
+        { "n": 5, "kind": "OBJ", "topic": "3.4", "use": "Ores", "shows": "Separate cut-outs of real ore samples: bauxite, haematite, cinnabar, zinc blende", "view": "Each from slightly above", "right": "Bauxite reddish-brown; haematite dark red-grey; cinnabar bright red", "avoid": "Labels" },
+        { "n": 6, "kind": "CUT", "topic": "3.4.6", "use": "Electrolytic refining of copper", "shows": "A tank of copper sulphate solution with a thick impure copper anode, a thin pure copper cathode and anode mud at the bottom", "view": "Side cut-away, realistic render, white background", "right": "Anode thicker and impure, cathode thin and pure, mud below the anode", "avoid": "Labels and charge signs" },
+        { "n": 7, "kind": "SCN", "topic": "3.4.5", "use": "Thermite welding of rails", "shows": "Railway workers in protective gear joining two rail tracks with a thermite reaction, bright molten metal and sparks", "view": "Wide side view at track level", "right": "Workers at a safe distance with face shields", "avoid": "Railway logos" },
+        { "n": 8, "kind": "SCN", "topic": "3.5.1", "use": "Preventing corrosion", "shows": "Three separate photos: a freshly painted iron railway bridge, a galvanised iron bucket, a chrome-plated tap", "view": "Each a clear single subject", "right": "Galvanised surface dull grey with spangle pattern", "avoid": "Brands" },
+        { "n": 9, "kind": "3DM", "topic": "3.3.1", "use": "Ionic crystal", "shows": "A ball model of a sodium chloride crystal (alternating larger green chloride and smaller purple sodium spheres in a cube)", "view": "Front, top, three-quarter", "right": "Each sodium surrounded by six chlorides", "avoid": "Text" }
+      ]
+    },
+    {
+      "key": "u.c10.science.jesc1.ch04", "title": "Carbon and its Compounds",
+      "topics": ["4.1 Bonding in carbon: the covalent bond", "4.2 Versatile nature of carbon: saturated and unsaturated compounds, chains, branches and rings, functional groups, homologous series, nomenclature", "4.3 Chemical properties: combustion, oxidation, addition and substitution", "4.4 Ethanol and ethanoic acid", "4.5 Soaps and detergents"],
+      "labs": [
+        { "template": "molecule", "lab": "build-hydrocarbons", "status": "new template", "does": "Builds methane, ethane, ethene, ethyne, propane, a branched and a ring compound", "sees": "Electron-dot and 3D shapes; the name forms as you build" },
+        { "template": "molecule", "lab": "name-the-compound", "status": "new settings", "does": "Adds functional groups (alcohol, aldehyde, ketone, acid, halogen) to a chain", "sees": "Name and homologous series update" },
+        { "template": "beaker", "lab": "soap-and-hard-water", "status": "new settings", "does": "Shakes soap with distilled water and with hard water; then with detergent", "sees": "Lather against scum" }
+      ],
+      "images": [
+        { "n": 1, "kind": "SCN", "topic": "4.3.1", "use": "Hook: carbon fuels at home", "shows": "An LPG cylinder connected to a gas stove with a clean blue flame under a pressure cooker", "view": "Kitchen, from the side", "right": "Clean blue flame", "avoid": "Brand names on the cylinder" },
+        { "n": 2, "kind": "SEQ", "topic": "4.3.1", "use": "Complete and incomplete combustion", "shows": "The same burner: a sooty yellow flame blackening the bottom of a vessel, then a clean blue flame after the air is adjusted", "view": "Close-up side view, two frames", "right": "Yellow flame leaves soot; blue flame does not", "avoid": "Hands near the flame" },
+        { "n": 3, "kind": "OBJ", "topic": "4.2", "use": "Forms of carbon", "shows": "Separate cut-outs: a cut diamond, a piece of graphite, a lump of charcoal", "view": "From slightly above", "right": "Diamond transparent and sparkling; graphite dark grey with a metallic shine", "avoid": "Jewellery settings" },
+        { "n": 4, "kind": "3DM", "topic": "4.2", "use": "Structures of diamond, graphite and fullerene", "shows": "Ball-and-stick models: diamond (each carbon bonded to four in 3D), graphite (flat hexagonal layers), a C-60 fullerene ball", "view": "Front and three-quarter for each", "right": "Graphite layers flat and stacked; fullerene of hexagons and pentagons", "avoid": "Text" },
+        { "n": 5, "kind": "SEQ", "topic": "4.3.3", "use": "Addition reaction: hydrogenation", "shows": "A jar of clear liquid vegetable oil next to a jar of solid white vanaspati ghee", "view": "Side by side on a table", "right": "Oil golden and liquid; vanaspati solid", "avoid": "Brands" },
+        { "n": 6, "kind": "CUT", "topic": "4.5", "use": "How soap cleans", "shows": "A 3D render of an oil droplet on cloth fibre surrounded by soap molecules, their tails in the oil and heads out in the water, forming a micelle", "view": "Cross-section, soft blue water background", "right": "Heads face the water, tails face the oil", "avoid": "Labels" },
+        { "n": 7, "kind": "SEQ", "topic": "4.5", "use": "Hard water and lather", "shows": "Two test tubes after shaking with soap: one with a tall foam in distilled water, one with little foam and a white scum in hard water", "view": "Front view, white background", "right": "Scum white and curdy", "avoid": "Coloured water" },
+        { "n": 8, "kind": "SCN", "topic": "4.5", "use": "Detergents in daily life", "shows": "Clothes soaking in a bucket of detergent water in an Indian courtyard", "view": "From slightly above", "right": "Foam on the water", "avoid": "Brands, people's faces" }
+      ]
+    },
+    {
+      "key": "u.c10.science.jesc1.ch05", "title": "Life Processes",
+      "topics": ["5.1 What are life processes?", "5.2 Nutrition: autotrophic and heterotrophic; nutrition in human beings", "5.3 Respiration: aerobic and anaerobic", "5.4 Transportation in human beings and in plants", "5.5 Excretion in human beings and in plants"],
+      "labs": [
+        { "template": "body", "lab": "journey-of-food", "status": "new template", "does": "Follows a bite of roti from the mouth to the intestine", "sees": "Each organ and enzyme at work, absorption in villi" },
+        { "template": "body", "lab": "heart-and-blood", "status": "new settings", "does": "Opens the heart, starts the beat, follows blood through the double circulation", "sees": "Oxygen-rich and oxygen-poor blood, valves closing" },
+        { "template": "body", "lab": "kidney-filter", "status": "new settings", "does": "Sends blood through a nephron", "sees": "Filtration and reabsorption, urine forms" },
+        { "template": "scope", "lab": "stomata", "status": "new template", "does": "Focuses on a leaf peel, changes light and water", "sees": "Guard cells open and close" },
+        { "template": "beaker", "lab": "starch-in-leaf", "status": "new settings", "does": "Boils a variegated leaf in alcohol and adds iodine", "sees": "Blue-black only where the leaf was green" }
+      ],
+      "images": [
+        { "n": 1, "kind": "SCN", "topic": "5.1", "use": "Hook: what is alive?", "shows": "An Indian village scene with a cow, a neem tree, sparrows, a parked bicycle and a stone wall", "view": "Wide, morning light", "right": "Living and non-living things clearly visible", "avoid": "Identifiable faces" },
+        { "n": 2, "kind": "MAC", "topic": "5.2.1", "use": "Stomata", "shows": "Microscope view of a leaf peel with stomata: one open and one closed, guard cells with green chloroplasts", "view": "Circular microscope field, two images", "right": "Kidney-shaped guard cells; pore open and shut", "avoid": "Labels" },
+        { "n": 3, "kind": "SEQ", "topic": "5.2.1", "use": "Starch test on a variegated leaf", "shows": "A variegated croton leaf, then the same leaf after the iodine test with blue-black only on the formerly green parts", "view": "Flat on white, from above, two frames", "right": "Pattern of blue-black matches the green pattern exactly", "avoid": "Different leaves in the two frames" },
+        { "n": 4, "kind": "3DM", "topic": "5.2.4", "use": "Human digestive system for the body explorer", "shows": "A realistic 3D model of the human digestive system on a faint body outline: mouth, oesophagus, stomach, liver, gall bladder, pancreas, small and large intestine", "view": "Front, side, back, three-quarter", "right": "Liver on the right of the body, stomach on the left; correct proportions", "avoid": "Text, gore" },
+        { "n": 5, "kind": "3DM", "topic": "5.4.1", "use": "Human heart", "shows": "A realistic 3D human heart: whole, and opened in a frontal section showing four chambers, valves and the major vessels", "view": "Front, opened section, back", "right": "Left ventricle wall thicker; oxygen-rich side red, oxygen-poor side blue-tinted (as a teaching colour)", "avoid": "Text" },
+        { "n": 6, "kind": "CUT", "topic": "5.3", "use": "Lungs and alveoli", "shows": "The lungs with the bronchial tree, and a zoomed bunch of alveoli wrapped in capillaries", "view": "Front view plus a circular zoom inset", "right": "Thin-walled alveoli, dense capillary net", "avoid": "Labels" },
+        { "n": 7, "kind": "CUT", "topic": "5.5.1", "use": "Kidney and nephron", "shows": "A kidney cut in half, and one nephron drawn out: glomerulus, Bowman's capsule, tubule, collecting duct", "view": "Front section and nephron beside it", "right": "Glomerulus as a knot of capillaries inside the cup-shaped capsule", "avoid": "Labels" },
+        { "n": 8, "kind": "SEQ", "topic": "5.4.2", "use": "Transpiration", "shows": "A potted plant with a clear plastic bag tied over a leafy branch: morning (dry) and afternoon (droplets inside the bag)", "view": "Side view, sunny window, two frames", "right": "Droplets only inside the bag", "avoid": "Brands on the pot" },
+        { "n": 9, "kind": "SEQ", "topic": "5.3", "use": "Anaerobic respiration: fermentation", "shows": "A steel bowl of idli batter in the evening and the same bowl risen and bubbly the next morning", "view": "From the side, kitchen counter, two frames", "right": "Visible bubbles and rise", "avoid": "Brands" }
+      ]
+    },
+    {
+      "key": "u.c10.science.jesc1.ch06", "title": "Control and Coordination",
+      "topics": ["6.1 Animals: the nervous system, reflex actions, the human brain, how nervous tissue causes action", "6.2 Coordination in plants: immediate response and movement due to growth; plant hormones", "6.3 Hormones in animals"],
+      "labs": [
+        { "template": "body", "lab": "reflex-arc", "status": "new settings", "does": "Touches a hot tawa and follows the signal", "sees": "Receptor to spinal cord to muscle, faster than thinking" },
+        { "template": "body", "lab": "brain-map", "status": "new settings", "does": "Turns the brain and taps its parts", "sees": "What each part controls" },
+        { "template": "sort", "lab": "glands-and-hormones", "status": "new settings", "does": "Matches each gland to its hormone and job", "sees": "Explanation for every match" }
+      ],
+      "images": [
+        { "n": 1, "kind": "SCN", "topic": "6.1.1", "use": "Hook: reflex", "shows": "An adult's hand jerking back from a hot iron tawa on a stove", "view": "Close-up, motion blur on the hand", "right": "Adult hand; the tawa clearly hot (faint heat shimmer)", "avoid": "Burn injuries" },
+        { "n": 2, "kind": "3DM", "topic": "6.1", "use": "Neuron", "shows": "A realistic 3D neuron: dendrites, cell body with nucleus, long axon with myelin sheath, axon endings", "view": "Side, three-quarter", "right": "Signal direction dendrite to axon end", "avoid": "Text" },
+        { "n": 3, "kind": "3DM", "topic": "6.1.2", "use": "Human brain", "shows": "A realistic 3D human brain showing the cerebrum, cerebellum and medulla, whole and in a midline cut", "view": "Side, top, midline section", "right": "Cerebellum at the back below the cerebrum", "avoid": "Text" },
+        { "n": 4, "kind": "CUT", "topic": "6.1.1", "use": "Reflex arc", "shows": "A cross-section of the spinal cord with a sensory neuron coming from the skin of the hand and a motor neuron going to an arm muscle", "view": "Clean medical render", "right": "Grey matter butterfly shape inside white matter", "avoid": "Labels" },
+        { "n": 5, "kind": "SEQ", "topic": "6.2.1", "use": "Touch-me-not plant", "shows": "A Mimosa pudica branch: leaflets open, a finger touching, leaflets folded", "view": "Close-up, same framing, three frames", "right": "Leaflets fold in pairs along the stalk", "avoid": "Different plants between frames" },
+        { "n": 6, "kind": "SEQ", "topic": "6.2.2", "use": "Phototropism", "shows": "Seedlings in a pot on a windowsill: day 1 upright, day 4 bending towards the window light", "view": "Side view, window on one side", "right": "Shoots bend towards the light", "avoid": "Changing the pot position" },
+        { "n": 7, "kind": "MAC", "topic": "6.2.2", "use": "Tendrils", "shows": "A pea plant tendril coiled around a thin bamboo support", "view": "Close-up", "right": "Tight spiral coil", "avoid": "Plastic supports" },
+        { "n": 8, "kind": "CUT", "topic": "6.3", "use": "Endocrine glands", "shows": "A neutral human body outline with the pituitary, thyroid, adrenals, pancreas, and testes and ovaries shown as separate male and female outlines", "view": "Front view, medical illustration style", "right": "Correct positions; neutral, non-sexualised outlines", "avoid": "Labels" }
+      ]
+    },
+    {
+      "key": "u.c10.science.jesc1.ch07", "title": "How do Organisms Reproduce?",
+      "topics": ["7.1 Do organisms create exact copies of themselves? The importance of variation", "7.2 Asexual modes: fission, fragmentation, regeneration, budding, vegetative propagation, spore formation", "7.3 Sexual reproduction: why it matters; in flowering plants; in human beings; reproductive health"],
+      "labs": [
+        { "template": "scope", "lab": "asexual-reproduction", "status": "new settings", "does": "Watches slides of amoeba, yeast and bread mould over time", "sees": "Fission, budding and spores" },
+        { "template": "body", "lab": "flower-to-seed", "status": "new settings", "does": "Opens a flower, pollinates it and follows fertilisation", "sees": "Pollen tube to ovule; ovary to fruit, ovule to seed" },
+        { "template": "sort", "lab": "mode-of-reproduction", "status": "new settings", "does": "Sorts organisms by how they reproduce", "sees": "Explanation for each" }
+      ],
+      "images": [
+        { "n": 1, "kind": "SCN", "topic": "7.1.1", "use": "Hook: variation", "shows": "A litter of kittens of different coat colours with their mother", "view": "Eye level, soft light", "right": "Clearly different coats from one litter", "avoid": "Text" },
+        { "n": 2, "kind": "SEQ", "topic": "7.2.1", "use": "Binary fission of Amoeba", "shows": "Microscope frames of one amoeba dividing into two", "view": "Circular microscope field, four frames", "right": "Nucleus divides first, then the cytoplasm", "avoid": "Cartoon style" },
+        { "n": 3, "kind": "SEQ", "topic": "7.2.4", "use": "Budding in yeast", "shows": "Yeast cells under a microscope with buds forming chains", "view": "Circular microscope field, three frames", "right": "Small buds on larger cells", "avoid": "Labels" },
+        { "n": 4, "kind": "MAC", "topic": "7.2.6", "use": "Spore formation", "shows": "Bread mould (Rhizopus) on a slice of bread, and a close-up of its black sporangia on thin threads", "view": "Two images: whole slice; macro", "right": "Black dots are sporangia on white threads", "avoid": "Food that looks appetising" },
+        { "n": 5, "kind": "SEQ", "topic": "7.2.5", "use": "Vegetative propagation", "shows": "A Bryophyllum leaf on moist soil with tiny plantlets growing from its notches; a potato with sprouting eyes", "view": "From above, two subjects", "right": "Plantlets at the leaf margin notches", "avoid": "Labels" },
+        { "n": 6, "kind": "SEQ", "topic": "7.2.3", "use": "Regeneration in Planaria", "shows": "A planarian cut into pieces, each piece growing into a whole animal", "view": "Realistic microscope-style render, three frames", "right": "Each piece regrows head and tail", "avoid": "Gore" },
+        { "n": 7, "kind": "CUT", "topic": "7.3.2", "use": "Parts of a flower", "shows": "A hibiscus flower cut lengthwise: sepals, petals, stamens with anthers, pistil with stigma, style and ovary with ovules", "view": "Side section, white background", "right": "Ovules inside the ovary at the base", "avoid": "Labels" },
+        { "n": 8, "kind": "SEQ", "topic": "7.3.2", "use": "Germination", "shows": "A soaked gram (chana) seed on day 1, 3, 5 and 7: radicle, then plumule and first leaves", "view": "On moist cotton, same framing, four frames", "right": "Root emerges first", "avoid": "Different seeds" },
+        { "n": 9, "kind": "CUT", "topic": "7.3.3", "use": "Human reproductive systems", "shows": "Medical-illustration renders of the male and female reproductive systems as separate front views on neutral body outlines", "view": "Front view, neutral grey and soft pink tones, textbook register", "right": "Anatomically correct, calm and factual", "avoid": "Nudity, realistic skin, labels" }
+      ]
+    },
+    {
+      "key": "u.c10.science.jesc1.ch08", "title": "Heredity",
+      "topics": ["8.1 Accumulation of variation during reproduction", "8.2 Heredity: inherited traits, Mendel's rules of inheritance, how traits are expressed, sex determination"],
+      "labs": [
+        { "template": "cross", "lab": "monohybrid-cross", "status": "new template", "does": "Crosses tall and short pea plants, then the F1 among themselves", "sees": "All tall, then 3 tall to 1 short, with the Punnett square" },
+        { "template": "cross", "lab": "dihybrid-cross", "status": "new settings", "does": "Crosses round-yellow with wrinkled-green seeds", "sees": "9 : 3 : 3 : 1" },
+        { "template": "cross", "lab": "boy-or-girl", "status": "new settings", "does": "Combines egg and sperm chromosomes", "sees": "XX or XY, half and half" }
+      ],
+      "images": [
+        { "n": 1, "kind": "SCN", "topic": "8.2.2", "use": "Hook: Mendel's plants", "shows": "Rows of tall and short pea plants in a garden plot", "view": "Low side view along the rows", "right": "Clearly tall and dwarf plants, same species", "avoid": "Portraits of real people" },
+        { "n": 2, "kind": "OBJ", "topic": "8.2.2", "use": "Seed traits for the cross lab", "shows": "Separate cut-outs: round yellow, round green, wrinkled yellow, wrinkled green pea seeds; and a green and a yellow pod", "view": "From above, same scale", "right": "Wrinkled seeds visibly creased", "avoid": "Labels" },
+        { "n": 3, "kind": "SEQ", "topic": "8.2.2", "use": "F1 and F2 generations", "shows": "Three plots of pea plants: parents (tall and short), F1 (all tall), F2 (about three tall to one short)", "view": "Same angle, three frames", "right": "Ratio visible in the F2 plot (e.g. 12 tall, 4 short)", "avoid": "Text" },
+        { "n": 4, "kind": "3DM", "topic": "8.2.3", "use": "DNA and chromosomes", "shows": "A DNA double helix unwinding from a condensed chromosome", "view": "Front and three-quarter", "right": "Right-handed helix; base pairs as rungs", "avoid": "Text" },
+        { "n": 5, "kind": "DIA", "topic": "8.2.4", "use": "Sex chromosomes", "shows": "A pair of X chromosomes and an X with a smaller Y chromosome, realistic microscope style on white", "view": "Front", "right": "Y visibly smaller than X", "avoid": "Labels" },
+        { "n": 6, "kind": "MAC", "topic": "8.2.1", "use": "An inherited trait", "shows": "Two close-ups of adult ears: free earlobe and attached earlobe", "view": "Side profile, plain background", "right": "Clear difference at the lobe", "avoid": "Faces" }
+      ]
+    },
+    {
+      "key": "u.c10.science.jesc1.ch09", "title": "Light – Reflection and Refraction",
+      "topics": ["9.1 Reflection of light", "9.2 Spherical mirrors: image formation, ray diagrams, uses, sign convention, mirror formula and magnification", "9.3 Refraction of light: glass slab, refractive index, spherical lenses, image formation, sign convention, lens formula, magnification, power of a lens"],
+      "labs": [
+        { "template": "optics", "lab": "mirror-images", "status": "new template", "does": "Moves a candle in front of concave and convex mirrors", "sees": "Image position, size and nature from the mirror formula, with rays" },
+        { "template": "optics", "lab": "lens-images", "status": "new settings", "does": "Moves a candle in front of convex and concave lenses; measures u, v and f", "sees": "Real and virtual images; lens formula checks itself" },
+        { "template": "optics", "lab": "glass-slab", "status": "new settings", "does": "Changes the angle of a ray into a glass slab", "sees": "Bending towards the normal, lateral shift, n = sin i / sin r" }
+      ],
+      "images": [
+        { "n": 1, "kind": "SEQ", "topic": "9.3", "use": "Hook: the bent spoon", "shows": "A steel spoon in a glass of water seen from the side, looking broken at the surface; the same spoon out of the water, straight", "view": "Eye level, two frames", "right": "Apparent break exactly at the water surface", "avoid": "Coloured drinks" },
+        { "n": 2, "kind": "SEQ", "topic": "9.2", "use": "A spoon as two mirrors", "shows": "Reflection of a child's toy (not a face) in the inner side of a shiny spoon (inverted) and in the back side (upright, small)", "view": "Close-up, two frames", "right": "Inner side shows inverted image; back side upright and diminished", "avoid": "Faces" },
+        { "n": 3, "kind": "SCN", "topic": "9.2", "use": "Uses of mirrors", "shows": "Separate photos: a convex rear-view mirror on an auto-rickshaw or car, a dentist's concave mirror, a solar concave cooker, the reflector of a torch", "view": "Each a clear single subject", "right": "Rear-view mirror shows a wide, small view", "avoid": "Brands, number plates" },
+        { "n": 4, "kind": "SEQ", "topic": "9.3.3", "use": "Focus of a convex lens", "shows": "An adult holding a convex lens focusing sunlight to a bright point on paper; a small burnt hole forming", "view": "Side view, two frames", "right": "Smallest, brightest spot at the focus", "avoid": "A child doing it" },
+        { "n": 5, "kind": "SCN", "topic": "9.3.1", "use": "Refraction in a glass slab", "shows": "A laser beam entering a rectangular glass slab at an angle, bending inside, and leaving parallel to its first direction", "view": "From above, dark room, beam visible", "right": "Emerging ray parallel to incident ray, shifted sideways", "avoid": "Text" },
+        { "n": 6, "kind": "SCN", "topic": "9.3.4", "use": "A real image", "shows": "A convex lens on a stand forming a sharp, inverted image of a distant window on a white screen", "view": "Side view, dim room", "right": "Image inverted and smaller", "avoid": "People" },
+        { "n": 7, "kind": "SCN", "topic": "9.3", "use": "A pool looks shallower", "shows": "A clear swimming pool or a village pond with the bottom visible, looking shallower than it is", "view": "Looking down at an angle", "right": "Clear water, visible bottom", "avoid": "People swimming" }
+      ]
+    },
+    {
+      "key": "u.c10.science.jesc1.ch10", "title": "The Human Eye and the Colourful World",
+      "topics": ["10.1 The human eye; power of accommodation", "10.2 Defects of vision and their correction", "10.3 Refraction of light through a prism", "10.4 Dispersion of white light by a glass prism", "10.5 Atmospheric refraction", "10.6 Scattering of light: Tyndall effect, why the sky is blue"],
+      "labs": [
+        { "template": "optics", "lab": "eye-and-glasses", "status": "new settings", "does": "Moves an object near and far; switches to a myopic or hypermetropic eye and picks a lens", "sees": "Image on, in front of or behind the retina; the right lens fixes it" },
+        { "template": "optics", "lab": "prism-and-rainbow", "status": "new settings", "does": "Turns a prism in a beam of white light; adds a second, upside-down prism", "sees": "The spectrum; white light again" },
+        { "template": "beaker", "lab": "tyndall", "status": "new settings", "does": "Shines a torch through water, then milk-water", "sees": "The beam becomes visible in the colloid" }
+      ],
+      "images": [
+        { "n": 1, "kind": "3DM", "topic": "10.1", "use": "Human eye for the optics lab", "shows": "A realistic 3D human eye, whole and in horizontal section: cornea, iris, pupil, lens, ciliary muscles, retina, optic nerve", "view": "Front, side section, three-quarter", "right": "Lens behind the iris; retina lining the back", "avoid": "Text, gore" },
+        { "n": 2, "kind": "SEQ", "topic": "10.1", "use": "The pupil changes", "shows": "Close-up of an adult eye in bright light (small pupil) and in dim light (large pupil)", "view": "Macro, two frames, same eye", "right": "Only the pupil size changes", "avoid": "Different people" },
+        { "n": 3, "kind": "CUT", "topic": "10.2", "use": "Myopia and hypermetropia", "shows": "Two eye sections: light focusing in front of the retina (elongated eyeball) and behind it (short eyeball)", "view": "Side section, matching style", "right": "Myopic eyeball longer; hypermetropic shorter", "avoid": "Labels" },
+        { "n": 4, "kind": "SCN", "topic": "10.2", "use": "Spectacles", "shows": "A pair of spectacles for distance and a pair of reading glasses on a desk with a book", "view": "From slightly above", "right": "Concave lenses make things look smaller behind them, convex bigger", "avoid": "Brands" },
+        { "n": 5, "kind": "SCN", "topic": "10.4", "use": "Dispersion", "shows": "A thin beam of white light entering a glass prism in a dark room and a spectrum spreading out on a white screen", "view": "From the side and slightly above", "right": "Violet bends most, red least; order violet to red", "avoid": "Rainbow colours in the wrong order" },
+        { "n": 6, "kind": "SCN", "topic": "10.4", "use": "Rainbow", "shows": "A rainbow over green Indian fields after monsoon rain, sun behind the viewer", "view": "Wide landscape", "right": "Red on the outside of the arc", "avoid": "A double rainbow with the colours in the same order" },
+        { "n": 7, "kind": "SCN", "topic": "10.6.1", "use": "Tyndall effect", "shows": "Sunbeams through the canopy of a dense forest on a misty morning", "view": "Looking into the beams", "right": "Visible beams of light", "avoid": "Text" },
+        { "n": 8, "kind": "SCN", "topic": "10.5", "use": "Atmospheric refraction", "shows": "A clear night sky over a village with many stars and a bright planet", "view": "Wide, long exposure without star trails", "right": "Stars as points of light", "avoid": "Light pollution of a city" }
+      ]
+    },
+    {
+      "key": "u.c10.science.jesc1.ch11", "title": "Electricity",
+      "topics": ["11.1 Electric current and circuit", "11.2 Electric potential and potential difference", "11.3 Circuit diagram", "11.4 Ohm's law", "11.5 Factors on which resistance depends", "11.6 Resistors in series and in parallel", "11.7 Heating effect of electric current and its applications", "11.8 Electric power"],
+      "labs": [
+        { "template": "circuit", "lab": "ohms-law", "status": "new template", "does": "Builds a circuit with a resistor, ammeter, voltmeter and 1 to 4 cells; plots V against I", "sees": "A straight line; R from the slope" },
+        { "template": "circuit", "lab": "series-and-parallel", "status": "new settings", "does": "Connects three bulbs in series, then in parallel; removes one", "sees": "Brightness, current and what happens when one bulb fails" },
+        { "template": "circuit", "lab": "what-resistance-depends-on", "status": "new settings", "does": "Changes the length, thickness and material of a wire", "sees": "The ammeter reading change" },
+        { "template": "circuit", "lab": "power-and-bill", "status": "new settings", "does": "Runs appliances for set hours", "sees": "Energy in kWh and the cost at a rate per unit" }
+      ],
+      "images": [
+        { "n": 1, "kind": "SCN", "topic": "11.1", "use": "Hook: electricity at home", "shows": "An Indian living room with a switchboard, a ceiling fan, a tube light and a phone charging", "view": "Wide, evening, lights on", "right": "Switchboard with sockets and switches", "avoid": "Brands" },
+        { "n": 2, "kind": "SCN", "topic": "11.8", "use": "Electricity meter", "shows": "A domestic electricity meter on a wall with its display", "view": "Front view, close", "right": "Display area blank or unreadable (the app adds numbers)", "avoid": "Utility company names" },
+        { "n": 3, "kind": "MAC", "topic": "11.7.1", "use": "Heating effect", "shows": "The glowing red-hot coil of an electric heater; the base of an electric iron; a toaster's glowing elements", "view": "Three separate close-ups", "right": "Coils glowing orange-red", "avoid": "Hands near the coils" },
+        { "n": 4, "kind": "MAC", "topic": "11.7.1", "use": "Bulb filament", "shows": "An incandescent bulb lit, close-up on the glowing tungsten filament coil", "view": "Macro", "right": "Coiled filament inside the glass", "avoid": "Brands on the bulb" },
+        { "n": 5, "kind": "SCN", "topic": "11.6", "use": "Series and parallel in life", "shows": "A string of festival lights with one dark bulb making a section dark; a house where one bulb is off but others are on", "view": "Two frames, evening", "right": "Festival string clearly in a line", "avoid": "Religious symbols in focus" },
+        { "n": 6, "kind": "SCN", "topic": "11.7.1", "use": "Fuse and MCB", "shows": "An old porcelain fuse carrier with fuse wire, and a modern MCB distribution box", "view": "Front views, two images", "right": "Thin fuse wire across the carrier", "avoid": "Open live wiring with hands" }
+      ]
+    },
+    {
+      "key": "u.c10.science.jesc1.ch12", "title": "Magnetic Effects of Electric Current",
+      "topics": ["12.1 Magnetic field and field lines", "12.2 Magnetic field due to a current: straight conductor, right-hand thumb rule, circular loop, solenoid", "12.3 Force on a current-carrying conductor in a magnetic field: Fleming's left-hand rule", "12.4 Domestic electric circuits"],
+      "labs": [
+        { "template": "field", "lab": "field-lines", "status": "new template", "does": "Sprinkles iron filings, moves a compass around a bar magnet", "sees": "Field lines from north to south" },
+        { "template": "field", "lab": "current-makes-a-field", "status": "new settings", "does": "Switches on current in a straight wire, a loop and a solenoid; reverses it", "sees": "Circles around the wire, a bar-magnet pattern from the solenoid; the thumb rule" },
+        { "template": "field", "lab": "force-on-a-wire", "status": "new settings", "does": "Passes current through a rod between magnet poles; reverses current or field", "sees": "The rod moves; Fleming's left-hand rule" },
+        { "template": "circuit", "lab": "house-wiring", "status": "new settings", "does": "Wires a room with live, neutral and earth, a fuse and an MCB; makes a fault", "sees": "Short circuit and overloading trip the protection; earth keeps the user safe" }
+      ],
+      "images": [
+        { "n": 1, "kind": "SEQ", "topic": "12.1", "use": "Field lines", "shows": "Iron filings sprinkled on white paper over a bar magnet, before and after tapping the paper", "view": "From directly above, two frames", "right": "Filings gather at the poles and curve from pole to pole", "avoid": "Labels" },
+        { "n": 2, "kind": "SEQ", "topic": "12.2.1", "use": "Field round a wire", "shows": "A vertical wire through a card with small compasses around it: needles parallel with no current, in a circle with current", "view": "From above, two frames", "right": "Needles tangential to circles round the wire", "avoid": "Text" },
+        { "n": 3, "kind": "MAC", "topic": "12.2.4", "use": "Solenoid", "shows": "A coil of copper wire on a card with iron filings forming a bar-magnet-like pattern around and through it", "view": "From above", "right": "Lines straight and parallel inside the coil", "avoid": "Labels" },
+        { "n": 4, "kind": "SCN", "topic": "12.2.4", "use": "Electromagnet at work", "shows": "A crane with a large electromagnet lifting scrap iron in a scrapyard", "view": "Wide, side view", "right": "Scrap hanging from the flat magnet", "avoid": "Company names" },
+        { "n": 5, "kind": "SCN", "topic": "12.4", "use": "Wires and plugs at home", "shows": "Stripped house wires in their insulation colours, and a three-pin plug showing its thicker, longer earth pin", "view": "Close-ups, two images", "right": "Indian colours: live red or brown, neutral black or blue, earth green or green-yellow", "avoid": "Live wiring in a wall" },
+        { "n": 6, "kind": "SCN", "topic": "12.2", "use": "Magnetism in medicine", "shows": "An MRI scanner in a hospital room", "view": "Wide, clean, no patient", "right": "Large ring-shaped scanner", "avoid": "Brands, patients" }
+      ]
+    },
+    {
+      "key": "u.c10.science.jesc1.ch13", "title": "Our Environment",
+      "topics": ["13.1 Ecosystem: components, food chains and webs", "13.2 How our activities affect the environment: ozone layer depletion, managing the garbage we produce"],
+      "labs": [
+        { "template": "eco", "lab": "food-chain-energy", "status": "new template", "does": "Builds a food chain, then a web, and sends sunlight energy up", "sees": "Only about 10 per cent passes to the next level" },
+        { "template": "eco", "lab": "waste-sorter", "status": "new settings", "does": "Sorts household waste into green and blue bins", "sees": "What rots, what stays for centuries" }
+      ],
+      "images": [
+        { "n": 1, "kind": "SCN", "topic": "13.1", "use": "Hook: a pond ecosystem", "shows": "A village pond in India with lotus, reeds, a heron, frogs and fish visible near the surface", "view": "Wide, morning light", "right": "Both living and non-living parts visible", "avoid": "Plastic litter in this image" },
+        { "n": 2, "kind": "OBJ", "topic": "13.1.1", "use": "Food chain cards", "shows": "Separate cut-outs: grass, a grasshopper, a frog, a snake, an eagle; also a deer and a tiger, a phytoplankton cluster, a small fish and a large fish", "view": "Each in profile, same lighting", "right": "Species found in India", "avoid": "Animals eating each other" },
+        { "n": 3, "kind": "SCN", "topic": "13.1", "use": "A man-made ecosystem", "shows": "A green crop field with a farmer's scarecrow and birds", "view": "Wide landscape", "right": "Irrigation channel visible", "avoid": "Pesticide brands" },
+        { "n": 4, "kind": "SCN", "topic": "13.2.2", "use": "Segregating waste", "shows": "Green and blue household waste bins: peels and leaves in the green, plastic bottles and wrappers in the blue", "view": "From slightly above", "right": "Correct items in each bin", "avoid": "Brand logos on the waste" },
+        { "n": 5, "kind": "SEQ", "topic": "13.2.2", "use": "Composting", "shows": "A backyard compost pit on day 1 (fresh peels and leaves) and after two months (dark crumbly compost)", "view": "From above, two frames", "right": "Finished compost dark brown and crumbly", "avoid": "Plastic in the compost" },
+        { "n": 6, "kind": "SCN", "topic": "13.2.2", "use": "Non-biodegradable waste", "shows": "Plastic waste choking a drain beside a road", "view": "Eye level", "right": "Realistic, not exaggerated", "avoid": "People" },
+        { "n": 7, "kind": "DIA", "topic": "13.2.1", "use": "The ozone layer", "shows": "The Earth from space with a thin glowing layer high in the atmosphere and the Sun's ultraviolet rays approaching", "view": "Realistic render", "right": "Thin layer in the upper atmosphere", "avoid": "Labels" },
+        { "n": 8, "kind": "OBJ", "topic": "13.2.2", "use": "Biodegradable choices", "shows": "Separate cut-outs: a kulhad, a leaf plate (pattal), a jute bag; and a plastic cup, a plastic plate, a polythene bag", "view": "From slightly above, same scale", "right": "Real materials", "avoid": "Brands" }
+      ]
+    }
+  ]
+}
