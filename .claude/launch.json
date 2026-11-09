@@ -4,14 +4,33 @@
     {
       "name": "netcyberai-dev",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
+      "runtimeArgs": [
+        "run",
+        "dev"
+      ],
       "port": 3000
     },
     {
       "name": "labs",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "4600", "--directory", "labs"],
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "4600",
+        "--directory",
+        "labs"
+      ],
       "port": 4600
+    },
+    {
+      "name": "reader",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "4610"
+      ],
+      "port": 4610
     }
   ]
 }

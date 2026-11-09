@@ -1,0 +1,161 @@
+#!/usr/bin/env node
+// Checks chapter files for the NetCyberAI reader against reader/CONTRACT.md.
+// Usage: node reader/scripts/check.mjs [file.json | dir]   (default: every file under reader/content)
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const READER = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const ROOT = path.resolve(READER, '..');
+const arg = process.argv[2] ? path.resolve(process.argv[2]) : path.join(READER, 'content');
+const files = fs.statSync(arg).isDirectory() ? walk(arg).filter((f) => f.endsWith('.json') && path.basename(f) !== 'index.json') : [arg];
+function walk(d) { return fs.readdirSync(d, { withFileTypes: true }).flatMap((e) => (e.isDirectory() ? walk(path.join(d, e.name)) : [path.join(d, e.name)])); }
+
+const DEV = /[\u0900-\u097F]/;
+// A text that is only formulas, equations, numbers or symbols reads the same in both languages.
+const formulaOnly = (s) => !/[a-z]{3,}/.test(s.replace(/\{\{eq:[^}]*\}\}/g, '').replace(/\((s|l|g|aq)\)/g, ''));
+const STEP_TYPES = new Set(['retrieve', 'hook', 'explain', 'figure', 'equation', 'table', 'activity', 'worked', 'lab', 'guided', 'misconception', 'keypoints', 'examtip', 'close']);
+const REQUIRED = ['retrieve', 'explain', 'worked', 'guided', 'misconception', 'keypoints'];
+const BLOOM = new Set(['remember', 'understand', 'apply', 'analyse', 'evaluate', 'create']);
+const AUTO = new Set(['mcq', 'ar', 'case']);
+let total = 0;
+
+for (const file of files) {
+  const P = [];
+  const bad = (m) => P.push(m);
+  let ch;
+  try { ch = JSON.parse(fs.readFileSync(file, 'utf8')); } catch (e) { console.log(`${rel(file)}: not valid JSON: ${e.message}`); total++; continue; }
+  const assetDir = path.join(ROOT, 'labs', 'assets', `c${String(ch.class).padStart(2, '0')}`, ch.subject_id || '');
+  const labFile = path.join(ROOT, 'labs', 'defs', `c${String(ch.class).padStart(2, '0')}`, ch.subject_id || '', `${ch.chapter_key}.json`);
+  let labIds = new Set();
+  try { labIds = new Set(JSON.parse(fs.readFileSync(labFile, 'utf8')).labs.map((l) => l.id)); } catch (e) { bad(`no labs/defs file at ${rel(labFile)}`); }
+  const ids = new Set();
+  const answers = [];
+  const usedImages = new Set();
+
+  const T = (x, where, opt) => {
+    if (x == null) { if (!opt) bad(`${where}: missing text`); return; }
+    if (typeof x !== 'object' || typeof x.en !== 'string' || typeof x.hi !== 'string') return bad(`${where}: must be {en, hi}`);
+    if (!x.en.trim()) bad(`${where}: empty English`);
+    if (!x.hi.trim()) bad(`${where}: empty Hindi`);
+    else if (!DEV.test(x.hi) && !(x.hi.trim() === x.en.trim() && formulaOnly(x.en))) bad(`${where}: Hindi has no Devanagari`);
+  };
+  const TA = (a, where, min = 1) => { if (!Array.isArray(a) || a.length < min) return bad(`${where}: needs at least ${min}`); a.forEach((x, i) => T(x, `${where}[${i}]`)); };
+  const img = (name, where) => {
+    if (typeof name !== 'string') return bad(`${where}: image name must be a string`);
+    usedImages.add(name);
+    if (!fs.existsSync(path.join(assetDir, `${name}.webp`))) bad(`${where}: image ${name} not found in ${rel(assetDir)}`);
+  };
+  const mcqParts = (o, where) => {
+    T(o.q, `${where}.q`);
+    if (!Array.isArray(o.options) || o.options.length !== 4) bad(`${where}: needs 4 options`); else o.options.forEach((x, i) => T(x, `${where}.options[${i}]`));
+    if (!Number.isInteger(o.answer) || o.answer < 0 || o.answer > 3) bad(`${where}: answer must be 0–3`); else answers.push(o.answer);
+    if (!Array.isArray(o.why) || o.why.length !== 4) bad(`${where}: why must explain all 4 options`); else o.why.forEach((x, i) => T(x, `${where}.why[${i}]`));
+  };
+  const item = (it, where, autoOnly) => {
+    if (!it || typeof it !== 'object') return bad(`${where}: missing item`);
+    if (!it.id) bad(`${where}: no id`); else if (ids.has(it.id)) bad(`${where}: duplicate id ${it.id}`); else ids.add(it.id);
+    if (!BLOOM.has(it.bloom)) bad(`${where}: bloom must be one of ${[...BLOOM].join('/')}`);
+    if (autoOnly && !AUTO.has(it.type)) bad(`${where}: must be auto-marked (mcq, ar, case), got ${it.type}`);
+    if (it.type === 'mcq') mcqParts(it, where);
+    else if (it.type === 'ar') {
+      T(it.assertion, `${where}.assertion`); T(it.reason, `${where}.reason`);
+      if (!Number.isInteger(it.answer) || it.answer < 0 || it.answer > 3) bad(`${where}: answer must be 0–3`);
+      if (!Array.isArray(it.why) || it.why.length !== 4) bad(`${where}: why must explain all 4 options`); else it.why.forEach((x, i) => T(x, `${where}.why[${i}]`));
+    } else if (it.type === 'case') {
+      T(it.stem, `${where}.stem`);
+      if (it.image) img(it.image, `${where}.image`);
+      if (!Array.isArray(it.parts) || it.parts.length < 2 || it.parts.length > 4) bad(`${where}: case needs 2–4 parts`); else it.parts.forEach((p, i) => mcqParts(p, `${where}.parts[${i}]`));
+    } else if (it.type === 'short' || it.type === 'long') {
+      T(it.q, `${where}.q`); T(it.model, `${where}.model`);
+      const m = it.marks;
+      if (it.type === 'short' && ![2, 3].includes(m)) bad(`${where}: short marks must be 2 or 3`);
+      if (it.type === 'long' && m !== 5) bad(`${where}: long marks must be 5`);
+      if (!Array.isArray(it.rubric) || it.rubric.length !== m) bad(`${where}: rubric needs one point per mark (${m})`); else it.rubric.forEach((x, i) => T(x, `${where}.rubric[${i}]`));
+    } else bad(`${where}: unknown item type ${it.type}`);
+  };
+  const marksOf = (it) => (it.type === 'case' ? (it.parts || []).length : it.type === 'short' || it.type === 'long' ? it.marks || 0 : 1);
+
+  for (const k of ['chapter_key', 'class', 'subject_id', 'number']) if (ch[k] == null) bad(`missing ${k}`);
+  if (path.basename(file) !== `${ch.chapter_key}.json`) bad(`file name must be ${ch.chapter_key}.json`);
+  T(ch.title, 'title'); T(ch.big_idea, 'big_idea'); TA(ch.outcomes, 'outcomes', 3);
+  const topics = Array.isArray(ch.topics) ? ch.topics : [];
+  if (topics.length < 4 || topics.length > 10) bad(`topics: ${topics.length} (want 4–10)`);
+  const topicIds = new Set(topics.map((t) => t.id));
+  if (!ch.hook) bad('chapter hook missing'); else {
+    T(ch.hook.scene, 'hook.scene'); T(ch.hook.question, 'hook.question');
+    if (ch.hook.image) img(ch.hook.image, 'hook.image');
+    if (!topicIds.has(ch.hook.answered_in)) bad(`hook.answered_in ${ch.hook.answered_in} is not a topic`);
+    else { const t = topics.find((x) => x.id === ch.hook.answered_in); if (!t.steps.some((s) => s.type === 'close' && s.answers === 'chapter')) bad(`topic ${t.id} must have a close step with answers: "chapter"`); }
+  }
+
+  topics.forEach((t, ti) => {
+    const w = `topics[${ti}] ${t.id}`;
+    if (!/^t\d\d$/.test(t.id || '')) bad(`${w}: id must look like t01`);
+    T(t.title, `${w}.title`); T(t.short, `${w}.short`); TA(t.outcomes, `${w}.outcomes`);
+    if (!Array.isArray(t.terms) || !t.terms.length) bad(`${w}: needs key terms`); else t.terms.forEach((x, i) => { if (!x.en || !DEV.test(x.hi || '')) bad(`${w}.terms[${i}]: needs en and Devanagari hi`); T(x.gloss, `${w}.terms[${i}].gloss`); });
+    const steps = Array.isArray(t.steps) ? t.steps : [];
+    const types = steps.map((s) => s.type);
+    for (const r of REQUIRED) if (!types.includes(r)) bad(`${w}: missing a ${r} step`);
+    if (types[0] !== 'retrieve') bad(`${w}: the first step must be retrieve`);
+    const hooks = steps.filter((s) => s.type === 'hook').length, closes = steps.filter((s) => s.type === 'close' && s.answers === 'hook').length;
+    if (hooks && !closes) bad(`${w}: has a hook but no close step that answers it`);
+    const firstExplain = types.indexOf('explain');
+    steps.forEach((s, si) => {
+      const sw = `${w}.steps[${si}] ${s.type}`;
+      if (!STEP_TYPES.has(s.type)) return bad(`${sw}: unknown step type`);
+      switch (s.type) {
+        case 'retrieve': item(s.item, `${sw}.item`, true); T(s.from, `${sw}.from`); break;
+        case 'hook': T(s.scene, `${sw}.scene`); T(s.question, `${sw}.question`); if (s.image) img(s.image, `${sw}.image`); break;
+        case 'explain': T(s.title, `${sw}.title`); T(s.plain, `${sw}.plain`); TA(s.body, `${sw}.body`); T(s.board, `${sw}.board`, true); if (s.points) TA(s.points, `${sw}.points`); break;
+        case 'figure':
+          if (!Array.isArray(s.images) || !s.images.length) bad(`${sw}: needs images`); else s.images.forEach((n, i) => img(n, `${sw}.images[${i}]`));
+          T(s.caption, `${sw}.caption`); T(s.alt, `${sw}.alt`); TA(s.notice, `${sw}.notice`);
+          (s.labels || []).forEach((l, i) => { T(l.text, `${sw}.labels[${i}]`); if (!(l.x >= 0 && l.x <= 100 && l.y >= 0 && l.y <= 100)) bad(`${sw}.labels[${i}]: x and y must be 0–100`); });
+          break;
+        case 'equation': if (typeof s.eq !== 'string' || !s.eq.includes('->')) bad(`${sw}: eq must contain ->`); T(s.say, `${sw}.say`); T(s.note, `${sw}.note`, true); break;
+        case 'table': T(s.caption, `${sw}.caption`); TA(s.head, `${sw}.head`); if (!Array.isArray(s.rows) || !s.rows.length) bad(`${sw}: needs rows`); else s.rows.forEach((r, i) => { if (!Array.isArray(r) || r.length !== s.head.length) bad(`${sw}.rows[${i}]: needs ${s.head.length} cells`); else r.forEach((c, j) => T(c, `${sw}.rows[${i}][${j}]`)); }); break;
+        case 'activity': if (!/^Activity \d+\.\d+$/.test(s.ncert || '')) bad(`${sw}: ncert must look like "Activity 1.6"`); T(s.title, `${sw}.title`); TA(s.materials, `${sw}.materials`); TA(s.steps, `${sw}.steps`); T(s.observe, `${sw}.observe`); T(s.explain, `${sw}.explain`); T(s.safety, `${sw}.safety`, true); if (s.image) img(s.image, `${sw}.image`); break;
+        case 'worked': T(s.problem, `${sw}.problem`); TA(s.steps, `${sw}.steps`, 2); T(s.answer, `${sw}.answer`); if (!s.faded) bad(`${sw}: needs a faded "your turn"`); else { T(s.faded.problem, `${sw}.faded.problem`); TA(s.faded.shown, `${sw}.faded.shown`); item(s.faded.item, `${sw}.faded.item`, true); } break;
+        case 'lab': if (!labIds.has(s.lab)) bad(`${sw}: lab ${s.lab} not in ${rel(labFile)}`); if (si < firstExplain) bad(`${sw}: a lab must come after the explain step`); T(s.before, `${sw}.before`); T(s.after, `${sw}.after`); break;
+        case 'guided': item(s.item, `${sw}.item`, true); T(s.hint, `${sw}.hint`); break;
+        case 'misconception': T(s.wrong, `${sw}.wrong`); T(s.right, `${sw}.right`); T(s.why, `${sw}.why`); break;
+        case 'keypoints': TA(s.points, `${sw}.points`, 3); break;
+        case 'examtip': T(s.tip, `${sw}.tip`); T(s.marks, `${sw}.marks`, true); if (si < firstExplain) bad(`${sw}: exam tip must come after the concept`); break;
+        case 'close': if (!['hook', 'chapter'].includes(s.answers)) bad(`${sw}: answers must be hook or chapter`); T(s.text, `${sw}.text`); break;
+      }
+    });
+    const pool = (t.check && t.check.items) || [];
+    if (pool.length !== 8) bad(`${w}.check: needs exactly 8 items, has ${pool.length}`);
+    if (!t.check || t.check.draw !== 5 || t.check.pass !== 4) bad(`${w}.check: draw must be 5 and pass 4`);
+    pool.forEach((it, i) => item(it, `${w}.check.items[${i}]`, true));
+  });
+
+  const test = (ch.test && ch.test.items) || [];
+  if (test.length !== 20) bad(`test: needs 20 items, has ${test.length}`);
+  if (!ch.test || ch.test.pass !== 0.7) bad('test.pass must be 0.7');
+  test.forEach((it, i) => item(it, `test.items[${i}]`, false));
+  const n = (k) => test.filter((x) => x.type === k).length;
+  if (n('case') < 3) bad(`test: needs at least 3 case items (has ${n('case')})`);
+  if (n('ar') < 3) bad(`test: needs at least 3 assertion-reason items (has ${n('ar')})`);
+  if (n('short') < 4) bad(`test: needs at least 4 short items (has ${n('short')})`);
+  if (n('long') < 1) bad(`test: needs at least 1 long item (has ${n('long')})`);
+  const marks = test.reduce((a, x) => a + marksOf(x), 0);
+  const constructed = test.filter((x) => x.type === 'short' || x.type === 'long').reduce((a, x) => a + marksOf(x), 0);
+  if (marks && (constructed / marks < 0.22 || constructed / marks > 0.4)) bad(`test: constructed marks ${constructed}/${marks} should be about 30%`);
+  if (answers.length >= 20) {
+    const c = [0, 0, 0, 0]; answers.forEach((a) => c[a]++);
+    const top = Math.max(...c) / answers.length;
+    if (top > 0.35) bad(`answer spread: one option index holds ${Math.round(top * 100)}% of MCQ answers (${c.join('/')}); keep each under 35%`);
+  }
+  const unused = fs.existsSync(assetDir) ? fs.readdirSync(assetDir).filter((f) => f.startsWith(`C${String(ch.class).padStart(2, '0')}-SCI-CH${String(ch.number).padStart(2, '0')}-`) && f.endsWith('.webp') && !f.endsWith('.640.webp')).map((f) => f.slice(0, -5)).filter((nm) => !usedImages.has(nm)) : [];
+  if (unused.length) bad(`images of this chapter not used: ${unused.join(', ')}`);
+
+  total += P.length;
+  const counts = `${topics.length} topics, ${topics.reduce((a, t) => a + ((t.check && t.check.items) || []).length, 0)} topic items, ${test.length} test items (${marks} marks), ${usedImages.size} images`;
+  console.log(`${rel(file)}: ${P.length ? P.length + ' problems' : 'ok'} — ${counts}`);
+  P.slice(0, 60).forEach((m) => console.log('  - ' + m));
+  if (P.length > 60) console.log(`  … ${P.length - 60} more`);
+}
+function rel(p) { return path.relative(ROOT, p); }
+process.exit(total ? 1 : 0);

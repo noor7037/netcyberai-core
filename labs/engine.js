@@ -9,6 +9,24 @@
   const app = document.getElementById('app');
   const S = { lang: 'en', prevLang: null, idx: null, filter: { cls: 'all', subject: 'all', q: '' }, shown: 48, lab: null, chapter: null, mode: 'guided', step: 0, guess: null, guessRight: null, checksRight: 0, checksTotal: 0, log: [], inst: null, done: false, started: 0 };
   try { const v = localStorage.getItem('nca.labs.lang'); if (v === 'hi' || v === 'en') S.lang = v; } catch (e) {}
+  // Embed mode (?embed=1&lang=hi): a lab shown inside another page, such as the chapter reader. No header or gallery;
+  // the language comes from the host page; the page height and the finished result are posted to the parent.
+  const Q = new URLSearchParams(location.search);
+  const EMBED = Q.get('embed') === '1';
+  if (EMBED) { document.documentElement.classList.add('embed'); const ql = Q.get('lang'); if (ql === 'hi' || ql === 'en') S.lang = ql; }
+  const post = (msg) => { if (EMBED && window.parent !== window) { try { window.parent.postMessage(Object.assign({ source: 'nca-labs' }, msg), '*'); } catch (e) {} } };
+  if (EMBED) {
+    let lastH = 0;
+    const sendH = () => { const h = Math.ceil(document.documentElement.scrollHeight); if (Math.abs(h - lastH) > 2) { lastH = h; post({ type: 'height', height: h }); } };
+    try { new ResizeObserver(sendH).observe(document.body); } catch (e) { setInterval(sendH, 500); }
+    window.addEventListener('message', (e) => {
+      const d = e.data || {};
+      if (d.source === 'nca-reader' && d.type === 'lang' && (d.lang === 'en' || d.lang === 'hi') && d.lang !== S.lang) {
+        S.lang = d.lang; S.prevLang = null; syncLang();
+        if (S.lab && document.getElementById('guide')) { document.getElementById('labtitle').textContent = t(S.lab.title); document.querySelectorAll('.mode [data-mode]').forEach((x) => (x.textContent = t(x.dataset.mode === 'guided' ? U.guided : U.explore))); renderGuide(); }
+      }
+    });
+  }
   const t = (x) => L.tx(x, S.lang);
   const U = {
     eyebrow: { en: 'NetCyberAI', hi: 'NetCyberAI' },
@@ -134,7 +152,7 @@
       if (!NCA_T.get(lab.template)) await L.loadScript(`templates/${lab.template}.js`);
       const T = NCA_T.get(lab.template);
       if (!T) throw new Error('no template');
-      if (!keepLang && lab.lang && lab.lang !== S.lang) { S.prevLang = S.lang; S.lang = lab.lang; }
+      if (!keepLang && !EMBED && lab.lang && lab.lang !== S.lang) { S.prevLang = S.lang; S.lang = lab.lang; }
       syncLang();
       Object.assign(S, { lab, chapter, meta, mode: 'guided', step: 0, guess: null, guessRight: null, checksRight: 0, checksTotal: 0, log: [], done: false, started: Date.now() });
       ci = 0; tries = 0;
@@ -147,6 +165,7 @@
           <div class="right"><div class="mode" role="group" aria-label="Mode"><button type="button" data-mode="guided" aria-pressed="true">${esc(t(U.guided))}</button><button type="button" data-mode="explore" aria-pressed="false">${esc(t(U.explore))}</button></div>
           <button type="button" class="tutorbtn" id="tutor"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 10h8M8 13h5"/></svg>${esc(t(U.tutor))}</button></div>
         </div>
+        ${photosHTML(lab)}
         <div class="player">
           <section class="stagewrap" id="stagewrap"><div class="cue" id="cue" hidden><span class="dot"></span><span id="cuetext"></span></div><div id="stage"></div><div class="spot" id="spot" hidden></div></section>
           <aside class="guide" id="guide" aria-live="polite"></aside>
@@ -159,6 +178,13 @@
       console.error(e);
       app.innerHTML = `<div class="wrap"><div class="labtop"><button type="button" class="back" id="back">← ${esc(t(U.back))}</button></div><p class="err">${esc(t(U.failed))}</p></div>`;
     }
+  }
+  // Real photos of the experiment (the founder's images, mapped in assets/manifest.json), shown above the stage so the
+  // child sees the real thing next to the simulation. Captions switch language.
+  function photosHTML(lab) {
+    const ph = (lab.photos || []).map((p) => ({ src: api.asset(p.img), cap: p.caption })).filter((p) => p.src);
+    if (!ph.length) return '';
+    return `<div class="labphotos" role="group" aria-label="${esc(t({ en: 'Real photos', hi: 'असली फ़ोटो' }))}">${ph.map((p) => `<figure><img src="${esc(p.src)}" alt="${esc(t(p.cap))}" loading="lazy" decoding="async"><figcaption>${esc(t(p.cap))}</figcaption></figure>`).join('')}</div>`;
   }
   const cur = () => S.lab && S.lab.steps[S.step];
   const api = {
@@ -328,7 +354,7 @@
   function syncLang() {
     document.documentElement.lang = S.lang;
     document.querySelectorAll('[data-lang]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === S.lang)));
-    try { localStorage.setItem('nca.labs.lang', S.lang); } catch (e) {}
+    if (!EMBED) { try { localStorage.setItem('nca.labs.lang', S.lang); } catch (e) {} }
   }
   document.addEventListener('click', (e) => {
     const b = e.target.closest('button');
@@ -363,7 +389,7 @@
     }
     else if (b.hasAttribute('data-next')) advance();
     else if (b.hasAttribute('data-cnext')) { const s = cur(); tries = 0; if (ci < s.items.length - 1) { ci++; renderGuide(); } else { ci = 0; advance(); } }
-    else if (b.hasAttribute('data-finish')) { S.done = true; renderGuide(); celebrate(); }
+    else if (b.hasAttribute('data-finish')) { S.done = true; renderGuide(); celebrate(); post({ type: 'done', id: S.lab.id, guessRight: S.guessRight, checksRight: S.checksRight, checksTotal: S.checksTotal }); }
     else if (b.hasAttribute('data-again')) openLab(S.lab.id, true);
     else if (b.id === 'tochapter') { const n = document.getElementById('chapnote'); if (n) n.hidden = false; }
   });
