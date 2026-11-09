@@ -1,0 +1,77 @@
+import { existsSync, readFileSync } from 'fs';
+import path from 'path';
+import { describe, expect, it } from 'vitest';
+import { BOOKS, bookChapter, bookFor, bookHref, readerSrc } from '@/lib/family/books';
+import { allowedLearnFile } from '@/lib/family/learn-files';
+import { readCatalogCsv } from '@/lib/content/catalog-csv';
+
+const ROOT = path.resolve(__dirname, '../..');
+
+describe('the child’s book in Study (founder, 9 Nov 2026)', () => {
+  it('a CBSE Class 10 child reads all 13 chapters of NCERT Science, in the book’s order', () => {
+    const book = bookFor({ board: 'CBSE', classLevel: 10, subject: 'science' });
+    expect(book?.id).toBe('ncert.jesc1');
+    expect(book!.chapters.map((c) => c.number)).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]);
+    for (const c of book!.chapters) {
+      expect(c.title.en.length, c.key).toBeGreaterThan(3);
+      expect(c.title.hi, c.key).toMatch(/[ऀ-ॿ]/);
+    }
+  });
+
+  it('no other board, class or subject gets it', () => {
+    expect(bookFor({ board: 'CISCE', classLevel: 10, subject: 'science' })).toBeNull();
+    expect(bookFor({ board: 'CBSE', classLevel: 9, subject: 'science' })).toBeNull();
+    expect(bookFor({ board: 'CBSE', classLevel: 10, subject: 'mathematics' })).toBeNull();
+  });
+
+  it('every chapter opens a reader file that exists, in the child’s language', () => {
+    for (const book of BOOKS) {
+      for (const c of book.chapters) {
+        const src = readerSrc(book, c, 'hi');
+        expect(src.startsWith('/family/learn/reader/index.html?lang=hi#')).toBe(true);
+        const file = src.split('#')[1];
+        expect(existsSync(path.join(ROOT, 'reader/content', `${file}.json`)), file).toBe(true);
+        expect(bookChapter(c.key)?.chapter.key).toBe(c.key);
+        expect(bookHref(c.key)).toBe(`/family/study/book/${c.key}`);
+      }
+    }
+    expect(readerSrc(BOOKS[0], BOOKS[0].chapters[0], 'xx')).toContain('?lang=en#');
+    expect(bookChapter('u.c10.science.jesc1.ch99')).toBeNull();
+  });
+
+  it('each book chapter names a chapter of CBSE’s own Class 10 Science catalog, once, and the title matches', () => {
+    const text = readFileSync(path.join(ROOT, 'data/catalog/cbse-2026-27-maths-science.csv'), 'utf8');
+    const chapters = new Map(
+      readCatalogCsv(text, '2026-11-09')
+        .lines.filter((l) => l.board === 'CBSE' && l.classLevel === 10 && l.subject === 'science' && l.level === 'chapter')
+        .map((l) => [l.key, l.titleEn])
+    );
+    const book = bookFor({ board: 'CBSE', classLevel: 10, subject: 'science' })!;
+    const named = book.chapters.map((c) => c.catalogKey).filter((k): k is string => k !== null);
+    expect(new Set(named).size).toBe(named.length);
+    const word = (s: string) => s.toLowerCase().replace(/[^a-z]/g, '').slice(0, 7);
+    for (const c of book.chapters) {
+      if (!c.catalogKey) continue;
+      expect(chapters.has(c.catalogKey), c.catalogKey).toBe(true);
+      // The same chapter: its title starts with the same word (Control and co-ordination / Control and Coordination).
+      expect(word(chapters.get(c.catalogKey)!), c.key).toBe(word(c.title.en.replace(/^How do Organisms /, '')));
+    }
+    // Light, the Human Eye and Electricity have no chapter in that catalog yet.
+    expect(book.chapters.filter((c) => !c.catalogKey).map((c) => c.number)).toEqual([9, 10, 11]);
+  });
+});
+
+describe('the reader’s files served under /family/learn/', () => {
+  it('serves the pages, scripts, chapter and lab data, and the images', () => {
+    for (const p of ['reader/index.html', 'reader/reader.js', 'reader/reader.css', 'reader/content/index.json', 'reader/content/c10/science/u.c10.science.jesc1.ch01.json', 'labs/index.html', 'labs/engine.js', 'labs/lib.js', 'labs/styles.css', 'labs/index.json', 'labs/templates/beaker.js', 'labs/defs/c10/science/u.c10.science.jesc1.ch01.json', 'labs/assets/manifest.json']) {
+      expect(allowedLearnFile(p.split('/')), p).toBe(p);
+    }
+    expect(allowedLearnFile(['labs', 'assets', 'c10', 'science', 'C10-SCI-CH01-01_hook-of-the-chapter.640.webp'])).not.toBeNull();
+  });
+
+  it('never the scripts, the contracts, the smoke page, a hidden file or a path out of the folders', () => {
+    for (const p of [['reader', 'scripts', 'check.mjs'], ['labs', 'scripts', 'check.mjs'], ['reader', 'CONTRACT.md'], ['labs', 'CONTRACT.md'], ['labs', 'smoke.html'], ['reader', '.gitignore'], ['reader', '..', 'package.json'], ['..', 'package.json'], ['package.json'], ['src', 'middleware.ts'], ['.env'], ['reader', 'content', '..', '..', '.env.json'], []]) {
+      expect(allowedLearnFile(p), p.join('/')).toBeNull();
+    }
+  });
+});

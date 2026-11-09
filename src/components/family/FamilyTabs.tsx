@@ -22,7 +22,7 @@ export function FamilyTabs({ tabs, labels, navLabel }: { tabs: DockTab[]; labels
   // Hidden during the first steps, and inside an English lesson or check (C230-Y): a lesson is one task with its own
   // close button and its Next button where the tabs would be.
   // The call (W16-A4) is a full-screen task too.
-  if (path.startsWith('/family/welcome') || path.startsWith('/family/english/lesson') || path.startsWith('/family/english/check') || path.startsWith('/family/call')) return null;
+  if (path.startsWith('/family/welcome') || path.startsWith('/family/english/lesson') || path.startsWith('/family/english/check') || path.startsWith('/family/call') || path.startsWith('/family/study/book/')) return null;
   const active = (t: DockTab) => (t === 'home' ? path === '/family' || path.startsWith('/family/progress') : t === 'study' ? path.startsWith('/family/study') || path.startsWith('/family/understand') || path.startsWith('/family/tutors') : path.startsWith(HREF[t]));
   return (
     <nav aria-label={navLabel} className="fixed inset-x-0 bottom-0 z-30 px-4 pb-[calc(var(--fam-bottom,0px)+0.75rem)]">

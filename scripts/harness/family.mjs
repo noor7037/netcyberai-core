@@ -125,6 +125,7 @@ const callAnswer = (lang) => {
     .join('');
 };
 const CLASS_PUT_BACK = `update family.children set class_level = 7 where child_id = 'f0000000-0000-4000-8000-0000000fc001'`;
+const CLASS_10 = `update family.children set class_level = 10 where child_id = 'f0000000-0000-4000-8000-0000000fc001'`;
 
 // `ai`: for this picture, a made-up Workers AI key sealed with this run's own key, the provider cleared for children
 // and the live tutor's three workloads on it, so the screen reads "set up" without any call. All put back after.
@@ -214,6 +215,10 @@ export const FAMILY_SCREENS = [
   ['full', 'family-tutors', '/family/tutors', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-tutor-group]' }],
   ['full', 'family-tutors-study', '/family/study?subject=mathematics&tutor=maths', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-tutor-chosen]' }],
   ['full', 'family-study-catalog', '/family/study?subject=mathematics', { child: 'f0000000-0000-4000-8000-0000000fc002' }],
+  // The child's book (founder, 9 Nov 2026): Asha in CBSE Class 10 sees NCERT Science's 13 chapters in Study, and a
+  // chapter opens the chapter reader inside the Family app (its topics, diagrams and labs). Put back in Class 7 after.
+  ['full', 'family-book-study', '/family/study?subject=science', { prep: CLASS_10, reset: CLASS_PUT_BACK, settle: '#fam-chapters' }],
+  ['full', 'family-book-chapter', '/family/study/book/u.c10.science.jesc1.ch01', { prep: CLASS_10, reset: CLASS_PUT_BACK, settle: '[data-book-chapter] iframe', steps: [{ pause: 5000 }] }],
   ['full', 'family-understand', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch01.t01', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-block="practice"]' }],
   // W8-AI: a v7 answer with a mind map (an SVG from 480 px, a vertical tree below) and a check that says why each wrong option is wrong.
   ['full', 'family-understand-mindmap', '/family/understand?kind=topic&key=cbse.c9.mathematics.u1.ch90.t07', { child: 'f0000000-0000-4000-8000-0000000fc002', settle: '[data-block="mind_map"]' }],

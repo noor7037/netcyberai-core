@@ -225,6 +225,10 @@ def check_sources(root: Path) -> list[str]:
                             parts.append(part)
                     landed = "/".join(parts)
                     if not landed.startswith("src/"):
+                        # The chapter reader's own content data (founder, 9 Nov 2026): a JSON file under reader/content/
+                        # holds chapter text only, no code; src/lib/family/books.ts reads the book's index from it.
+                        if landed.startswith("reader/content/") and landed.endswith(".json"):
+                            continue
                         problems.append(f"{rel}: family code may not import {mod}")
                         continue
                     mod = "@/" + landed[len("src/"):]
@@ -324,6 +328,7 @@ def self_test() -> int:
         ("school code imports family code", "src/lib/fees/x.ts", "import { y } from '@/lib/family/session';\n", "imports family code"),
         ("school code reads a family table", "src/lib/control/x.ts", "const q = `select count(*) from family.children`;\n", "names family.children"),
         ("the people door outside its audited reader", "src/app/api/control/x/route.ts", "const q = `select family.control_accounts($1, $2, $3, $4)`;\n", "names family.control_accounts"),
+        ("family imports the reader's code, not its data", "src/lib/family/x.ts", "import r from '../../../reader/reader.js';\n", "may not import ../../../reader/reader.js"),
         ("a vendor SDK outside the adapters", "src/lib/family/x.ts", "import Anthropic from '@anthropic-ai/sdk';\n", "vendor AI or video SDK"),
         ("a vendor host outside the adapters", "src/lib/copilot/x.ts", "fetch('https://api.openai.com/v1/x');\n", "vendor AI or video host"),
         ("a family table without forced RLS", "supabase/migrations/1_x.sql", "create table family.t (id int);\nalter table family.t enable row level security;\n", "not forced"),
@@ -335,6 +340,7 @@ def self_test() -> int:
         ("src/lib/control/family-people.ts", "const q = `select family.control_accounts($1, $2, $3, $4) as people`;\n"),
         ("src/lib/ai/adapters/anthropic.ts", "fetch('https://api.anthropic.com/v1/messages');\n"),
         ("src/middleware.ts", "import { verifyFamilySession } from '@/lib/family/session';\n"),
+        ("src/lib/family/books.ts", "import idx from '../../../reader/content/index.json';\n"),
         ("supabase/migrations/1_ok.sql", "create table content.t (id int);\nalter table content.t enable row level security;\nalter table content.t force row level security;\n"),
     ]
     with tempfile.TemporaryDirectory() as tmp:
