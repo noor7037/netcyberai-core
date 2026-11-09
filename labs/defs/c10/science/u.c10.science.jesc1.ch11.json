@@ -17,7 +17,7 @@
    "n": "11.2",
    "title": "Electric potential and potential difference",
    "labs": [],
-   "why_no_lab": "Potential difference is measured by the voltmeter in the Ohm's law lab, so a separate lab would only repeat it."
+   "why_no_lab": "A voltmeter has to sit across a part, which the circuit boards cannot show except in the Ohm's law lab (topic 11.4), so the diagrams in the reader carry the idea of potential difference."
   },
   {
    "n": "11.3",
@@ -45,6 +45,7 @@
    "n": "11.6",
    "title": "Resistors in series and in parallel",
    "labs": [
+    "c10-science-jesc1-ch11-series-resistors",
     "c10-science-jesc1-ch11-series-parallel"
    ],
    "why_no_lab": null
@@ -53,6 +54,7 @@
    "n": "11.7",
    "title": "Heating effect of electric current and its applications",
    "labs": [
+    "c10-science-jesc1-ch11-heating-effect",
     "c10-science-jesc1-ch11-fuse-heating"
    ],
    "why_no_lab": null
@@ -88,14 +90,14 @@
      "expect": "open",
      "say": {
       "en": "This is the circuit of a torch. Tap the switch to open it.",
-      "hi": "यह एक टॉर्च का परिपथ है। स्विच पर टैप करके उसे खोलो।"
+      "hi": "यह एक टॉर्च का परिपथ है। स्विच पर टैप करके उसे ऑफ़ करो।"
      }
     },
     {
      "kind": "predict",
      "say": {
       "en": "With the switch open, what will the ammeter read?",
-      "hi": "स्विच खुला होने पर ऐमीटर क्या पढ़ेगा?"
+      "hi": "स्विच ऑफ़ होने पर ऐमीटर क्या पढ़ेगा?"
      },
      "options": [
       {
@@ -129,7 +131,7 @@
      "kind": "explain",
      "say": {
       "en": "Current flows only in a closed loop. The cell pushes charge round the loop, and the ammeter, joined in series, measures the current: I = Q / t, in amperes. Opening the switch breaks the loop, so the current stops everywhere at once and the bulb goes out.",
-      "hi": "धारा केवल बंद लूप में बहती है। सेल आवेश को लूप में धकेलता है, और श्रेणीक्रम में जुड़ा ऐमीटर धारा मापता है: I = Q / t, ऐम्पियर में। स्विच खोलने से लूप टूट जाता है, इसलिए हर जगह धारा एक साथ रुक जाती है और बल्ब बुझ जाता है।"
+      "hi": "धारा सिर्फ़ बंद लूप में बहती है। सेल आवेश को लूप में धकेलती है, और श्रेणीक्रम में जुड़ा ऐमीटर धारा मापता है: I = Q / t, ऐम्पियर में। स्विच ऑफ़ करने से लूप टूट जाता है, इसलिए हर जगह धारा एक साथ रुक जाती है और बल्ब बुझ जाता है।"
      }
     },
     {
@@ -174,7 +176,7 @@
         },
         {
          "en": "In parallel, across a part",
-         "hi": "पार्श्वक्रम में, किसी भाग के आर-पार"
+         "hi": "पार्श्वक्रम में, किसी हिस्से के दोनों सिरों पर"
         },
         {
          "en": "Outside the circuit",
@@ -190,7 +192,7 @@
         "",
         {
          "en": "A voltmeter goes in parallel, across a part.",
-         "hi": "वोल्टमीटर पार्श्वक्रम में, किसी भाग के आर-पार लगता है।"
+         "hi": "वोल्टमीटर पार्श्वक्रम में, किसी हिस्से के दोनों सिरों पर लगता है।"
         },
         {
          "en": "Outside the loop no current reaches it.",
@@ -230,7 +232,7 @@
      "expect": "closed",
      "say": {
       "en": "Close the switch. Read the voltmeter and the ammeter.",
-      "hi": "स्विच बंद करो। वोल्टमीटर और ऐमीटर पढ़ो।"
+      "hi": "स्विच ऑन करो। वोल्टमीटर और ऐमीटर पढ़ो।"
      }
     },
     {
@@ -246,13 +248,13 @@
      "kind": "predict",
      "say": {
       "en": "You will double the battery voltage from 3 V to 6 V. What will the current do?",
-      "hi": "तुम बैटरी की वोल्टता 3 V से दुगुनी करके 6 V करोगे। धारा का क्या होगा?"
+      "hi": "तुम बैटरी की वोल्टता 3 V से दोगुनी करके 6 V करोगे। धारा का क्या होगा?"
      },
      "options": [
       {
        "id": "double",
        "en": "It doubles",
-       "hi": "दुगुनी होगी"
+       "hi": "दोगुनी होगी"
       },
       {
        "id": "half",
@@ -289,7 +291,7 @@
      "kind": "explain",
      "say": {
       "en": "Doubling V doubled I. For the same resistor, V ÷ I is always the same number: the resistance, R = 10 Ω. So V = IR, which is Ohm's law, and the V–I graph is a straight line through the origin. A bigger resistance lets less current flow for the same voltage.",
-      "hi": "V दुगुना करने से I दुगुनी हो गई। एक ही प्रतिरोधक के लिए V ÷ I हमेशा एक ही संख्या रहती है: प्रतिरोध, R = 10 Ω। इसलिए V = IR, यही ओम का नियम है, और V–I ग्राफ़ मूल बिंदु से जाती सीधी रेखा है। बड़ा प्रतिरोध उसी वोल्टता पर कम धारा बहने देता है।"
+      "hi": "V दोगुना करने से I दोगुनी हो गई। एक ही प्रतिरोधक के लिए V ÷ I हमेशा एक ही संख्या रहती है: प्रतिरोध, R = 10 Ω। इसलिए V = IR, यही ओम का नियम है, और V–I ग्राफ़ मूल बिंदु से जाती सीधी लाइन है। बड़ा प्रतिरोध उसी वोल्टता पर कम धारा बहने देता है।"
      }
     },
     {
@@ -325,7 +327,7 @@
       {
        "q": {
         "en": "What does a steeper V–I line on the graph (I up, V across) mean?",
-        "hi": "ग्राफ़ पर (I ऊपर, V आड़ा) अधिक खड़ी V–I रेखा का क्या अर्थ है?"
+        "hi": "ग्राफ़ पर (I ऊपर, V आड़ा) ज़्यादा खड़ी V–I लाइन का क्या मतलब है?"
        },
        "options": [
         {
@@ -344,17 +346,17 @@
        "answer": 0,
        "why": {
         "en": "More current for each volt means less resistance.",
-        "hi": "हर वोल्ट पर ज़्यादा धारा का अर्थ कम प्रतिरोध।"
+        "hi": "हर वोल्ट पर ज़्यादा धारा का मतलब कम प्रतिरोध।"
        },
        "wrong": [
         "",
         {
          "en": "A bigger resistance gives less current per volt, a flatter line.",
-         "hi": "ज़्यादा प्रतिरोध हर वोल्ट पर कम धारा देता है, यानी चपटी रेखा।"
+         "hi": "ज़्यादा प्रतिरोध हर वोल्ट पर कम धारा देता है, यानी चपटी लाइन।"
         },
         {
          "en": "The slope is set by the resistance, so a different slope means a different R.",
-         "hi": "ढलान प्रतिरोध से तय होती है, इसलिए अलग ढलान का अर्थ अलग R।"
+         "hi": "ढलान प्रतिरोध से तय होती है, इसलिए अलग ढलान का मतलब अलग R।"
         }
        ]
       }
@@ -364,7 +366,7 @@
      "kind": "explore",
      "say": {
       "en": "Explore: plot points at 1.5 V and 4.5 V, then change the resistance to 40 Ω and plot again. Compare the two lines.",
-      "hi": "आज़माओ: 1.5 V और 4.5 V पर बिंदु अंकित करो, फिर प्रतिरोध 40 Ω करके दोबारा अंकित करो। दोनों रेखाओं की तुलना करो।"
+      "hi": "आज़माओ: 1.5 V और 4.5 V पर बिंदु अंकित करो, फिर प्रतिरोध 40 Ω करके दोबारा अंकित करो। दोनों लाइनों की तुलना करो।"
      }
     }
    ]
@@ -390,14 +392,14 @@
      "expect": "closed",
      "say": {
       "en": "Close the switch and read the ammeter. The test wire is nichrome.",
-      "hi": "स्विच बंद करो और ऐमीटर पढ़ो। परीक्षण का तार नाइक्रोम का है।"
+      "hi": "स्विच ऑन करो और ऐमीटर पढ़ो। टेस्ट वाला तार नाइक्रोम का है।"
      }
     },
     {
      "kind": "predict",
      "say": {
       "en": "You will make the wire twice as long. What will happen to the current?",
-      "hi": "तुम तार को दुगुना लंबा करोगे। धारा का क्या होगा?"
+      "hi": "तुम तार को दोगुना लंबा करोगे। धारा का क्या होगा?"
      },
      "options": [
       {
@@ -442,14 +444,14 @@
      "expect": "material:copper",
      "say": {
       "en": "Change the material to copper.",
-      "hi": "पदार्थ बदलकर ताँबा करो।"
+      "hi": "पदार्थ बदलकर कॉपर करो।"
      }
     },
     {
      "kind": "explain",
      "say": {
       "en": "A longer wire has more resistance, so less current. A thicker wire has less resistance. The material matters too: R = ρ l / A, where ρ is the resistivity. Nichrome has a resistivity many times that of copper, so heater coils use nichrome while connecting wires use copper.",
-      "hi": "लंबे तार का प्रतिरोध ज़्यादा होता है, इसलिए धारा कम। मोटे तार का प्रतिरोध कम होता है। पदार्थ भी मायने रखता है: R = ρ l / A, जहाँ ρ प्रतिरोधकता है। नाइक्रोम की प्रतिरोधकता ताँबे से कई गुना अधिक है, इसलिए हीटर की कुंडली नाइक्रोम की और जोड़ने वाले तार ताँबे के होते हैं।"
+      "hi": "लंबे तार का प्रतिरोध ज़्यादा होता है, इसलिए धारा कम। मोटे तार का प्रतिरोध कम होता है। पदार्थ भी मायने रखता है: R = ρ l / A, जहाँ ρ प्रतिरोधकता है। नाइक्रोम की प्रतिरोधकता कॉपर से कई गुना ज़्यादा है, इसलिए हीटर की कुंडली नाइक्रोम की और जोड़ने वाले तार कॉपर के होते हैं।"
      }
     },
     {
@@ -467,7 +469,7 @@
         },
         {
          "en": "It doubles",
-         "hi": "दुगुना हो जाएगा"
+         "hi": "दोगुना हो जाएगा"
         },
         {
          "en": "It stays the same",
@@ -477,13 +479,13 @@
        "answer": 0,
        "why": {
         "en": "R is proportional to length, so half the length gives half the resistance.",
-        "hi": "R लंबाई के समानुपाती है, इसलिए आधी लंबाई से आधा प्रतिरोध।"
+        "hi": "R लंबाई के अनुक्रमानुपाती है, इसलिए आधी लंबाई से आधा प्रतिरोध।"
        },
        "wrong": [
         "",
         {
          "en": "Doubling would need twice the length, not half.",
-         "hi": "दुगुने के लिए दुगुनी लंबाई चाहिए, आधी नहीं।"
+         "hi": "दोगुने के लिए दोगुनी लंबाई चाहिए, आधी नहीं।"
         },
         {
          "en": "Resistance does depend on length, as the ammeter showed.",
@@ -494,7 +496,7 @@
       {
        "q": {
         "en": "Why is the element of an electric iron made of nichrome?",
-        "hi": "बिजली की इस्तरी का तत्व नाइक्रोम का क्यों बनता है?"
+        "hi": "बिजली की इस्तरी का तापन अवयव नाइक्रोम का क्यों बनता है?"
        },
        "options": [
         {
@@ -513,13 +515,13 @@
        "answer": 0,
        "why": {
         "en": "An alloy like nichrome has high resistivity and a high melting point, so it gets hot without melting or oxidising quickly.",
-        "hi": "नाइक्रोम जैसी मिश्रातु की प्रतिरोधकता और गलनांक ऊँचे होते हैं, इसलिए यह बिना पिघले या जल्दी ऑक्सीकृत हुए गर्म होती है।"
+        "hi": "नाइक्रोम जैसी मिश्रधातु की प्रतिरोधकता और गलनांक ऊँचे होते हैं, इसलिए यह बिना पिघले या जल्दी उपचयित हुए गर्म होती है।"
        },
        "wrong": [
         "",
         {
          "en": "The best conductors, like copper and silver, have low resistance and would hardly heat up.",
-         "hi": "ताँबे और चाँदी जैसे सबसे अच्छे चालकों का प्रतिरोध कम होता है, वे मुश्किल से गर्म होंगे।"
+         "hi": "कॉपर और सिल्वर जैसे सबसे अच्छे चालकों का प्रतिरोध कम होता है, वे मुश्किल से गर्म होंगे।"
         },
         {
          "en": "Cost is not the reason; its resistance and heat resistance are.",
@@ -533,7 +535,167 @@
      "kind": "explore",
      "say": {
       "en": "Explore: try silver, tungsten, manganin and the other materials at the same length and thickness. Note each reading in the table.",
-      "hi": "आज़माओ: समान लंबाई और मोटाई पर चाँदी, टंगस्टन, मैंगनिन और बाकी पदार्थ आज़माओ। हर पाठ्यांक तालिका में लिखो।"
+      "hi": "आज़माओ: समान लंबाई और मोटाई पर सिल्वर, टंगस्टन, मैंगनिन और बाक़ी पदार्थ आज़माओ। हर रीडिंग टेबल में लिखो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch11-series-resistors",
+   "topic": "11.6",
+   "template": "circuit",
+   "title": {
+    "en": "Resistors in series: one path",
+    "hi": "श्रेणीक्रम में प्रतिरोधक: एक ही रास्ता"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "series-parallel",
+    "preset": "series"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "switch",
+     "expect": "closed",
+     "say": {
+      "en": "Two bulbs are joined one after the other, in series. Close the switch and read the ammeter.",
+      "hi": "दो बल्ब एक के बाद एक, श्रेणीक्रम में जुड़े हैं। स्विच ऑन करो और ऐमीटर की रीडिंग देखो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "You will raise Bulb 2 to 40 Ω. What will the ammeter show?",
+      "hi": "तुम बल्ब 2 को 40 Ω करोगे। ऐमीटर में क्या दिखेगा?"
+     },
+     "options": [
+      {
+       "id": "less",
+       "en": "A smaller current",
+       "hi": "कम धारा"
+      },
+      {
+       "id": "same",
+       "en": "The same current",
+       "hi": "वही धारा"
+      },
+      {
+       "id": "more",
+       "en": "A larger current",
+       "hi": "ज़्यादा धारा"
+      }
+     ],
+     "answer": "less"
+    },
+    {
+     "kind": "do",
+     "target": "slider:r2",
+     "expect": "reading:ammeter",
+     "say": {
+      "en": "Drag the Bulb 2 slider up to 40 Ω.",
+      "hi": "बल्ब 2 के स्लाइडर को 40 Ω तक ऊपर खींचो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:bulb1",
+     "expect": "bulb:out",
+     "say": {
+      "en": "Tap Bulb 1 to take it out. Watch Bulb 2.",
+      "hi": "बल्ब 1 पर टैप करके उसे निकालो। बल्ब 2 को देखो।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "part:bulb1",
+     "expect": "bulb:in",
+     "say": {
+      "en": "Tap it again to put it back.",
+      "hi": "उसे वापस लगाने के लिए फिर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "In series there is only one path, so the same current flows through both bulbs. The resistances add up, R = R₁ + R₂, so a bigger resistance anywhere means less current everywhere. Each bulb gets only a share of the battery's voltage. Take one bulb out and the only path breaks, so both go dark. That is why one bad bulb darkens a whole string of old fairy lights.",
+      "hi": "श्रेणीक्रम में रास्ता सिर्फ़ एक होता है, इसलिए दोनों बल्बों से वही धारा गुज़रती है। प्रतिरोध जुड़ जाते हैं, R = R₁ + R₂, इसलिए कहीं भी प्रतिरोध बढ़ाओ तो पूरे परिपथ में धारा घट जाती है। हर बल्ब को बैटरी की वोल्टता का सिर्फ़ एक हिस्सा मिलता है। एक बल्ब निकालो तो इकलौता रास्ता टूट जाता है और दोनों बुझ जाते हैं। इसीलिए पुरानी झालर में एक ख़राब बल्ब पूरी लड़ी बुझा देता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Bulbs of 10 Ω and 30 Ω are in series on a 4 V battery. What current flows?",
+        "hi": "10 Ω और 30 Ω के बल्ब 4 V की बैटरी पर श्रेणीक्रम में हैं। कितनी धारा बहेगी?"
+       },
+       "options": [
+        "0.1 A",
+        "0.4 A",
+        "0.13 A"
+       ],
+       "answer": 0,
+       "why": {
+        "en": "In series R = 10 + 30 = 40 Ω, so I = V / R = 4 / 40 = 0.1 A.",
+        "hi": "श्रेणीक्रम में R = 10 + 30 = 40 Ω, इसलिए I = V / R = 4 / 40 = 0.1 A।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "0.4 A is 4 V divided by the 10 Ω bulb alone. In series the current meets both resistances.",
+         "hi": "0.4 A का मतलब है 4 V को सिर्फ़ 10 Ω वाले बल्ब से भाग देना। श्रेणीक्रम में धारा को दोनों प्रतिरोध पार करने पड़ते हैं।"
+        },
+        {
+         "en": "0.13 A is 4 V divided by the 30 Ω bulb alone. The two resistances add first.",
+         "hi": "0.13 A का मतलब है 4 V को सिर्फ़ 30 Ω वाले बल्ब से भाग देना। पहले दोनों प्रतिरोध जोड़ने होते हैं।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "One bulb in a series string fuses. What happens to the other bulbs?",
+        "hi": "श्रेणीक्रम वाली लड़ी का एक बल्ब फ़्यूज़ हो जाता है। बाक़ी बल्बों का क्या होता है?"
+       },
+       "options": [
+        {
+         "en": "All of them go dark",
+         "hi": "सब बुझ जाते हैं"
+        },
+        {
+         "en": "They glow brighter",
+         "hi": "वे और तेज़ जलते हैं"
+        },
+        {
+         "en": "They stay as they were",
+         "hi": "वे वैसे ही जलते रहते हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The fused bulb breaks the only path, so there is no current anywhere.",
+        "hi": "फ़्यूज़ हुआ बल्ब इकलौता रास्ता तोड़ देता है, इसलिए कहीं भी धारा नहीं बहती।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Brighter needs more current, but a broken path gives none.",
+         "hi": "तेज़ जलने के लिए ज़्यादा धारा चाहिए, पर टूटे रास्ते में धारा बिल्कुल नहीं बहती।"
+        },
+        {
+         "en": "Staying lit is what happens in parallel wiring, where each bulb has its own path.",
+         "hi": "वैसे ही जलते रहना पार्श्वक्रम वायरिंग में होता है, जहाँ हर बल्ब का अपना रास्ता होता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: change both sliders and check that the ammeter always agrees with R = R₁ + R₂ and I = V / R.",
+      "hi": "आज़माओ: दोनों स्लाइडर बदलो और देखो कि ऐमीटर हमेशा R = R₁ + R₂ और I = V / R से मेल खाता है।"
      }
     }
    ]
@@ -559,7 +721,7 @@
      "expect": "closed",
      "say": {
       "en": "The two bulbs are in series. Close the switch.",
-      "hi": "दोनों बल्ब श्रेणीक्रम में हैं। स्विच बंद करो।"
+      "hi": "दोनों बल्ब श्रेणीक्रम में हैं। स्विच ऑन करो।"
      }
     },
     {
@@ -618,7 +780,7 @@
      "kind": "explain",
      "say": {
       "en": "In series there is only one path, so the same current flows through both bulbs and the total resistance adds up: R = R1 + R2. Take one bulb out and the path breaks, so both go out. In parallel each bulb has its own path across the full voltage: 1/R = 1/R1 + 1/R2, so the total resistance is less than the smallest one. If one bulb fails, the others stay on. That is why homes are wired in parallel.",
-      "hi": "श्रेणीक्रम में केवल एक रास्ता होता है, इसलिए दोनों बल्बों में एक ही धारा बहती है और कुल प्रतिरोध जुड़ जाता है: R = R1 + R2। एक बल्ब निकालने से रास्ता टूट जाता है, इसलिए दोनों बुझ जाते हैं। पार्श्वक्रम में हर बल्ब का अपना रास्ता होता है और उस पर पूरी वोल्टता लगती है: 1/R = 1/R1 + 1/R2, इसलिए कुल प्रतिरोध सबसे छोटे प्रतिरोध से भी कम होता है। एक बल्ब ख़राब हो तो बाकी जलते रहते हैं। इसीलिए घरों में पार्श्वक्रम वायरिंग होती है।"
+      "hi": "श्रेणीक्रम में सिर्फ़ एक रास्ता होता है, इसलिए दोनों बल्बों में एक ही धारा बहती है और कुल प्रतिरोध जुड़ जाता है: R = R1 + R2। एक बल्ब निकालने से रास्ता टूट जाता है, इसलिए दोनों बुझ जाते हैं। पार्श्वक्रम में हर बल्ब का अपना रास्ता होता है और उस पर पूरी वोल्टता लगती है: 1/R = 1/R1 + 1/R2, इसलिए कुल प्रतिरोध सबसे छोटे प्रतिरोध से भी कम होता है। एक बल्ब ख़राब हो तो बाक़ी जलते रहते हैं। इसीलिए घरों में पार्श्वक्रम वायरिंग होती है।"
      }
     },
     {
@@ -673,7 +835,7 @@
        "answer": 0,
        "why": {
         "en": "In parallel every appliance has 220 V and its own switch, and one fault does not stop the rest.",
-        "hi": "पार्श्वक्रम में हर उपकरण को 220 V और अपना स्विच मिलता है, और एक की ख़राबी से बाकी नहीं रुकते।"
+        "hi": "पार्श्वक्रम में हर उपकरण को 220 V और अपना स्विच मिलता है, और एक की ख़राबी से बाक़ी नहीं रुकते।"
        },
        "wrong": [
         "",
@@ -694,6 +856,157 @@
      "say": {
       "en": "Explore: in parallel, unscrew bulb 1 and watch bulb 2. Then change the bulb resistances with the sliders and compare the ammeter in series and parallel.",
       "hi": "आज़माओ: पार्श्वक्रम में बल्ब 1 निकालो और बल्ब 2 देखो। फिर स्लाइडरों से बल्बों के प्रतिरोध बदलो और श्रेणीक्रम व पार्श्वक्रम में ऐमीटर की तुलना करो।"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch11-heating-effect",
+   "topic": "11.7",
+   "template": "circuit",
+   "title": {
+    "en": "Heating effect: the bigger resistance gets hotter",
+    "hi": "ऊष्मीय प्रभाव: बड़ा प्रतिरोध ज़्यादा गर्म होता है"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "series-parallel",
+    "preset": "series"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "switch",
+     "expect": "closed",
+     "say": {
+      "en": "Bulb 1 (10 Ω) and Bulb 2 (20 Ω) are in series, so the same current flows through both. Close the switch and compare their glow.",
+      "hi": "बल्ब 1 (10 Ω) और बल्ब 2 (20 Ω) श्रेणीक्रम में हैं, इसलिए दोनों से वही धारा गुज़रती है। स्विच ऑन करो और दोनों की चमक की तुलना करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Now you will make Bulb 1 the larger resistance, 40 Ω. Which bulb will glow brighter?",
+      "hi": "अब तुम बल्ब 1 को बड़ा प्रतिरोध, 40 Ω, कर दोगे। कौन-सा बल्ब ज़्यादा तेज़ जलेगा?"
+     },
+     "options": [
+      {
+       "id": "b1",
+       "en": "Bulb 1 (40 Ω)",
+       "hi": "बल्ब 1 (40 Ω)"
+      },
+      {
+       "id": "b2",
+       "en": "Bulb 2 (20 Ω)",
+       "hi": "बल्ब 2 (20 Ω)"
+      },
+      {
+       "id": "same",
+       "en": "Both the same",
+       "hi": "दोनों बराबर"
+      }
+     ],
+     "answer": "b1"
+    },
+    {
+     "kind": "do",
+     "target": "slider:r1",
+     "expect": "reading:ammeter",
+     "say": {
+      "en": "Drag the Bulb 1 slider up to 40 Ω and compare the two bulbs again.",
+      "hi": "बल्ब 1 के स्लाइडर को 40 Ω तक ऊपर खींचो और दोनों बल्बों की फिर से तुलना करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The glow of a bulb shows how fast heat is made in it. The current is the same in both, so the heat depends on the resistance: H = I² R t. The bulb with the larger resistance makes more heat and glows brighter. This is why the thin coil of a heater glows red while the thick copper cord that feeds it stays only a little warm, although the same current runs through both.",
+      "hi": "बल्ब की चमक बताती है कि उसमें ऊष्मा कितनी तेज़ी से बन रही है। दोनों में धारा वही है, इसलिए ऊष्मा प्रतिरोध पर टिकी है: H = I² R t। जिस बल्ब का प्रतिरोध बड़ा है उसमें ज़्यादा ऊष्मा बनती है और वह ज़्यादा तेज़ जलता है। इसीलिए हीटर की पतली कुंडली लाल चमकती है, जबकि उसे बिजली देने वाला मोटा कॉपर का तार बस थोड़ा गर्म होता है, हालाँकि दोनों से वही धारा गुज़रती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "A 5 Ω and a 20 Ω resistor are in series with the same current. Which one makes more heat?",
+        "hi": "5 Ω और 20 Ω के दो प्रतिरोधक वही धारा लेकर श्रेणीक्रम में हैं। किसमें ज़्यादा ऊष्मा बनती है?"
+       },
+       "options": [
+        {
+         "en": "The 20 Ω resistor",
+         "hi": "20 Ω वाले में"
+        },
+        {
+         "en": "The 5 Ω resistor",
+         "hi": "5 Ω वाले में"
+        },
+        {
+         "en": "Both make the same heat",
+         "hi": "दोनों में बराबर"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The current and the time are the same, so H = I² R t is larger for the larger R: four times larger here.",
+        "hi": "धारा और समय वही हैं, इसलिए बड़े R के लिए H = I² R t ज़्यादा है: यहाँ 4 गुना।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "The smaller resistance makes less heat when the current is the same.",
+         "hi": "वही धारा हो तो छोटा प्रतिरोध कम ऊष्मा बनाता है।"
+        },
+        {
+         "en": "Equal heat would need equal resistances. The current alone is not what decides it.",
+         "hi": "बराबर ऊष्मा के लिए बराबर प्रतिरोध चाहिए। सिर्फ़ धारा से यह तय नहीं होता।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "The current through a heating coil is doubled. The resistance and the time stay the same. The heat becomes",
+        "hi": "हीटर की कुंडली में धारा दोगुनी कर दी जाती है। प्रतिरोध और समय वही रहते हैं। ऊष्मा हो जाती है"
+       },
+       "options": [
+        {
+         "en": "4 times",
+         "hi": "4 गुना"
+        },
+        {
+         "en": "2 times",
+         "hi": "2 गुना"
+        },
+        {
+         "en": "Half",
+         "hi": "आधी"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "H = I² R t, and the current is squared: 2² = 4.",
+        "hi": "H = I² R t में धारा का वर्ग आता है: 2² = 4।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "2 times would be true if the heat were proportional to I, but it goes with I².",
+         "hi": "2 गुना तब होता जब ऊष्मा I के अनुपात में होती, पर यह I² से चलती है।"
+        },
+        {
+         "en": "A larger current cannot give less heat.",
+         "hi": "ज़्यादा धारा से ऊष्मा कम नहीं हो सकती।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: swap the two sliders (Bulb 1 at 20 Ω, Bulb 2 at 40 Ω) and see which bulb is brighter. The bigger resistance always glows more in series.",
+      "hi": "आज़माओ: दोनों स्लाइडर उलट दो (बल्ब 1 को 20 Ω, बल्ब 2 को 40 Ω) और देखो कौन-सा बल्ब ज़्यादा तेज़ है। श्रेणीक्रम में बड़ा प्रतिरोध हमेशा ज़्यादा चमकता है।"
      }
     }
    ]
@@ -735,7 +1048,7 @@
      "kind": "predict",
      "say": {
       "en": "About 16 A now flows. If the fuse is rated only 10 A, what will happen?",
-      "hi": "अब लगभग 16 A धारा बह रही है। अगर फ़्यूज़ की रेटिंग केवल 10 A हो, तो क्या होगा?"
+      "hi": "अब लगभग 16 A धारा बह रही है। अगर फ़्यूज़ की रेटिंग सिर्फ़ 10 A हो, तो क्या होगा?"
      },
      "options": [
       {
@@ -746,7 +1059,7 @@
       {
        "id": "nothing",
        "en": "Nothing; fuses only matter for short circuits",
-       "hi": "कुछ नहीं; फ़्यूज़ केवल शॉर्ट सर्किट में काम आता है"
+       "hi": "कुछ नहीं; फ़्यूज़ सिर्फ़ शॉर्ट सर्किट में काम आता है"
       },
       {
        "id": "brighter",
@@ -778,7 +1091,7 @@
       {
        "q": {
         "en": "If the current through a wire doubles, the heat produced in the same time becomes…",
-        "hi": "अगर तार में धारा दुगुनी हो जाए, तो उतने ही समय में बनी ऊष्मा हो जाती है…"
+        "hi": "अगर तार में धारा दोगुनी हो जाए, तो उतने ही समय में बनी ऊष्मा हो जाती है…"
        },
        "options": [
         {
@@ -797,13 +1110,13 @@
        "answer": 0,
        "why": {
         "en": "H = I²Rt, so twice the current gives 2² = 4 times the heat.",
-        "hi": "H = I²Rt, इसलिए दुगुनी धारा से 2² = 4 गुना ऊष्मा।"
+        "hi": "H = I²Rt, इसलिए दोगुनी धारा से 2² = 4 गुना ऊष्मा।"
        },
        "wrong": [
         "",
         {
          "en": "Heat goes with the square of the current, not the current itself.",
-         "hi": "ऊष्मा धारा के वर्ग के साथ बढ़ती है, केवल धारा के साथ नहीं।"
+         "hi": "ऊष्मा धारा के वर्ग के साथ बढ़ती है, सिर्फ़ धारा के साथ नहीं।"
         },
         {
          "en": "More current always makes more heat in the same wire.",
@@ -984,7 +1297,7 @@
         },
         {
          "en": "225 comes from adding V and I, which has no meaning.",
-         "hi": "225, V और I जोड़ने से आता है, जिसका कोई अर्थ नहीं।"
+         "hi": "225, V और I जोड़ने से आता है, जिसका कोई मतलब नहीं।"
         }
        ]
       }
@@ -994,7 +1307,7 @@
      "kind": "explore",
      "say": {
       "en": "Explore: switch on other appliances, change the hours per day and the price per unit, and find the monthly bill. Which one appliance costs the most?",
-      "hi": "आज़माओ: बाकी उपकरण चालू करो, रोज़ के घंटे और प्रति यूनिट दाम बदलो, और महीने का बिल देखो। कौन-सा उपकरण सबसे महँगा पड़ता है?"
+      "hi": "आज़माओ: बाक़ी उपकरण चालू करो, रोज़ के घंटे और प्रति यूनिट दाम बदलो, और महीने का बिल देखो। कौन-सा उपकरण सबसे महँगा पड़ता है?"
      }
     }
    ]

@@ -14,10 +14,13 @@ function walk(d) { return fs.readdirSync(d, { withFileTypes: true }).flatMap((e)
 const DEV = /[\u0900-\u097F]/;
 // A text that is only formulas, equations, numbers or symbols reads the same in both languages.
 const formulaOnly = (s) => !/[a-z]{3,}/.test(s.replace(/\{\{eq:[^}]*\}\}/g, '').replace(/\((s|l|g|aq)\)/g, ''));
-const STEP_TYPES = new Set(['retrieve', 'hook', 'explain', 'figure', 'equation', 'table', 'activity', 'worked', 'lab', 'guided', 'misconception', 'keypoints', 'examtip', 'close']);
+const STEP_TYPES = new Set(['retrieve', 'hook', 'explain', 'diagram', 'figure', 'equation', 'table', 'activity', 'worked', 'lab', 'guided', 'misconception', 'keypoints', 'examtip', 'close']);
 const REQUIRED = ['retrieve', 'explain', 'worked', 'guided', 'misconception', 'keypoints'];
 const BLOOM = new Set(['remember', 'understand', 'apply', 'analyse', 'evaluate', 'create']);
 const AUTO = new Set(['mcq', 'ar', 'case']);
+// Bookish or wrong Hindi the founder ruled out (feedback part 2 §2–§8): never in a "hi" string.
+const BANNED_HI = ['फाटक', 'प्रयोगशाला', 'अध्याय परीक्षा', 'आदर्श उत्तर', 'हल-और-परीक्षण', 'धूसर', 'तश्तरी', 'प्रायः', 'गहरी बोतल', 'रंग का रंग', 'अधोलेख', 'चकाचौंध', 'स्वयं', 'आवश्यक', 'वायुरोधी', 'धूम-कक्ष', 'धुआँ-कक्ष', 'बहुविकल्पी', 'उत्तीर्ण', 'सम्पर्क', 'गतिविधि', 'किग्रा', 'पीछा करो', 'शुभ संख्या', 'रेफ़्रिजरेटर'];
+const BARE_EN = /\b(heat|sunlight|grey|gray|energy|light)\b/i;
 let total = 0;
 
 for (const file of files) {
@@ -48,7 +51,11 @@ for (const file of files) {
   };
   const mcqParts = (o, where) => {
     T(o.q, `${where}.q`);
-    if (!Array.isArray(o.options) || o.options.length !== 4) bad(`${where}: needs 4 options`); else o.options.forEach((x, i) => T(x, `${where}.options[${i}]`));
+    if (!Array.isArray(o.options) || o.options.length !== 4) bad(`${where}: needs 4 options`); else o.options.forEach((x, i) => {
+      T(x, `${where}.options[${i}]`);
+      // A Hindi option must not carry a bracketed Hindi addition its English lacks (it gives the answer away).
+      if (x && x.hi && x.en && !x.en.includes('(') && /\([^)]*[\u0900-\u097F][^)]*\)/.test(x.hi)) bad(`${where}.options[${i}]: Hindi adds a bracketed note the English does not have`);
+    });
     if (!Number.isInteger(o.answer) || o.answer < 0 || o.answer > 3) bad(`${where}: answer must be 0–3`); else answers.push(o.answer);
     if (!Array.isArray(o.why) || o.why.length !== 4) bad(`${where}: why must explain all 4 options`); else o.why.forEach((x, i) => T(x, `${where}.why[${i}]`));
   };
@@ -108,6 +115,19 @@ for (const file of files) {
         case 'retrieve': item(s.item, `${sw}.item`, true); T(s.from, `${sw}.from`); break;
         case 'hook': T(s.scene, `${sw}.scene`); T(s.question, `${sw}.question`); if (s.image) img(s.image, `${sw}.image`); break;
         case 'explain': T(s.title, `${sw}.title`); T(s.plain, `${sw}.plain`); TA(s.body, `${sw}.body`); T(s.board, `${sw}.board`, true); if (s.points) TA(s.points, `${sw}.points`); break;
+        case 'diagram': {
+          T(s.title, `${sw}.title`); T(s.caption, `${sw}.caption`); T(s.alt, `${sw}.alt`); if (s.notice) TA(s.notice, `${sw}.notice`);
+          const svg = String(s.svg || '');
+          if (!/^\s*<svg[\s>]/.test(svg) || !/<\/svg>\s*$/.test(svg)) bad(`${sw}: svg must be one <svg>…</svg> element`);
+          if (!/viewBox=/.test(svg)) bad(`${sw}: svg needs a viewBox`);
+          if (/<script|<foreignObject|<image|\son\w+\s*=|href\s*=\s*["'](?!#)/i.test(svg)) bad(`${sw}: svg has script, foreignObject, image, an on… handler or an external link`);
+          if (svg.length > 14000) bad(`${sw}: svg is ${svg.length} characters (keep it under about 12 KB)`);
+          const keys = [...svg.matchAll(/data-t="([^"]+)"/g)].map((m) => m[1]);
+          if (!keys.length) bad(`${sw}: svg has no <text data-t> labels; a full-topic diagram needs its words`);
+          for (const k of keys) { if (!s.texts || !s.texts[k]) bad(`${sw}: texts.${k} missing`); else T(s.texts[k], `${sw}.texts.${k}`); }
+          for (const m of svg.matchAll(/<text(?![^>]*data-t=)[^>]*>([^<]*)<\/text>/g)) if (/[A-Za-z]{3,}|[\u0900-\u097F]/.test(m[1].replace(/[A-Z][a-z]?\d*/g, ''))) bad(`${sw}: words written straight into the svg ("${m[1].slice(0, 30)}"); use <text data-t>`);
+          break;
+        }
         case 'figure':
           if (!Array.isArray(s.images) || !s.images.length) bad(`${sw}: needs images`); else s.images.forEach((n, i) => img(n, `${sw}.images[${i}]`));
           T(s.caption, `${sw}.caption`); T(s.alt, `${sw}.alt`); TA(s.notice, `${sw}.notice`);
@@ -125,6 +145,16 @@ for (const file of files) {
         case 'close': if (!['hook', 'chapter'].includes(s.answers)) bad(`${sw}: answers must be hook or chapter`); T(s.text, `${sw}.text`); break;
       }
     });
+    if (!types.includes('diagram')) bad(`${w}: no diagram step — every topic needs a full-topic visual`);
+    else {
+      // "Everything is defined, everything is visual": each key term of the topic appears in the topic's diagrams.
+      const words = steps.filter((x) => x.type === 'diagram').flatMap((x) => Object.values(x.texts || {}).map((v) => (v && v.en ? v.en.toLowerCase() : ''))).join(' | ');
+      for (const term of t.terms || []) {
+        const stem = String(term.en || '').toLowerCase().replace(/\(.*?\)/g, '').trim().replace(/(es|s)$/, '');
+        if (stem && !words.includes(stem)) bad(`${w}: key term "${term.en}" is not shown in any of the topic's diagrams`);
+      }
+    }
+    if (!types.includes('lab')) T(t.why_no_lab, `${w}.why_no_lab (no lab step, so say in one line why none is needed)`);
     const pool = (t.check && t.check.items) || [];
     if (pool.length !== 8) bad(`${w}.check: needs exactly 8 items, has ${pool.length}`);
     if (!t.check || t.check.draw !== 5 || t.check.pass !== 4) bad(`${w}.check: draw must be 5 and pass 4`);
@@ -142,7 +172,21 @@ for (const file of files) {
   if (n('long') < 1) bad(`test: needs at least 1 long item (has ${n('long')})`);
   const marks = test.reduce((a, x) => a + marksOf(x), 0);
   const constructed = test.filter((x) => x.type === 'short' || x.type === 'long').reduce((a, x) => a + marksOf(x), 0);
-  if (marks && (constructed / marks < 0.22 || constructed / marks > 0.4)) bad(`test: constructed marks ${constructed}/${marks} should be about 30%`);
+  const comp = test.filter((x) => x.type === 'case' || x.type === 'ar' || (x.type === 'mcq' && x.comp)).reduce((a, x) => a + marksOf(x), 0);
+  const plain = test.filter((x) => x.type === 'mcq' && !x.comp).reduce((a, x) => a + marksOf(x), 0);
+  const pc = (v) => Math.round((v / marks) * 100);
+  if (marks && (pc(comp) < 45 || pc(comp) > 55 || pc(plain) < 15 || pc(plain) > 25 || pc(constructed) < 25 || pc(constructed) > 35)) bad(`test mix by marks is ${pc(comp)}/${pc(plain)}/${pc(constructed)} (competency/plain MCQ/constructed); CBSE wants 50/20/30 (45–55, 15–25, 25–35)`);
+  // Spoken-Hindi and language-hygiene sweep over every "hi" string in the chapter.
+  (function sweep(x, where) {
+    if (Array.isArray(x)) return x.forEach((v, i) => sweep(v, `${where}[${i}]`));
+    if (!x || typeof x !== 'object') return;
+    if (typeof x.hi === 'string' && typeof x.en === 'string') {
+      for (const w of BANNED_HI) if (x.hi.includes(w)) bad(`${where}: Hindi uses "${w}" (see CONTRACT §1)`);
+      const bare = x.hi.replace(/\{\{eq:[^}]*\}\}/g, '').replace(/\([^)]*[A-Za-z][^)]*\)/g, '');
+      if (BARE_EN.test(bare)) bad(`${where}: English word "${bare.match(BARE_EN)[0]}" left in Hindi prose`);
+    }
+    for (const [k, v] of Object.entries(x)) if (k !== 'svg' && k !== 'en') sweep(v, `${where}.${k}`);
+  })(ch, 'chapter');
   if (answers.length >= 20) {
     const c = [0, 0, 0, 0]; answers.forEach((a) => c[a]++);
     const top = Math.max(...c) / answers.length;

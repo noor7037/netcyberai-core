@@ -8,8 +8,10 @@
   {
    "n": "5.1",
    "title": "What are life processes?",
-   "labs": [],
-   "why_no_lab": "Telling living from non-living is an idea best built from the village scene photo and the reader, with no experiment to run."
+   "labs": [
+    "c10-science-jesc1-ch05-lifeprocesses"
+   ],
+   "why_no_lab": null
   },
   {
    "n": "5.2",
@@ -25,6 +27,7 @@
    "n": "5.3",
    "title": "Respiration: aerobic and anaerobic",
    "labs": [
+    "c10-science-jesc1-ch05-respiration-routes",
     "c10-science-jesc1-ch05-breathing"
    ],
    "why_no_lab": null
@@ -48,6 +51,242 @@
   }
  ],
  "labs": [
+  {
+   "id": "c10-science-jesc1-ch05-lifeprocesses",
+   "topic": "5.1",
+   "template": "match",
+   "title": {
+    "en": "Which life process is it?",
+    "hi": "यह कौन-सा जैव प्रक्रम है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "style": "lines",
+    "pairs": [
+     {
+      "id": "nutrition",
+      "left": {
+       "en": "Nutrition",
+       "hi": "पोषण (Nutrition)"
+      },
+      "right": {
+       "en": "A neem leaf making food in sunlight",
+       "hi": "धूप में भोजन बनाती नीम की पत्ती"
+      },
+      "why": {
+       "en": "Taking in or making food for energy and raw material is nutrition.",
+       "hi": "ऊर्जा और कच्चे माल के लिए भोजन लेना या बनाना पोषण है।"
+      }
+     },
+     {
+      "id": "respiration",
+      "left": {
+       "en": "Respiration",
+       "hi": "श्वसन (Respiration)"
+      },
+      "right": {
+       "en": "Cells using oxygen to release energy from food",
+       "hi": "ऑक्सीजन से भोजन की ऊर्जा निकालती कोशिकाएँ"
+      },
+      "why": {
+       "en": "Respiration releases the energy locked in food.",
+       "hi": "श्वसन भोजन में बंद ऊर्जा को बाहर निकालता है।"
+      }
+     },
+     {
+      "id": "transport",
+      "left": {
+       "en": "Transport",
+       "hi": "परिवहन (Transport)"
+      },
+      "right": {
+       "en": "Blood carrying oxygen to every cell",
+       "hi": "हर कोशिका तक ऑक्सीजन पहुँचाता रुधिर"
+      },
+      "why": {
+       "en": "Moving materials between parts of the body is transport.",
+       "hi": "शरीर के हिस्सों के बीच चीज़ें पहुँचाना परिवहन है।"
+      }
+     },
+     {
+      "id": "excretion",
+      "left": {
+       "en": "Excretion",
+       "hi": "उत्सर्जन (Excretion)"
+      },
+      "right": {
+       "en": "Kidneys removing urea from the blood",
+       "hi": "रुधिर से यूरिया निकालते वृक्क"
+      },
+      "why": {
+       "en": "Removing harmful waste made by cells is excretion.",
+       "hi": "कोशिकाओं के बनाए नुक़सानदेह अपशिष्ट को निकालना उत्सर्जन है।"
+      }
+     },
+     {
+      "id": "diffusion",
+      "left": {
+       "en": "Diffusion",
+       "hi": "विसरण (Diffusion)"
+      },
+      "right": {
+       "en": "Oxygen spreading into a one-celled amoeba",
+       "hi": "एक कोशिका वाले अमीबा में फैलती ऑक्सीजन"
+      },
+      "why": {
+       "en": "Molecules spread from where there are more to where there are fewer.",
+       "hi": "अणु ज़्यादा वाली जगह से कम वाली जगह की ओर फैलते हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "left:nutrition",
+     "expect": "matched:nutrition",
+     "say": {
+      "en": "Tap \"Nutrition\". Then tap the example that fits it.",
+      "hi": "\"पोषण\" पर टैप करो। फिर वह उदाहरण चुनो जो उससे मेल खाता है।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "An amoeba has no heart or blood. Why can it still get oxygen?",
+      "hi": "अमीबा में न हृदय है, न रुधिर। फिर भी उसे ऑक्सीजन कैसे मिलती है?"
+     },
+     "options": [
+      {
+       "id": "surf",
+       "en": "Its whole body touches the water",
+       "hi": "उसका पूरा शरीर पानी को छूता है"
+      },
+      {
+       "id": "heart",
+       "en": "It has a tiny hidden heart",
+       "hi": "उसमें एक छोटा छिपा हुआ हृदय होता है"
+      },
+      {
+       "id": "far",
+       "en": "It needs no oxygen at all",
+       "hi": "उसे ऑक्सीजन की ज़रूरत ही नहीं होती"
+      }
+     ],
+     "answer": "surf"
+    },
+    {
+     "kind": "do",
+     "target": "left:diffusion",
+     "expect": "matched:diffusion",
+     "say": {
+      "en": "Now match \"Diffusion\" with its example.",
+      "hi": "अब \"विसरण\" को उसके उदाहरण से मिलाओ।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "left:transport",
+     "expect": "all-matched",
+     "say": {
+      "en": "Match the rest: transport, respiration and excretion.",
+      "hi": "बाक़ी भी मिलाओ: परिवहन, श्वसन और उत्सर्जन।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "Each process has its own job. Nutrition brings in food, respiration releases its energy, transport carries things to every cell and excretion removes waste. Diffusion moves molecules only over short distances, so a big body needs a transport system too.",
+      "hi": "हर प्रक्रम का अपना काम है। पोषण भोजन अंदर लाता है, श्वसन उसकी ऊर्जा निकालता है, परिवहन चीज़ें हर कोशिका तक पहुँचाता है और उत्सर्जन अपशिष्ट निकालता है। विसरण अणुओं को सिर्फ़ छोटी दूरी तक पहुँचाता है, इसीलिए बड़े शरीर को परिवहन तंत्र भी चाहिए।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which process carries oxygen to the cells of your toes?",
+        "hi": "तुम्हारे पैर की उँगलियों की कोशिकाओं तक ऑक्सीजन कौन-सा प्रक्रम पहुँचाता है?"
+       },
+       "options": [
+        {
+         "en": "Transport by blood",
+         "hi": "रुधिर से परिवहन"
+        },
+        {
+         "en": "Excretion",
+         "hi": "उत्सर्जन"
+        },
+        {
+         "en": "Diffusion alone",
+         "hi": "सिर्फ़ विसरण"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Blood carries oxygen all the way to the toes.",
+        "hi": "रुधिर ऑक्सीजन को पैर की उँगलियों तक पहुँचाता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Excretion removes waste; it does not bring oxygen.",
+         "hi": "उत्सर्जन अपशिष्ट निकालता है; वह ऑक्सीजन नहीं लाता।"
+        },
+        {
+         "en": "Diffusion alone is far too slow over that distance.",
+         "hi": "इतनी दूरी के लिए अकेला विसरण बहुत धीमा है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "A dog sleeps without moving. What is true?",
+        "hi": "कुत्ता बिना हिले सोया है। क्या सही है?"
+       },
+       "options": [
+        {
+         "en": "All four life processes are still going on",
+         "hi": "चारों जैव प्रक्रम अब भी चल रहे हैं"
+        },
+        {
+         "en": "No life process is going on",
+         "hi": "कोई जैव प्रक्रम नहीं चल रहा"
+        },
+        {
+         "en": "Only nutrition is going on",
+         "hi": "सिर्फ़ पोषण चल रहा है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Breathing, digestion, blood flow and waste removal never stop.",
+        "hi": "साँस, पाचन, रुधिर का बहना और अपशिष्ट निकलना कभी नहीं रुकते।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Then the dog would not be alive.",
+         "hi": "तब कुत्ता जीवित ही नहीं होता।"
+        },
+        {
+         "en": "Respiration, transport and excretion carry on too.",
+         "hi": "श्वसन, परिवहन और उत्सर्जन भी चलते रहते हैं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try this: match the cards in a different order. For each example, say which job it shows before you tap.",
+      "hi": "आज़माओ: कार्डों को दूसरे क्रम में मिलाओ। हर उदाहरण पर टैप करने से पहले बोलो कि वह कौन-सा काम दिखाता है।"
+     }
+    }
+   ]
+  },
   {
    "id": "c10-science-jesc1-ch05-photosynthesis",
    "topic": "5.2",
@@ -77,14 +316,14 @@
      "expect": "identified:chloroplast",
      "say": {
       "en": "Tap the chloroplast, the green part where food is made.",
-      "hi": "हरितलवक पर टैप करो, वह हरा भाग जहाँ भोजन बनता है।"
+      "hi": "हरितलवक पर टैप करो, वह हरा हिस्सा जहाँ भोजन बनता है।"
      }
     },
     {
      "kind": "predict",
      "say": {
       "en": "The water plant is under a bright lamp. When you press play, what will rise from its leaves?",
-      "hi": "जल-पौधा तेज़ लैंप के नीचे है। प्ले दबाने पर इसकी पत्तियों से क्या निकलेगा?"
+      "hi": "पानी का पौधा तेज़ लैंप के नीचे है। प्ले पर टैप करने पर इसकी पत्तियों से क्या निकलेगा?"
      },
      "options": [
       {
@@ -111,7 +350,7 @@
      "expect": "bubbles",
      "say": {
       "en": "Press play and count the bubbles.",
-      "hi": "प्ले दबाओ और बुलबुले गिनो।"
+      "hi": "प्ले पर टैप करो और बुलबुले गिनो।"
      }
     },
     {
@@ -127,7 +366,7 @@
      "kind": "explain",
      "say": {
       "en": "In the chloroplasts, chlorophyll traps sunlight. The leaf uses that energy to join carbon dioxide and water into glucose, and gives out oxygen. Less light means fewer bubbles, because light is the energy for the reaction. Plants that make their own food like this are autotrophs; animals that eat food made by others are heterotrophs.",
-      "hi": "हरितलवक में पर्णहरित सूर्य का प्रकाश पकड़ता है। पत्ती उस ऊर्जा से कार्बन डाइऑक्साइड और पानी को जोड़कर ग्लूकोज़ बनाती है और ऑक्सीजन छोड़ती है। कम प्रकाश में बुलबुले कम होते हैं, क्योंकि प्रकाश ही इस अभिक्रिया की ऊर्जा है। ऐसे अपना भोजन स्वयं बनाने वाले पौधे स्वपोषी हैं; दूसरों का बनाया भोजन खाने वाले जंतु विषमपोषी हैं।"
+      "hi": "हरितलवक में पर्णहरित सूर्य का प्रकाश पकड़ता है। पत्ती उस ऊर्जा से कार्बन डाइऑक्साइड और पानी को जोड़कर ग्लूकोज़ बनाती है और ऑक्सीजन छोड़ती है। कम प्रकाश में बुलबुले कम होते हैं, क्योंकि प्रकाश ही इस अभिक्रिया की ऊर्जा है। इस तरह अपना भोजन ख़ुद बनाने वाले पौधे स्वपोषी (autotroph) हैं; दूसरों का बनाया भोजन खाने वाले जंतु विषमपोषी (heterotroph) हैं।"
      }
     },
     {
@@ -172,7 +411,7 @@
       {
        "q": {
         "en": "A leaf kept in the dark for two days shows no starch. Why?",
-        "hi": "दो दिन अँधेरे में रखी पत्ती में स्टार्च नहीं मिलता। क्यों?"
+        "hi": "दो दिन अँधेरे में रखी पत्ती में मंड नहीं मिलता। क्यों?"
        },
        "options": [
         {
@@ -191,7 +430,7 @@
        "answer": 0,
        "why": {
         "en": "Light is needed for photosynthesis; the stored starch is used up in the dark.",
-        "hi": "प्रकाश-संश्लेषण के लिए प्रकाश ज़रूरी है; अँधेरे में जमा स्टार्च ख़र्च हो जाता है।"
+        "hi": "प्रकाश-संश्लेषण के लिए प्रकाश ज़रूरी है; अँधेरे में जमा मंड ख़र्च हो जाता है।"
        },
        "wrong": [
         "",
@@ -211,7 +450,7 @@
      "kind": "explore",
      "say": {
       "en": "Explore: change the air (carbon dioxide) and the temperature sliders and press play again. Which change gives the fewest bubbles?",
-      "hi": "आज़माओ: हवा (कार्बन डाइऑक्साइड) और तापमान के स्लाइडर बदलो और फिर प्ले दबाओ। किस बदलाव से सबसे कम बुलबुले आते हैं?"
+      "hi": "आज़माओ: हवा (कार्बन डाइऑक्साइड) और तापमान के स्लाइडर बदलो और फिर प्ले पर टैप करो। किस बदलाव से सबसे कम बुलबुले आते हैं?"
      }
     }
    ]
@@ -259,7 +498,7 @@
       {
        "id": "guard",
        "en": "Two bean-shaped guard cells",
-       "hi": "सेम के आकार की दो द्वार कोशिकाएँ"
+       "hi": "सेम जैसी दो द्वार कोशिकाएँ"
       },
       {
        "id": "root",
@@ -296,7 +535,7 @@
      "kind": "explain",
      "say": {
       "en": "Stomata are tiny pores, most of them on the underside of a leaf. Two guard cells open the pore when they swell with water and close it when they lose water. Through stomata the leaf takes in carbon dioxide and lets out oxygen and water vapour. Closing them stops the plant losing too much water.",
-      "hi": "रंध्र छोटे छिद्र हैं, जिनमें से अधिकतर पत्ती की निचली सतह पर होते हैं। पानी भरने पर फूली हुई दो द्वार कोशिकाएँ छिद्र खोलती हैं और पानी कम होने पर बंद कर देती हैं। रंध्रों से पत्ती कार्बन डाइऑक्साइड लेती है और ऑक्सीजन व जलवाष्प छोड़ती है। इन्हें बंद करके पौधा ज़्यादा पानी खोने से बचता है।"
+      "hi": "रंध्र छोटे छिद्र हैं, जिनमें से ज़्यादातर पत्ती की निचली सतह पर होते हैं। पानी भरने पर फूली हुई दो द्वार कोशिकाएँ छिद्र खोलती हैं और पानी कम होने पर बंद कर देती हैं। रंध्रों से पत्ती कार्बन डाइऑक्साइड लेती है और ऑक्सीजन व जलवाष्प छोड़ती है। इन्हें बंद करके पौधा ज़्यादा पानी खोने से बचता है।"
      }
     },
     {
@@ -370,7 +609,7 @@
         },
         {
          "en": "Plants do not use nitrogen gas from the air for photosynthesis.",
-         "hi": "पौधे प्रकाश-संश्लेषण में हवा की नाइट्रोजन गैस का उपयोग नहीं करते।"
+         "hi": "पौधे प्रकाश-संश्लेषण में हवा की नाइट्रोजन गैस का इस्तेमाल नहीं करते।"
         }
        ]
       }
@@ -380,7 +619,7 @@
      "kind": "explore",
      "say": {
       "en": "Explore: try the 40× lens and the fine knob, and find the green chloroplasts inside the guard cells. Are some pores open and some closed?",
-      "hi": "आज़माओ: 40× लेंस और बारीक नॉब आज़माओ और द्वार कोशिकाओं के अंदर हरे हरितलवक ढूँढो। क्या कुछ छिद्र खुले और कुछ बंद हैं?"
+      "hi": "आज़माओ: 40× लेंस और बारीक नॉब इस्तेमाल करो और द्वार कोशिकाओं के अंदर हरे हरितलवक ढूँढो। क्या कुछ छिद्र खुले और कुछ बंद हैं?"
      }
     }
    ]
@@ -423,7 +662,7 @@
      "kind": "predict",
      "say": {
       "en": "Where is most of the food finally digested and absorbed into the blood?",
-      "hi": "अधिकांश भोजन अंत में कहाँ पचता है और रक्त में अवशोषित होता है?"
+      "hi": "ज़्यादातर भोजन अंत में कहाँ पचता है और रुधिर में अवशोषित होता है?"
      },
      "options": [
       {
@@ -450,14 +689,14 @@
      "expect": "traced",
      "say": {
       "en": "Press play and follow the bite of roti.",
-      "hi": "प्ले दबाओ और रोटी के कौर के साथ चलो।"
+      "hi": "प्ले पर टैप करो और रोटी के कौर के साथ चलो।"
      }
     },
     {
      "kind": "explain",
      "say": {
       "en": "In the mouth, saliva starts turning starch into sugar. The stomach adds hydrochloric acid and pepsin to digest proteins. In the small intestine, bile from the liver breaks fats into small drops, and juices from the pancreas and the intestine finish the job. Finger-like villi absorb the digested food into the blood. The large intestine takes back water.",
-      "hi": "मुँह में लार स्टार्च को शर्करा में बदलना शुरू करती है। आमाशय प्रोटीन पचाने के लिए हाइड्रोक्लोरिक अम्ल और पेप्सिन मिलाता है। छोटी आँत में यकृत का पित्त वसा को छोटी बूँदों में तोड़ता है, और अग्न्याशय व आँत के रस पाचन पूरा करते हैं। उँगली जैसे दीर्घरोम पचे हुए भोजन को रक्त में सोख लेते हैं। बड़ी आँत पानी वापस सोखती है।"
+      "hi": "मुँह में लार मंड को शर्करा में बदलना शुरू करती है। आमाशय प्रोटीन पचाने के लिए हाइड्रोक्लोरिक अम्ल और पेप्सिन मिलाता है। छोटी आँत में यकृत का पित्त वसा को छोटी बूँदों में तोड़ता है, और अग्न्याशय व आँत के रस पाचन पूरा करते हैं। उँगली जैसे दीर्घरोम पचे हुए भोजन को रुधिर में सोख लेते हैं। बड़ी आँत पानी वापस सोखती है।"
      }
     },
     {
@@ -466,7 +705,7 @@
       {
        "q": {
         "en": "Which juice starts digesting starch?",
-        "hi": "कौन-सा रस स्टार्च का पाचन शुरू करता है?"
+        "hi": "कौन-सा रस मंड का पाचन शुरू करता है?"
        },
        "options": [
         {
@@ -485,17 +724,17 @@
        "answer": 0,
        "why": {
         "en": "Salivary amylase in saliva breaks starch into sugar.",
-        "hi": "लार का लार एमिलेस स्टार्च को शर्करा में तोड़ता है।"
+        "hi": "लार का लार एमाइलेज़ मंड को शर्करा में तोड़ता है।"
        },
        "wrong": [
         "",
         {
          "en": "Bile breaks fats into small drops; it has no enzyme for starch.",
-         "hi": "पित्त वसा को छोटी बूँदों में तोड़ता है; इसमें स्टार्च के लिए एंज़ाइम नहीं है।"
+         "hi": "पित्त वसा को छोटी बूँदों में तोड़ता है; इसमें मंड के लिए एंज़ाइम नहीं है।"
         },
         {
          "en": "Stomach acid helps pepsin digest proteins, not starch.",
-         "hi": "आमाशय का अम्ल पेप्सिन को प्रोटीन पचाने में मदद करता है, स्टार्च नहीं।"
+         "hi": "आमाशय का अम्ल पेप्सिन को प्रोटीन पचाने में मदद करता है, मंड नहीं।"
         }
        ]
       },
@@ -521,7 +760,7 @@
        "answer": 0,
        "why": {
         "en": "Millions of villi increase the area, so more digested food passes into the blood.",
-        "hi": "लाखों दीर्घरोम सतह बढ़ाते हैं, जिससे ज़्यादा पचा भोजन रक्त में जाता है।"
+        "hi": "लाखों दीर्घरोम सतह बढ़ाते हैं, जिससे ज़्यादा पचा भोजन रुधिर में जाता है।"
        },
        "wrong": [
         "",
@@ -547,12 +786,294 @@
    ]
   },
   {
+   "id": "c10-science-jesc1-ch05-respiration-routes",
+   "topic": "5.3",
+   "template": "sort",
+   "title": {
+    "en": "Where does the glucose go?",
+    "hi": "ग्लूकोज़ आगे कहाँ जाता है?"
+   },
+   "minutes": 6,
+   "level": "core",
+   "config": {
+    "bins": [
+     {
+      "id": "aer",
+      "label": {
+       "en": "Aerobic (with oxygen)",
+       "hi": "वायवीय (ऑक्सीजन के साथ)"
+      }
+     },
+     {
+      "id": "yeast",
+      "label": {
+       "en": "Anaerobic: yeast",
+       "hi": "अवायवीय: यीस्ट"
+      }
+     },
+     {
+      "id": "muscle",
+      "label": {
+       "en": "Anaerobic: our muscles",
+       "hi": "अवायवीय: हमारी पेशियाँ"
+      }
+     }
+    ],
+    "cards": [
+     {
+      "id": "mito",
+      "bin": "aer",
+      "text": {
+       "en": "Happens in the mitochondria",
+       "hi": "माइटोकॉन्ड्रिया में होता है"
+      },
+      "why": {
+       "en": "With oxygen, pyruvate is broken down fully in the mitochondria.",
+       "hi": "ऑक्सीजन हो तो पायरूवेट माइटोकॉन्ड्रिया में पूरी तरह टूट जाता है।"
+      }
+     },
+     {
+      "id": "co2h2o",
+      "bin": "aer",
+      "text": {
+       "en": "Ends in carbon dioxide and water",
+       "hi": "आख़िर में कार्बन डाइऑक्साइड और पानी बनते हैं"
+      },
+      "why": {
+       "en": "Full breakdown with oxygen gives carbon dioxide and water.",
+       "hi": "ऑक्सीजन से पूरा टूटने पर कार्बन डाइऑक्साइड और पानी बनते हैं।"
+      }
+     },
+     {
+      "id": "most",
+      "bin": "aer",
+      "text": {
+       "en": "Releases the most energy",
+       "hi": "सबसे ज़्यादा ऊर्जा निकलती है"
+      },
+      "why": {
+       "en": "Breaking glucose down completely releases far more energy than the other routes.",
+       "hi": "ग्लूकोज़ पूरा टूटता है, इसलिए दूसरे रास्तों से कहीं ज़्यादा ऊर्जा निकलती है।"
+      }
+     },
+     {
+      "id": "ethanol",
+      "bin": "yeast",
+      "text": {
+       "en": "Makes ethanol and carbon dioxide",
+       "hi": "एथेनॉल और कार्बन डाइऑक्साइड बनते हैं"
+      },
+      "why": {
+       "en": "Yeast ferments sugar into ethanol and carbon dioxide.",
+       "hi": "यीस्ट शर्करा का किण्वन करके एथेनॉल और कार्बन डाइऑक्साइड बनाता है।"
+      }
+     },
+     {
+      "id": "idli",
+      "bin": "yeast",
+      "text": {
+       "en": "Makes covered idli batter rise overnight",
+       "hi": "ढका इडली का घोल रात भर में फूलता है"
+      },
+      "why": {
+       "en": "Microbes in the batter make carbon dioxide without air, and the gas puffs the batter up.",
+       "hi": "घोल के सूक्ष्मजीव बिना हवा के कार्बन डाइऑक्साइड बनाते हैं और गैस घोल को फुला देती है।"
+      }
+     },
+     {
+      "id": "bubbles",
+      "bin": "yeast",
+      "text": {
+       "en": "Bubbles turn lime water milky from a yeast tube",
+       "hi": "यीस्ट की ट्यूब के बुलबुले चूने का पानी दूधिया करते हैं"
+      },
+      "why": {
+       "en": "The bubbles are carbon dioxide from fermenting yeast.",
+       "hi": "बुलबुले किण्वन करते यीस्ट की कार्बन डाइऑक्साइड हैं।"
+      }
+     },
+     {
+      "id": "lactic",
+      "bin": "muscle",
+      "text": {
+       "en": "Makes lactic acid",
+       "hi": "लैक्टिक अम्ल बनता है"
+      },
+      "why": {
+       "en": "Muscle cells turn pyruvate into lactic acid when oxygen is short.",
+       "hi": "ऑक्सीजन कम पड़ने पर पेशी कोशिकाएँ पायरूवेट को लैक्टिक अम्ल में बदलती हैं।"
+      }
+     },
+     {
+      "id": "cramp",
+      "bin": "muscle",
+      "text": {
+       "en": "Causes cramps after a fast sprint",
+       "hi": "तेज़ दौड़ के बाद ऐंठन होती है"
+      },
+      "why": {
+       "en": "Lactic acid building up in the muscles causes cramps.",
+       "hi": "पेशियों में लैक्टिक अम्ल जमा होने से ऐंठन होती है।"
+      }
+     },
+     {
+      "id": "short",
+      "bin": "muscle",
+      "text": {
+       "en": "Happens when muscle cells run short of oxygen",
+       "hi": "पेशी कोशिकाओं में ऑक्सीजन कम पड़ने पर होता है"
+      },
+      "why": {
+       "en": "Blood cannot bring oxygen fast enough during a sprint, so muscles switch to this route.",
+       "hi": "तेज़ दौड़ में रुधिर इतनी जल्दी ऑक्सीजन नहीं पहुँचा पाता, इसलिए पेशियाँ यह रास्ता लेती हैं।"
+      }
+     }
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "card:ethanol",
+     "expect": "placed:ethanol",
+     "say": {
+      "en": "Pick the \"ethanol and carbon dioxide\" card and put it in the group you think fits.",
+      "hi": "\"एथेनॉल और कार्बन डाइऑक्साइड\" वाला कार्ड उठाओ और उसे उस समूह में रखो जो तुम्हें सही लगे।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "In a fast sprint the muscles run short of oxygen. Which product builds up?",
+      "hi": "तेज़ दौड़ में पेशियों में ऑक्सीजन कम पड़ जाती है। कौन-सा उत्पाद जमा होता है?"
+     },
+     "options": [
+      {
+       "id": "lac",
+       "en": "Lactic acid",
+       "hi": "लैक्टिक अम्ल"
+      },
+      {
+       "id": "eth",
+       "en": "Ethanol",
+       "hi": "एथेनॉल"
+      },
+      {
+       "id": "co2",
+       "en": "Only carbon dioxide and water",
+       "hi": "सिर्फ़ कार्बन डाइऑक्साइड और पानी"
+      }
+     ],
+     "answer": "lac"
+    },
+    {
+     "kind": "do",
+     "target": "check",
+     "expect": "sorted",
+     "say": {
+      "en": "Sort all the cards, then tap Check.",
+      "hi": "सारे कार्ड छाँटो, फिर जाँचो पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "All three routes start the same way: glucose splits into pyruvate in the cytoplasm. With oxygen, pyruvate is broken down fully in the mitochondria into carbon dioxide and water, and the most energy is released. Without oxygen, yeast makes ethanol and carbon dioxide (fermentation) and tired muscle cells make lactic acid. Both of those release little energy.",
+      "hi": "तीनों रास्ते एक ही तरह शुरू होते हैं: कोशिकाद्रव्य में ग्लूकोज़ टूटकर पायरूवेट बनता है। ऑक्सीजन हो तो पायरूवेट माइटोकॉन्ड्रिया में पूरी तरह टूटकर कार्बन डाइऑक्साइड और पानी बनाता है, और सबसे ज़्यादा ऊर्जा निकलती है। ऑक्सीजन के बिना यीस्ट एथेनॉल और कार्बन डाइऑक्साइड बनाता है (किण्वन) और थकी पेशी कोशिकाएँ लैक्टिक अम्ल बनाती हैं। इन दोनों में थोड़ी ही ऊर्जा निकलती है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Which route releases the most energy?",
+        "hi": "कौन-सा रास्ता सबसे ज़्यादा ऊर्जा छोड़ता है?"
+       },
+       "options": [
+        {
+         "en": "Aerobic respiration",
+         "hi": "वायवीय श्वसन"
+        },
+        {
+         "en": "Fermentation in yeast",
+         "hi": "यीस्ट का किण्वन"
+        },
+        {
+         "en": "Lactic acid in muscles",
+         "hi": "पेशियों में लैक्टिक अम्ल"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Only the route with oxygen breaks glucose down completely.",
+        "hi": "सिर्फ़ ऑक्सीजन वाला रास्ता ग्लूकोज़ को पूरा तोड़ता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Fermentation stops half way and gives little energy.",
+         "hi": "किण्वन बीच में रुक जाता है और थोड़ी ऊर्जा देता है।"
+        },
+        {
+         "en": "Lactic acid still holds a lot of unused energy.",
+         "hi": "लैक्टिक अम्ल में अब भी बहुत ऊर्जा बची रहती है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does lime water turn milky in a tube of yeast and sugar?",
+        "hi": "यीस्ट और शर्करा की ट्यूब में चूने का पानी दूधिया क्यों हो जाता है?"
+       },
+       "options": [
+        {
+         "en": "Yeast gives off carbon dioxide as it ferments sugar",
+         "hi": "शर्करा का किण्वन करते समय यीस्ट कार्बन डाइऑक्साइड छोड़ता है"
+        },
+        {
+         "en": "Yeast gives off oxygen",
+         "hi": "यीस्ट ऑक्सीजन छोड़ता है"
+        },
+        {
+         "en": "Yeast makes lactic acid",
+         "hi": "यीस्ट लैक्टिक अम्ल बनाता है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Carbon dioxide turns lime water milky.",
+        "hi": "कार्बन डाइऑक्साइड चूने के पानी को दूधिया करती है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Oxygen does not change lime water.",
+         "hi": "ऑक्सीजन से चूने के पानी में कोई बदलाव नहीं आता।"
+        },
+        {
+         "en": "Lactic acid is made in muscles, not in yeast.",
+         "hi": "लैक्टिक अम्ल पेशियों में बनता है, यीस्ट में नहीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Try this: move the \"most energy\" card into another group and tap Check. Read why the card says it does not belong there.",
+      "hi": "आज़माओ: \"सबसे ज़्यादा ऊर्जा\" वाला कार्ड किसी दूसरे समूह में रखो और जाँचो पर टैप करो। पढ़ो कि कार्ड क्यों कहता है कि वह वहाँ का नहीं है।"
+     }
+    }
+   ]
+  },
+  {
    "id": "c10-science-jesc1-ch05-breathing",
    "topic": "5.3",
    "template": "body",
    "title": {
     "en": "Breathing and the air sacs",
-    "hi": "साँस लेना और वायु कूपिकाएँ"
+    "hi": "साँस लेना और कूपिकाएँ"
    },
    "minutes": 5,
    "level": "core",
@@ -568,7 +1089,7 @@
      "expect": "picked:diaphragm",
      "say": {
       "en": "Tap the diaphragm, the sheet of muscle under the lungs.",
-      "hi": "डायाफ़्राम पर टैप करो, फेफड़ों के नीचे की पेशी की परत।"
+      "hi": "डायाफ्राम पर टैप करो, फेफड़ों के नीचे की पेशी की परत।"
      }
     },
     {
@@ -577,25 +1098,25 @@
      "expect": "picked:trachea",
      "say": {
       "en": "Tap the trachea, the windpipe.",
-      "hi": "श्वासनली पर टैप करो।"
+      "hi": "श्वास नली पर टैप करो।"
      }
     },
     {
      "kind": "predict",
      "say": {
       "en": "Air enters at the nose. Where does its oxygen pass into the blood?",
-      "hi": "हवा नाक से अंदर आती है। उसकी ऑक्सीजन रक्त में कहाँ जाती है?"
+      "hi": "हवा नाक से अंदर आती है। उसकी ऑक्सीजन रुधिर में कहाँ जाती है?"
      },
      "options": [
       {
        "id": "alveoli",
        "en": "In the tiny air sacs (alveoli)",
-       "hi": "छोटी वायु कूपिकाओं में"
+       "hi": "छोटी कूपिकाओं में"
       },
       {
        "id": "trachea",
        "en": "In the windpipe",
-       "hi": "श्वासनली में"
+       "hi": "श्वास नली में"
       },
       {
        "id": "nose",
@@ -611,14 +1132,14 @@
      "expect": "traced",
      "say": {
       "en": "Press play and follow the air.",
-      "hi": "प्ले दबाओ और हवा के साथ चलो।"
+      "hi": "प्ले पर टैप करो और हवा के साथ चलो।"
      }
     },
     {
      "kind": "explain",
      "say": {
       "en": "When the diaphragm flattens and the ribs lift, the chest gets bigger and air rushes in. The air passes the trachea, bronchi and bronchioles to millions of alveoli, thin balloons wrapped in blood capillaries. Oxygen passes into the blood and carbon dioxide comes out. Cells then use oxygen to break down glucose and release energy: aerobic respiration.",
-      "hi": "जब डायाफ़्राम चपटा होता है और पसलियाँ ऊपर उठती हैं, तो छाती बड़ी होती है और हवा अंदर भर जाती है। हवा श्वासनली, श्वसनी और श्वसनिकाओं से होकर लाखों वायु कूपिकाओं तक जाती है, जो रक्त केशिकाओं से लिपटे पतले गुब्बारे हैं। ऑक्सीजन रक्त में जाती है और कार्बन डाइऑक्साइड बाहर आती है। फिर कोशिकाएँ ऑक्सीजन से ग्लूकोज़ तोड़कर ऊर्जा छोड़ती हैं: यह वायवीय श्वसन है।"
+      "hi": "जब डायाफ्राम चपटा होता है और पसलियाँ ऊपर उठती हैं, तो छाती बड़ी होती है और हवा अंदर भर जाती है। हवा श्वास नली, श्वसनी और श्वसनिकाओं से होकर लाखों कूपिकाओं तक जाती है, जो रुधिर केशिकाओं से लिपटे पतले गुब्बारे हैं। ऑक्सीजन रुधिर में जाती है और कार्बन डाइऑक्साइड बाहर आती है। फिर कोशिकाएँ ऑक्सीजन की मदद से ग्लूकोज़ तोड़कर ऊर्जा मुक्त करती हैं: यह वायवीय श्वसन है।"
      }
     },
     {
@@ -640,13 +1161,13 @@
         },
         {
          "en": "More oxygen",
-         "hi": "और ऑक्सीजन"
+         "hi": "ज़्यादा ऑक्सीजन"
         }
        ],
        "answer": 0,
        "why": {
         "en": "Without enough oxygen, muscle cells break pyruvate into lactic acid.",
-        "hi": "पर्याप्त ऑक्सीजन न होने पर पेशी कोशिकाएँ पाइरुवेट को लैक्टिक अम्ल में तोड़ती हैं।"
+        "hi": "काफ़ी ऑक्सीजन न होने पर पेशी कोशिकाएँ पायरूवेट को लैक्टिक अम्ल में तोड़ती हैं।"
        },
        "wrong": [
         "",
@@ -663,12 +1184,12 @@
       {
        "q": {
         "en": "Why do the lungs have millions of alveoli instead of one big bag?",
-        "hi": "फेफड़ों में एक बड़े थैले की जगह लाखों वायु कूपिकाएँ क्यों होती हैं?"
+        "hi": "फेफड़ों में एक बड़े थैले की जगह लाखों कूपिकाएँ क्यों होती हैं?"
        },
        "options": [
         {
          "en": "Many small sacs give a huge surface for gas exchange",
-         "hi": "कई छोटी थैलियाँ गैसों के आदान-प्रदान के लिए बहुत बड़ी सतह देती हैं"
+         "hi": "कई छोटी थैलियाँ गैसों के लेन-देन के लिए बहुत बड़ी सतह देती हैं"
         },
         {
          "en": "To store food",
@@ -682,7 +1203,7 @@
        "answer": 0,
        "why": {
         "en": "Spread out, the alveoli would cover about 80 square metres: more area, faster exchange.",
-        "hi": "फैलाने पर वायु कूपिकाएँ लगभग 80 वर्ग मीटर ढकेंगी: ज़्यादा सतह, तेज़ आदान-प्रदान।"
+        "hi": "फैलाने पर कूपिकाएँ लगभग 80 वर्ग मीटर ढकेंगी: ज़्यादा सतह, तेज़ लेन-देन।"
        },
        "wrong": [
         "",
@@ -692,7 +1213,7 @@
         },
         {
          "en": "The voice comes from the larynx, not the alveoli.",
-         "hi": "आवाज़ स्वरयंत्र से आती है, वायु कूपिकाओं से नहीं।"
+         "hi": "आवाज़ स्वरयंत्र से आती है, कूपिकाओं से नहीं।"
         }
        ]
       }
@@ -702,7 +1223,7 @@
      "kind": "explore",
      "say": {
       "en": "Explore: turn on the Alveoli layer and tap a capillary. Then turn on the Ribs layer and watch the chest move as you play again.",
-      "hi": "आज़माओ: वायु कूपिका परत चालू करो और एक केशिका पर टैप करो। फिर पसलियों की परत चालू करके दोबारा प्ले करो और छाती को हिलते देखो।"
+      "hi": "आज़माओ: कूपिका परत चालू करो और एक केशिका पर टैप करो। फिर पसलियों की परत चालू करके दोबारा प्ले करो और छाती को हिलते देखो।"
      }
     }
    ]
@@ -745,7 +1266,7 @@
      "kind": "predict",
      "say": {
       "en": "Oxygen-poor blood comes back from the body into the right side. Where is it sent next?",
-      "hi": "शरीर से ऑक्सीजन-रहित रक्त दाईं ओर लौटता है। उसे आगे कहाँ भेजा जाता है?"
+      "hi": "शरीर से ऑक्सीजन-रहित रुधिर दाईं ओर लौटता है। उसे आगे कहाँ भेजा जाता है?"
      },
      "options": [
       {
@@ -772,14 +1293,14 @@
      "expect": "traced",
      "say": {
       "en": "Press play and follow the blood.",
-      "hi": "प्ले दबाओ और रक्त के साथ चलो।"
+      "hi": "प्ले पर टैप करो और रुधिर के साथ चलो।"
      }
     },
     {
      "kind": "explain",
      "say": {
       "en": "Blood passes through the heart twice in each round: body → right atrium → right ventricle → lungs → left atrium → left ventricle → body. This double circulation keeps oxygen-rich and oxygen-poor blood apart, so the body gets plenty of oxygen. Valves stop blood flowing backwards. The left ventricle has the thickest wall because it pumps blood to the whole body.",
-      "hi": "हर चक्कर में रक्त हृदय से दो बार गुज़रता है: शरीर → दायाँ अलिंद → दायाँ निलय → फेफड़े → बायाँ अलिंद → बायाँ निलय → शरीर। यह दोहरा परिसंचरण ऑक्सीजन-युक्त और ऑक्सीजन-रहित रक्त को अलग रखता है, जिससे शरीर को भरपूर ऑक्सीजन मिलती है। वाल्व रक्त को उलटा बहने से रोकते हैं। बाएँ निलय की दीवार सबसे मोटी होती है क्योंकि वह पूरे शरीर में रक्त पंप करता है।"
+      "hi": "हर चक्कर में रुधिर हृदय से दो बार गुज़रता है: शरीर → दायाँ अलिंद → दायाँ निलय → फेफड़े → बायाँ अलिंद → बायाँ निलय → शरीर। यह दोहरा परिसंचरण ऑक्सीजन-समृद्ध और ऑक्सीजन-रहित रुधिर को अलग रखता है, जिससे शरीर को भरपूर ऑक्सीजन मिलती है। कपाट (valves) रुधिर को उल्टा बहने से रोकते हैं। बाएँ निलय की दीवार सबसे मोटी होती है क्योंकि वह पूरे शरीर में रुधिर पंप करता है।"
      }
     },
     {
@@ -788,7 +1309,7 @@
       {
        "q": {
         "en": "Which chamber pumps oxygen-rich blood to the whole body?",
-        "hi": "कौन-सा कक्ष ऑक्सीजन-युक्त रक्त पूरे शरीर में पंप करता है?"
+        "hi": "कौन-सा कक्ष ऑक्सीजन-समृद्ध रुधिर पूरे शरीर में पंप करता है?"
        },
        "options": [
         {
@@ -807,43 +1328,43 @@
        "answer": 0,
        "why": {
         "en": "The left ventricle pushes blood into the aorta.",
-        "hi": "बायाँ निलय रक्त को महाधमनी में धकेलता है।"
+        "hi": "बायाँ निलय रुधिर को महाधमनी में धकेलता है।"
        },
        "wrong": [
         "",
         {
          "en": "The right ventricle pumps oxygen-poor blood to the lungs.",
-         "hi": "दायाँ निलय ऑक्सीजन-रहित रक्त फेफड़ों में पंप करता है।"
+         "hi": "दायाँ निलय ऑक्सीजन-रहित रुधिर फेफड़ों में पंप करता है।"
         },
         {
          "en": "The right atrium only receives blood from the body.",
-         "hi": "दायाँ अलिंद केवल शरीर से रक्त ग्रहण करता है।"
+         "hi": "दायाँ अलिंद केवल शरीर से रुधिर लेता है।"
         }
        ]
       },
       {
        "q": {
         "en": "What is the job of the valves in the heart?",
-        "hi": "हृदय में वाल्व का क्या काम है?"
+        "hi": "हृदय में कपाट (valve) का क्या काम है?"
        },
        "options": [
         {
          "en": "Stop blood flowing backwards",
-         "hi": "रक्त को उलटा बहने से रोकना"
+         "hi": "रुधिर को उल्टा बहने से रोकना"
         },
         {
          "en": "Add oxygen to blood",
-         "hi": "रक्त में ऑक्सीजन मिलाना"
+         "hi": "रुधिर में ऑक्सीजन मिलाना"
         },
         {
          "en": "Make red blood cells",
-         "hi": "लाल रक्त कोशिकाएँ बनाना"
+         "hi": "लाल रुधिर कोशिकाएँ बनाना"
         }
        ],
        "answer": 0,
        "why": {
         "en": "Valves are one-way doors between the chambers.",
-        "hi": "वाल्व कक्षों के बीच एकतरफ़ा दरवाज़े हैं।"
+        "hi": "कपाट कक्षों के बीच एकतरफ़ा दरवाज़े हैं।"
        },
        "wrong": [
         "",
@@ -853,7 +1374,7 @@
         },
         {
          "en": "Red blood cells are made in the bone marrow.",
-         "hi": "लाल रक्त कोशिकाएँ अस्थि मज्जा में बनती हैं।"
+         "hi": "लाल रुधिर कोशिकाएँ अस्थि मज्जा में बनती हैं।"
         }
        ]
       }
@@ -863,7 +1384,7 @@
      "kind": "explore",
      "say": {
       "en": "Explore: turn on the Arrows layer and play again. Tap the aorta, the pulmonary artery and the vena cava to see which blood each carries.",
-      "hi": "आज़माओ: तीरों की परत चालू करके फिर प्ले करो। महाधमनी, फुफ्फुस धमनी और महाशिरा पर टैप करके देखो कि कौन-सा रक्त किसमें बहता है।"
+      "hi": "आज़माओ: तीरों की परत चालू करके फिर प्ले करो। महाधमनी, फुफ्फुस धमनी और महाशिरा पर टैप करके देखो कि कौन-सा रुधिर किसमें बहता है।"
      }
     }
    ]
@@ -888,7 +1409,7 @@
      "expect": "identified:xylem",
      "say": {
       "en": "Tap the xylem, the tubes that carry water up.",
-      "hi": "ज़ाइलम पर टैप करो, वे नलिकाएँ जो पानी ऊपर ले जाती हैं।"
+      "hi": "जाइलम पर टैप करो, वे नलिकाएँ जो पानी ऊपर ले जाती हैं।"
      }
     },
     {
@@ -931,14 +1452,14 @@
      "expect": "transpired",
      "say": {
       "en": "Press play and watch the water level fall.",
-      "hi": "प्ले दबाओ और पानी का स्तर गिरते देखो।"
+      "hi": "प्ले पर टैप करो और पानी का लेवल गिरते देखो।"
      }
     },
     {
      "kind": "explain",
      "say": {
       "en": "Water evaporates from the leaves through the stomata: transpiration. This loss creates a suction that pulls water up through the xylem from the roots, like drinking through a straw. Transpiration also cools the leaves. Food made in the leaves moves the other way, through the phloem, to every part of the plant.",
-      "hi": "पत्तियों से रंध्रों के रास्ते पानी भाप बनकर उड़ता है: इसे वाष्पोत्सर्जन कहते हैं। इससे एक खिंचाव बनता है जो जड़ों से ज़ाइलम के रास्ते पानी ऊपर खींचता है, जैसे स्ट्रॉ से पीना। वाष्पोत्सर्जन पत्तियों को ठंडा भी रखता है। पत्तियों में बना भोजन फ़्लोएम के रास्ते पौधे के हर भाग तक जाता है।"
+      "hi": "पत्तियों से रंध्रों के रास्ते पानी भाप बनकर उड़ता है: इसे वाष्पोत्सर्जन कहते हैं। इससे एक खिंचाव बनता है जो जड़ों से जाइलम के रास्ते पानी ऊपर खींचता है, जैसे स्ट्रॉ से पीना। वाष्पोत्सर्जन पत्तियों को ठंडा भी रखता है। पत्तियों में बना भोजन फ्लोएम के रास्ते पौधे के हर हिस्से तक जाता है।"
      }
     },
     {
@@ -947,16 +1468,16 @@
       {
        "q": {
         "en": "Which tissue carries food made in the leaves to other parts?",
-        "hi": "पत्तियों में बना भोजन कौन-सा ऊतक बाकी भागों तक ले जाता है?"
+        "hi": "पत्तियों में बना भोजन कौन-सा ऊतक बाक़ी हिस्सों तक ले जाता है?"
        },
        "options": [
         {
          "en": "Phloem",
-         "hi": "फ़्लोएम"
+         "hi": "फ्लोएम"
         },
         {
          "en": "Xylem",
-         "hi": "ज़ाइलम"
+         "hi": "जाइलम"
         },
         {
          "en": "Stomata",
@@ -966,13 +1487,13 @@
        "answer": 0,
        "why": {
         "en": "Phloem moves sugars, using energy from ATP.",
-        "hi": "फ़्लोएम ATP की ऊर्जा से शर्करा ले जाता है।"
+        "hi": "फ्लोएम ATP की ऊर्जा से शर्करा ले जाता है।"
        },
        "wrong": [
         "",
         {
          "en": "Xylem carries water and minerals up from the roots.",
-         "hi": "ज़ाइलम जड़ों से पानी और खनिज ऊपर ले जाता है।"
+         "hi": "जाइलम जड़ों से पानी और खनिज ऊपर ले जाता है।"
         },
         {
          "en": "Stomata are pores for gases, not tubes for food.",
@@ -996,7 +1517,7 @@
         },
         {
          "en": "Wind closes the xylem",
-         "hi": "हवा ज़ाइलम बंद कर देती है"
+         "hi": "हवा जाइलम बंद कर देती है"
         }
        ],
        "answer": 0,
@@ -1012,7 +1533,7 @@
         },
         {
          "en": "The xylem stays open; it is the pull from the leaves that grows.",
-         "hi": "ज़ाइलम खुला रहता है; पत्तियों का खिंचाव बढ़ता है।"
+         "hi": "जाइलम खुला रहता है; पत्तियों का खिंचाव बढ़ता है।"
         }
        ]
       }
@@ -1022,7 +1543,7 @@
      "kind": "explore",
      "say": {
       "en": "Explore: change the light and temperature sliders and play again. In which setting does the water fall fastest? What happens if the pot runs dry?",
-      "hi": "आज़माओ: प्रकाश और तापमान के स्लाइडर बदलकर फिर प्ले करो। किस स्थिति में पानी सबसे तेज़ घटता है? गमला सूख जाए तो क्या होता है?"
+      "hi": "आज़माओ: प्रकाश और तापमान के स्लाइडर बदलकर फिर प्ले करो। किस हालत में पानी सबसे तेज़ घटता है? गमला सूख जाए तो क्या होता है?"
      }
     }
    ]
@@ -1033,7 +1554,7 @@
    "template": "body",
    "title": {
     "en": "The kidneys clean the blood",
-    "hi": "वृक्क रक्त को साफ़ करते हैं"
+    "hi": "वृक्क रुधिर को साफ़ करते हैं"
    },
    "minutes": 5,
    "level": "core",
@@ -1065,7 +1586,7 @@
      "kind": "predict",
      "say": {
       "en": "Blood enters the kidney by the renal artery. What leaves the kidney through the ureter?",
-      "hi": "रक्त वृक्क धमनी से वृक्क में आता है। मूत्रवाहिनी से वृक्क से क्या निकलता है?"
+      "hi": "रुधिर वृक्क धमनी से वृक्क में आता है। वृक्क से मूत्रवाहिनी में क्या जाता है?"
      },
      "options": [
       {
@@ -1076,7 +1597,7 @@
       {
        "id": "blood",
        "en": "Blood",
-       "hi": "रक्त"
+       "hi": "रुधिर"
       },
       {
        "id": "food",
@@ -1092,14 +1613,14 @@
      "expect": "traced",
      "say": {
       "en": "Press play and follow the journey.",
-      "hi": "प्ले दबाओ और यात्रा देखो।"
+      "hi": "प्ले पर टैप करो और यात्रा देखो।"
      }
     },
     {
      "kind": "explain",
      "say": {
       "en": "Each kidney has about a million tiny filters called nephrons. Blood is filtered in a knot of capillaries, the glomerulus, inside Bowman's capsule. Useful glucose, salts and much of the water are taken back in the tubule; urea and extra water and salts stay behind as urine. Urine goes down the ureters to the bladder and out through the urethra.",
-      "hi": "हर वृक्क में लगभग दस लाख छोटे छन्ने होते हैं, जिन्हें नेफ्रॉन कहते हैं। बोमन संपुट के अंदर केशिकाओं के गुच्छे, केशिकागुच्छ, में रक्त छनता है। नलिका में उपयोगी ग्लूकोज़, लवण और ज़्यादातर पानी वापस सोख लिए जाते हैं; यूरिया और अतिरिक्त पानी व लवण मूत्र के रूप में बचते हैं। मूत्र मूत्रवाहिनियों से मूत्राशय में जाता है और मूत्रमार्ग से बाहर निकलता है।"
+      "hi": "हर वृक्क में लगभग दस लाख छोटे छन्ने होते हैं, जिन्हें वृक्काणु (नेफ्रॉन) कहते हैं। बोमन संपुट के अंदर केशिकाओं का गुच्छा होता है, जिसे केशिका गुच्छ (ग्लोमेरुलस) कहते हैं। इसमें रुधिर छनता है। नलिका में काम का ग्लूकोज़, लवण और ज़्यादातर पानी वापस सोख लिए जाते हैं; यूरिया और फ़ालतू पानी व लवण मूत्र के रूप में बचते हैं। मूत्र मूत्रवाहिनियों से मूत्राशय में जाता है और मूत्रमार्ग से बाहर निकलता है।"
      }
     },
     {
@@ -1108,12 +1629,12 @@
       {
        "q": {
         "en": "What is the basic filtering unit of the kidney?",
-        "hi": "वृक्क की मूल छन्ना इकाई क्या है?"
+        "hi": "वृक्क की मूल छन्ना यूनिट क्या है?"
        },
        "options": [
         {
          "en": "Nephron",
-         "hi": "नेफ्रॉन"
+         "hi": "वृक्काणु"
         },
         {
          "en": "Neuron",
@@ -1121,13 +1642,13 @@
         },
         {
          "en": "Alveolus",
-         "hi": "वायु कूपिका"
+         "hi": "कूपिका"
         }
        ],
        "answer": 0,
        "why": {
         "en": "Millions of nephrons filter the blood.",
-        "hi": "लाखों नेफ्रॉन रक्त को छानते हैं।"
+        "hi": "लाखों वृक्काणु रुधिर को छानते हैं।"
        },
        "wrong": [
         "",
@@ -1137,7 +1658,7 @@
         },
         {
          "en": "An alveolus is an air sac in the lungs.",
-         "hi": "वायु कूपिका फेफड़ों की वायु थैली है।"
+         "hi": "कूपिका फेफड़ों की वायु थैली है।"
         }
        ]
       },
@@ -1173,7 +1694,7 @@
         },
         {
          "en": "Glucose is useful, so it is taken back into the blood.",
-         "hi": "ग्लूकोज़ उपयोगी है, इसलिए रक्त में वापस सोख लिया जाता है।"
+         "hi": "ग्लूकोज़ शरीर के काम का है, इसलिए रुधिर में वापस सोख लिया जाता है।"
         }
        ]
       }
@@ -1183,7 +1704,7 @@
      "kind": "explore",
      "say": {
       "en": "Explore: turn on the Nephron layer to zoom into one filter. Tap the glomerulus, Bowman's capsule and the tubule.",
-      "hi": "आज़माओ: एक छन्ने में ज़ूम करने के लिए नेफ्रॉन परत चालू करो। केशिकागुच्छ, बोमन संपुट और नलिका पर टैप करो।"
+      "hi": "आज़माओ: एक छन्ने में ज़ूम करने के लिए वृक्काणु परत चालू करो। केशिका गुच्छ, बोमन संपुट और नलिका पर टैप करो।"
      }
     }
    ]

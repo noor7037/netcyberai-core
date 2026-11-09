@@ -1,468 +1,1958 @@
 {
- "chapter_key": "u.c10.science.jesc1.ch13",
- "class": 10,
- "subject_id": "science",
- "title": "Our Environment",
- "source": "https://ncert.nic.in/textbook/pdf/jesc113.pdf",
- "topics": [
-  {
-   "n": "13.1",
-   "title": "Ecosystem: components, food chains and webs",
-   "labs": [
-    "c10-science-jesc1-ch13-food-chain"
-   ],
-   "why_no_lab": null
-  },
-  {
-   "n": "13.2",
-   "title": "How our activities affect the environment: ozone layer depletion, managing the garbage we produce",
-   "labs": [
-    "c10-science-jesc1-ch13-waste-sorter"
-   ],
-   "why_no_lab": null
-  }
- ],
- "labs": [
-  {
-   "id": "c10-science-jesc1-ch13-food-chain",
-   "topic": "13.1",
-   "template": "eco",
-   "title": {
-    "en": "A food chain and the 10 per cent rule",
-    "hi": "आहार शृंखला और 10 प्रतिशत का नियम"
-   },
-   "minutes": 6,
-   "level": "core",
-   "config": {
-    "mode": "chain",
-    "habitat": "grassland",
-    "organisms": [
-     "grass",
-     "grasshopper",
-     "frog"
-    ]
-   },
-   "steps": [
+  "chapter_key": "u.c10.science.jesc1.ch13",
+  "class": 10,
+  "subject_id": "science",
+  "title": "Our Environment",
+  "source": "https://ncert.nic.in/textbook/pdf/jesc113.pdf",
+  "topics": [
     {
-     "kind": "do",
-     "target": "card:grass",
-     "expect": "picked:grass",
-     "say": {
-      "en": "Tap Grass in the tray. A food chain starts with a plant.",
-      "hi": "ट्रे में घास पर टैप करो। आहार शृंखला पौधे से शुरू होती है।"
-     }
+      "n": "13.1",
+      "title": "Ecosystem: components, food chains and webs",
+      "labs": [
+        "c10-science-jesc1-ch13-food-chain",
+        "c10-science-jesc1-ch13-biotic-abiotic",
+        "c10-science-jesc1-ch13-roles",
+        "c10-science-jesc1-ch13-chain-build",
+        "c10-science-jesc1-ch13-food-web",
+        "c10-science-jesc1-ch13-biomagnification"
+      ],
+      "why_no_lab": null
     },
     {
-     "kind": "do",
-     "target": "link",
-     "expect": "linked",
-     "say": {
-      "en": "Tap Link to start the chain.",
-      "hi": "शृंखला शुरू करने के लिए जोड़ें पर टैप करो।"
-     }
-    },
-    {
-     "kind": "do",
-     "target": "card:grasshopper",
-     "expect": "picked:grasshopper",
-     "say": {
-      "en": "Tap the grasshopper, which eats grass.",
-      "hi": "टिड्डे पर टैप करो, जो घास खाता है।"
-     }
-    },
-    {
-     "kind": "do",
-     "target": "link",
-     "expect": "linked",
-     "say": {
-      "en": "Tap Link to add it.",
-      "hi": "उसे जोड़ने के लिए जोड़ें पर टैप करो।"
-     }
-    },
-    {
-     "kind": "predict",
-     "say": {
-      "en": "The grass captured 1000 J of energy from sunlight. About how much reaches the grasshopper?",
-      "hi": "घास ने सूर्य के प्रकाश से 1000 J ऊर्जा ली। टिड्डे तक लगभग कितनी पहुँचती है?"
-     },
-     "options": [
-      {
-       "id": "ten",
-       "en": "About 100 J (10 per cent)",
-       "hi": "लगभग 100 J (10 प्रतिशत)"
-      },
-      {
-       "id": "half",
-       "en": "About 500 J",
-       "hi": "लगभग 500 J"
-      },
-      {
-       "id": "all",
-       "en": "All 1000 J",
-       "hi": "पूरी 1000 J"
-      }
-     ],
-     "answer": "ten"
-    },
-    {
-     "kind": "do",
-     "target": "play",
-     "expect": "energy",
-     "say": {
-      "en": "Tap Play to send the energy along the chain.",
-      "hi": "ऊर्जा को शृंखला में आगे भेजने के लिए प्ले पर टैप करो।"
-     }
-    },
-    {
-     "kind": "explain",
-     "say": {
-      "en": "Green plants are producers: they capture sunlight and make food. Herbivores like the grasshopper are primary consumers, and the frog that eats it is a secondary consumer. Each step is a trophic level. Only about 10 per cent of the energy passes from one level to the next; the rest is used for living or lost as heat. So food chains usually have only three or four steps. Decomposers such as bacteria and fungi return the matter of dead bodies to the soil.",
-      "hi": "हरे पौधे उत्पादक हैं: वे सूर्य का प्रकाश पकड़कर भोजन बनाते हैं। टिड्डे जैसे शाकाहारी प्राथमिक उपभोक्ता हैं, और उसे खाने वाला मेंढक द्वितीयक उपभोक्ता। हर चरण एक पोषी स्तर है। एक स्तर से अगले तक केवल लगभग 10 प्रतिशत ऊर्जा जाती है; बाकी जीने में ख़र्च होती है या ऊष्मा बनकर खो जाती है। इसलिए आहार शृंखलाओं में आमतौर पर केवल तीन या चार चरण होते हैं। जीवाणु और कवक जैसे अपघटक मृत शरीरों के पदार्थ को मिट्टी में लौटाते हैं।"
-     }
-    },
-    {
-     "kind": "check",
-     "items": [
-      {
-       "q": {
-        "en": "Why are food chains usually short?",
-        "hi": "आहार शृंखलाएँ आमतौर पर छोटी क्यों होती हैं?"
-       },
-       "options": [
-        {
-         "en": "Too little energy is left after a few steps",
-         "hi": "कुछ चरणों के बाद बहुत कम ऊर्जा बचती है"
-        },
-        {
-         "en": "Animals do not like long chains",
-         "hi": "जंतुओं को लंबी शृंखलाएँ पसंद नहीं"
-        },
-        {
-         "en": "Plants stop growing",
-         "hi": "पौधे बढ़ना बंद कर देते हैं"
-        }
-       ],
-       "answer": 0,
-       "why": {
-        "en": "After four levels only about 0.1 per cent of the energy is left.",
-        "hi": "चार स्तरों के बाद लगभग 0.1 प्रतिशत ऊर्जा ही बचती है।"
-       },
-       "wrong": [
-        "",
-        {
-         "en": "It is not about liking; there is not enough energy to support more levels.",
-         "hi": "बात पसंद की नहीं; और स्तरों के लिए पर्याप्त ऊर्जा नहीं होती।"
-        },
-        {
-         "en": "Plants keep making food; the loss happens at each step up.",
-         "hi": "पौधे भोजन बनाते रहते हैं; ऊर्जा हर ऊपरी चरण पर खोती है।"
-        }
-       ]
-      },
-      {
-       "q": {
-        "en": "A pesticide sprayed on crops is found most in which animal of a food chain?",
-        "hi": "फ़सलों पर छिड़का गया कीटनाशक आहार शृंखला के किस जंतु में सबसे ज़्यादा पाया जाता है?"
-       },
-       "options": [
-        {
-         "en": "The top predator, like an eagle",
-         "hi": "शीर्ष शिकारी, जैसे बाज़"
-        },
-        {
-         "en": "The grass",
-         "hi": "घास"
-        },
-        {
-         "en": "The grasshopper",
-         "hi": "टिड्डा"
-        }
-       ],
-       "answer": 0,
-       "why": {
-        "en": "The chemical does not break down, so it builds up at every level: biological magnification.",
-        "hi": "यह रसायन टूटता नहीं, इसलिए हर स्तर पर जमा होता जाता है: जैव आवर्धन।"
-       },
-       "wrong": [
-        "",
-        {
-         "en": "The grass takes in the chemical, but each eater above collects it from many meals.",
-         "hi": "घास रसायन लेती है, पर ऊपर का हर भक्षक कई भोजनों से उसे इकट्ठा करता है।"
-        },
-        {
-         "en": "The grasshopper has some, but the animals that eat many grasshoppers have more.",
-         "hi": "टिड्डे में कुछ होता है, पर कई टिड्डे खाने वाले जंतुओं में और ज़्यादा।"
-        }
-       ]
-      }
-     ]
-    },
-    {
-     "kind": "explore",
-     "say": {
-      "en": "Explore: link the frog to finish the chain and play again. How much of the 1000 J reaches the frog?",
-      "hi": "आज़माओ: शृंखला पूरी करने के लिए मेंढक जोड़ो और फिर प्ले करो। 1000 J में से मेंढक तक कितनी पहुँचती है?"
-     }
+      "n": "13.2",
+      "title": "How our activities affect the environment: ozone layer depletion, managing the garbage we produce",
+      "labs": [
+        "c10-science-jesc1-ch13-waste-sorter",
+        "c10-science-jesc1-ch13-biodegradable"
+      ],
+      "why_no_lab": null
     }
-   ]
-  },
-  {
-   "id": "c10-science-jesc1-ch13-waste-sorter",
-   "topic": "13.2",
-   "template": "eco",
-   "title": {
-    "en": "Sorting the garbage we produce",
-    "hi": "हमारे कचरे की छँटाई"
-   },
-   "minutes": 5,
-   "level": "core",
-   "config": {
-    "mode": "waste",
-    "organisms": [
-     "banana",
-     "bottle",
-     "newspaper",
-     "veg",
-     "bag",
-     "leaves"
-    ]
-   },
-   "steps": [
+  ],
+  "labs": [
     {
-     "kind": "do",
-     "target": "card:banana",
-     "expect": "picked:banana",
-     "say": {
-      "en": "Tap the banana peel.",
-      "hi": "केले के छिलके पर टैप करो।"
-     }
-    },
-    {
-     "kind": "do",
-     "target": "bin:green",
-     "expect": "sorted",
-     "say": {
-      "en": "Put it in the green bin for wet waste.",
-      "hi": "इसे गीले कचरे के हरे डिब्बे में डालो।"
-     }
-    },
-    {
-     "kind": "predict",
-     "say": {
-      "en": "Which bin does a plastic bottle go in, and how long does it take to rot?",
-      "hi": "प्लास्टिक की बोतल किस डिब्बे में जाती है, और उसे सड़ने में कितना समय लगता है?"
-     },
-     "options": [
-      {
-       "id": "blue",
-       "en": "The blue bin; it lasts hundreds of years",
-       "hi": "नीला डिब्बा; यह सैकड़ों साल रहती है"
+      "id": "c10-science-jesc1-ch13-food-chain",
+      "topic": "13.1",
+      "template": "eco",
+      "title": {
+        "en": "A food chain and the 10 per cent rule",
+        "hi": "आहार शृंखला और 10 प्रतिशत का नियम"
       },
-      {
-       "id": "green",
-       "en": "The green bin; it rots in a week",
-       "hi": "हरा डिब्बा; यह एक हफ़्ते में सड़ जाती है"
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "mode": "chain",
+        "habitat": "grassland",
+        "organisms": [
+          "grass",
+          "grasshopper",
+          "frog"
+        ]
       },
-      {
-       "id": "road",
-       "en": "Neither; throw it on the road",
-       "hi": "किसी में नहीं; सड़क पर फेंक दो"
-      }
-     ],
-     "answer": "blue"
-    },
-    {
-     "kind": "do",
-     "target": "card:bottle",
-     "expect": "picked:bottle",
-     "say": {
-      "en": "Tap the plastic bottle.",
-      "hi": "प्लास्टिक की बोतल पर टैप करो।"
-     }
-    },
-    {
-     "kind": "do",
-     "target": "bin:blue",
-     "expect": "sorted",
-     "say": {
-      "en": "Put it in the blue bin for dry waste.",
-      "hi": "इसे सूखे कचरे के नीले डिब्बे में डालो।"
-     }
-    },
-    {
-     "kind": "explain",
-     "say": {
-      "en": "Peels, leaves and leftover food are biodegradable: bacteria and fungi break them down in days or weeks, and they can become compost. Plastic, glass and metal are non-biodegradable or take very long to break down; they harm soil, drains and animals, so they should be collected dry and recycled. Using kulhads, leaf plates and cloth or jute bags instead of plastic makes less waste.",
-      "hi": "छिलके, पत्तियाँ और बचा भोजन जैव निम्नीकरणीय हैं: जीवाणु और कवक उन्हें कुछ दिनों या हफ़्तों में तोड़ देते हैं, और उनसे खाद बन सकती है। प्लास्टिक, काँच और धातु अजैव निम्नीकरणीय हैं या बहुत लंबे समय में टूटते हैं; ये मिट्टी, नालियों और जंतुओं को नुकसान पहुँचाते हैं, इसलिए इन्हें सूखा इकट्ठा करके पुनर्चक्रित करना चाहिए। प्लास्टिक की जगह कुल्हड़, पत्तल और कपड़े या जूट के थैले इस्तेमाल करने से कचरा कम बनता है।"
-     }
-    },
-    {
-     "kind": "check",
-     "items": [
-      {
-       "q": {
-        "en": "Which of these is non-biodegradable?",
-        "hi": "इनमें से कौन अजैव निम्नीकरणीय है?"
-       },
-       "options": [
+      "steps": [
         {
-         "en": "A polythene bag",
-         "hi": "पॉलिथीन की थैली"
+          "kind": "do",
+          "target": "card:grass",
+          "expect": "picked:grass",
+          "say": {
+            "en": "Tap Grass in the tray. A food chain starts with a plant.",
+            "hi": "ट्रे में घास पर टैप करो। आहार शृंखला पौधे से शुरू होती है।"
+          }
         },
         {
-         "en": "Vegetable peels",
-         "hi": "सब्ज़ी के छिलके"
+          "kind": "do",
+          "target": "link",
+          "expect": "linked",
+          "say": {
+            "en": "Tap Link to start the chain.",
+            "hi": "शृंखला शुरू करने के लिए जोड़ें पर टैप करो।"
+          }
         },
         {
-         "en": "Dry leaves",
-         "hi": "सूखी पत्तियाँ"
+          "kind": "do",
+          "target": "card:grasshopper",
+          "expect": "picked:grasshopper",
+          "say": {
+            "en": "Tap the grasshopper, which eats grass.",
+            "hi": "टिड्डे पर टैप करो, जो घास खाता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "link",
+          "expect": "linked",
+          "say": {
+            "en": "Tap Link to add it.",
+            "hi": "उसे जोड़ने के लिए जोड़ें पर टैप करो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The grass captured 1000 J of energy from sunlight. About how much reaches the grasshopper?",
+            "hi": "घास ने सूर्य के प्रकाश से 1000 J ऊर्जा ली। टिड्डे तक लगभग कितनी पहुँचती है?"
+          },
+          "options": [
+            {
+              "id": "ten",
+              "en": "About 100 J (10 per cent)",
+              "hi": "लगभग 100 J (10 प्रतिशत)"
+            },
+            {
+              "id": "half",
+              "en": "About 500 J",
+              "hi": "लगभग 500 J"
+            },
+            {
+              "id": "all",
+              "en": "All 1000 J",
+              "hi": "पूरी 1000 J"
+            }
+          ],
+          "answer": "ten"
+        },
+        {
+          "kind": "do",
+          "target": "play",
+          "expect": "energy",
+          "say": {
+            "en": "Tap Play to send the energy along the chain.",
+            "hi": "ऊर्जा को शृंखला में आगे भेजने के लिए प्ले पर टैप करो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Green plants are producers: they capture sunlight and make food. Herbivores like the grasshopper are primary consumers, and the frog that eats it is a secondary consumer. Each step is a trophic level. Only about 10 per cent of the energy passes from one level to the next; the rest is used for living or lost as heat. So food chains usually have only three or four steps. Decomposers such as bacteria and fungi return the matter of dead bodies to the soil.",
+            "hi": "हरे पौधे उत्पादक हैं: वे सूर्य का प्रकाश पकड़कर भोजन बनाते हैं। टिड्डे जैसे शाकाहारी प्राथमिक उपभोक्ता हैं, और उसे खाने वाला मेंढक द्वितीयक उपभोक्ता। हर स्टेप एक पोषी स्तर है। एक स्तर से अगले तक सिर्फ़ लगभग 10 प्रतिशत ऊर्जा जाती है; बाक़ी जीने में ख़र्च होती है या ऊष्मा बनकर खो जाती है। इसलिए आहार शृंखलाओं में आमतौर पर सिर्फ़ तीन या चार स्टेप होते हैं। जीवाणु और कवक जैसे अपघटक मृत शरीरों के पदार्थ को मिट्टी में लौटाते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why are food chains usually short?",
+                "hi": "आहार शृंखलाएँ आमतौर पर छोटी क्यों होती हैं?"
+              },
+              "options": [
+                {
+                  "en": "Too little energy is left after a few steps",
+                  "hi": "कुछ स्टेप्स के बाद बहुत कम ऊर्जा बचती है"
+                },
+                {
+                  "en": "Animals do not like long chains",
+                  "hi": "जंतुओं को लंबी शृंखलाएँ पसंद नहीं"
+                },
+                {
+                  "en": "Plants stop growing",
+                  "hi": "पौधे बढ़ना बंद कर देते हैं"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "After four levels only about 0.1 per cent of the energy is left.",
+                "hi": "चार स्तरों के बाद लगभग 0.1 प्रतिशत ऊर्जा ही बचती है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "It is not about liking; there is not enough energy to support more levels.",
+                  "hi": "बात पसंद की नहीं; और स्तरों के लिए पर्याप्त ऊर्जा नहीं होती।"
+                },
+                {
+                  "en": "Plants keep making food; the loss happens at each step up.",
+                  "hi": "पौधे भोजन बनाते रहते हैं; ऊर्जा हर ऊपरी स्टेप पर खोती है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "A pesticide sprayed on crops is found most in which animal of a food chain?",
+                "hi": "फ़सलों पर छिड़का गया कीटनाशक आहार शृंखला के किस जंतु में सबसे ज़्यादा पाया जाता है?"
+              },
+              "options": [
+                {
+                  "en": "The top predator, like an eagle",
+                  "hi": "सबसे ऊपर शिकारी, जैसे बाज़"
+                },
+                {
+                  "en": "The grass",
+                  "hi": "घास"
+                },
+                {
+                  "en": "The grasshopper",
+                  "hi": "टिड्डा"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "The chemical does not break down, so it builds up at every level: biological magnification.",
+                "hi": "यह रसायन टूटता नहीं, इसलिए हर स्तर पर जमा होता जाता है: जैव आवर्धन।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "The grass takes in the chemical, but each eater above collects it from many meals.",
+                  "hi": "घास रसायन लेती है, पर ऊपर का हर खाने वाला कई भोजनों से उसे इकट्ठा करता है।"
+                },
+                {
+                  "en": "The grasshopper has some, but the animals that eat many grasshoppers have more.",
+                  "hi": "टिड्डे में कुछ होता है, पर कई टिड्डे खाने वाले जंतुओं में और ज़्यादा।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Explore: link the frog to finish the chain and play again. How much of the 1000 J reaches the frog?",
+            "hi": "आज़माओ: शृंखला पूरी करने के लिए मेंढक जोड़ो और फिर प्ले करो। 1000 J में से मेंढक तक कितनी पहुँचती है?"
+          }
         }
-       ],
-       "answer": 0,
-       "why": {
-        "en": "Microbes cannot break down polythene, so it stays for hundreds of years.",
-        "hi": "सूक्ष्मजीव पॉलिथीन को तोड़ नहीं सकते, इसलिए यह सैकड़ों साल बनी रहती है।"
-       },
-       "wrong": [
-        "",
-        {
-         "en": "Peels rot in days; they are biodegradable.",
-         "hi": "छिलके कुछ दिनों में सड़ जाते हैं; वे जैव निम्नीकरणीय हैं।"
-        },
-        {
-         "en": "Dry leaves rot into soil in a few months.",
-         "hi": "सूखी पत्तियाँ कुछ महीनों में सड़कर मिट्टी बन जाती हैं।"
-        }
-       ]
+      ]
+    },
+    {
+      "id": "c10-science-jesc1-ch13-waste-sorter",
+      "topic": "13.2",
+      "template": "eco",
+      "title": {
+        "en": "Sorting the garbage we produce",
+        "hi": "हमारे कचरे की छँटाई"
       },
-      {
-       "q": {
-        "en": "Why is the ozone layer high in the sky important to us?",
-        "hi": "आसमान में ऊँचाई पर ओज़ोन परत हमारे लिए क्यों ज़रूरी है?"
-       },
-       "options": [
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "mode": "waste",
+        "organisms": [
+          "banana",
+          "bottle",
+          "newspaper",
+          "veg",
+          "bag",
+          "leaves"
+        ]
+      },
+      "steps": [
         {
-         "en": "It blocks harmful ultraviolet rays from the Sun",
-         "hi": "यह सूर्य की हानिकारक पराबैंगनी किरणों को रोकती है"
+          "kind": "do",
+          "target": "card:banana",
+          "expect": "picked:banana",
+          "say": {
+            "en": "Tap the banana peel.",
+            "hi": "केले के छिलके पर टैप करो।"
+          }
         },
         {
-         "en": "It makes the rain",
-         "hi": "इससे वर्षा होती है"
+          "kind": "do",
+          "target": "bin:green",
+          "expect": "sorted",
+          "say": {
+            "en": "Put it in the green bin for wet waste.",
+            "hi": "इसे गीले कचरे के हरे डिब्बे में डालो।"
+          }
         },
         {
-         "en": "It gives us oxygen to breathe",
-         "hi": "यह हमें साँस के लिए ऑक्सीजन देती है"
+          "kind": "predict",
+          "say": {
+            "en": "Which bin does a plastic bottle go in, and how long does it take to rot?",
+            "hi": "प्लास्टिक की बोतल किस डिब्बे में जाती है, और उसे सड़ने में कितना समय लगता है?"
+          },
+          "options": [
+            {
+              "id": "blue",
+              "en": "The blue bin; it lasts hundreds of years",
+              "hi": "नीला डिब्बा; यह सैकड़ों साल रहती है"
+            },
+            {
+              "id": "green",
+              "en": "The green bin; it rots in a week",
+              "hi": "हरा डिब्बा; यह एक हफ़्ते में सड़ जाती है"
+            },
+            {
+              "id": "road",
+              "en": "Neither; throw it on the road",
+              "hi": "किसी में नहीं; सड़क पर फेंक दो"
+            }
+          ],
+          "answer": "blue"
+        },
+        {
+          "kind": "do",
+          "target": "card:bottle",
+          "expect": "picked:bottle",
+          "say": {
+            "en": "Tap the plastic bottle.",
+            "hi": "प्लास्टिक की बोतल पर टैप करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "bin:blue",
+          "expect": "sorted",
+          "say": {
+            "en": "Put it in the blue bin for dry waste.",
+            "hi": "इसे सूखे कचरे के नीले डिब्बे में डालो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Peels, leaves and leftover food are biodegradable: bacteria and fungi break them down in days or weeks, and they can become compost. Plastic, glass and metal are non-biodegradable or take very long to break down; they harm soil, drains and animals, so they should be collected dry and recycled. Using kulhads, leaf plates and cloth or jute bags instead of plastic makes less waste.",
+            "hi": "छिलके, पत्तियाँ और बचा भोजन जैव निम्नीकरणीय हैं: जीवाणु और कवक उन्हें कुछ दिनों या हफ़्तों में तोड़ देते हैं, और उनसे खाद बन सकती है। प्लास्टिक, काँच और धातु अजैव निम्नीकरणीय हैं या बहुत लंबे समय में टूटते हैं; ये मिट्टी, नालियों और जंतुओं को नुक़सान पहुँचाते हैं, इसलिए इन्हें सूखा इकट्ठा करके रीसायकल किया हुआ करना चाहिए। प्लास्टिक की जगह कुल्हड़, पत्तल और कपड़े या जूट के थैले इस्तेमाल करने से कचरा कम बनता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which of these is non-biodegradable?",
+                "hi": "इनमें से कौन अजैव निम्नीकरणीय है?"
+              },
+              "options": [
+                {
+                  "en": "A polythene bag",
+                  "hi": "पॉलिथीन की थैली"
+                },
+                {
+                  "en": "Vegetable peels",
+                  "hi": "सब्ज़ी के छिलके"
+                },
+                {
+                  "en": "Dry leaves",
+                  "hi": "सूखी पत्तियाँ"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Microbes cannot break down polythene, so it stays for hundreds of years.",
+                "hi": "सूक्ष्मजीव पॉलिथीन को तोड़ नहीं सकते, इसलिए यह सैकड़ों साल बनी रहती है।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Peels rot in days; they are biodegradable.",
+                  "hi": "छिलके कुछ दिनों में सड़ जाते हैं; वे जैव निम्नीकरणीय हैं।"
+                },
+                {
+                  "en": "Dry leaves rot into soil in a few months.",
+                  "hi": "सूखी पत्तियाँ कुछ महीनों में सड़कर मिट्टी बन जाती हैं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Why is the ozone layer high in the sky important to us?",
+                "hi": "आसमान में ऊँचाई पर ओज़ोन परत हमारे लिए क्यों ज़रूरी है?"
+              },
+              "options": [
+                {
+                  "en": "It blocks harmful ultraviolet rays from the Sun",
+                  "hi": "यह सूर्य की हानिकारक पराबैंगनी किरणों को रोकती है"
+                },
+                {
+                  "en": "It makes the rain",
+                  "hi": "इससे बारिश होती है"
+                },
+                {
+                  "en": "It gives us oxygen to breathe",
+                  "hi": "यह हमें साँस के लिए ऑक्सीजन देती है"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Ozone (O3) absorbs UV radiation, which can cause skin cancer. CFCs from old refrigerants damage it.",
+                "hi": "ओज़ोन (O3) पराबैंगनी विकिरण सोखती है, जिससे त्वचा का कैंसर हो सकता है। पुराने फ़्रिजों के CFC इसे नुक़सान पहुँचाते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Rain comes from clouds much lower down.",
+                  "hi": "बारिश बहुत नीचे के बादलों से होती है।"
+                },
+                {
+                  "en": "We breathe oxygen (O2) near the ground; ozone up high is poisonous to breathe.",
+                  "hi": "हम ज़मीन के पास ऑक्सीजन (O2) में साँस लेते हैं; ऊपर की ओज़ोन साँस के लिए ज़हरीली है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Explore: sort the newspaper, the vegetable scraps, the plastic bag and the dry leaves, then press the rot clock to see how long each takes.",
+            "hi": "आज़माओ: अख़बार, सब्ज़ी के छिलके, पॉलिथीन की थैली और सूखी पत्तियाँ छाँटो, फिर सड़ने की घड़ी दबाकर देखो कि हर एक को कितना समय लगता है।"
+          }
         }
-       ],
-       "answer": 0,
-       "why": {
-        "en": "Ozone (O3) absorbs UV radiation, which can cause skin cancer. CFCs from old refrigerants damage it.",
-        "hi": "ओज़ोन (O3) पराबैंगनी विकिरण सोखती है, जिससे त्वचा का कैंसर हो सकता है। पुराने प्रशीतकों के CFC इसे नुकसान पहुँचाते हैं।"
-       },
-       "wrong": [
-        "",
-        {
-         "en": "Rain comes from clouds much lower down.",
-         "hi": "वर्षा बहुत नीचे के बादलों से होती है।"
-        },
-        {
-         "en": "We breathe oxygen (O2) near the ground; ozone up high is poisonous to breathe.",
-         "hi": "हम ज़मीन के पास ऑक्सीजन (O2) में साँस लेते हैं; ऊपर की ओज़ोन साँस के लिए विषैली है।"
-        }
-       ]
-      }
-     ]
+      ]
     },
     {
-     "kind": "explore",
-     "say": {
-      "en": "Explore: sort the newspaper, the vegetable scraps, the plastic bag and the dry leaves, then press the rot clock to see how long each takes.",
-      "hi": "आज़माओ: अख़बार, सब्ज़ी के छिलके, पॉलिथीन की थैली और सूखी पत्तियाँ छाँटो, फिर सड़ने की घड़ी दबाकर देखो कि हर एक को कितना समय लगता है।"
-     }
+      "id": "c10-science-jesc1-ch13-biotic-abiotic",
+      "topic": "13.1",
+      "template": "sort",
+      "title": {
+        "en": "Living or non-living? Sort the pond",
+        "hi": "जीवित या निर्जीव? तालाब की चीज़ें छाँटो"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "biotic",
+            "label": {
+              "en": "Biotic (living)",
+              "hi": "जैव (जीवित)"
+            }
+          },
+          {
+            "id": "abiotic",
+            "label": {
+              "en": "Abiotic (non-living)",
+              "hi": "अजैव (निर्जीव)"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "lotus",
+            "text": {
+              "en": "Lotus",
+              "hi": "कमल"
+            },
+            "bin": "biotic",
+            "why": {
+              "en": "The lotus grows, makes food and flowers: it is alive.",
+              "hi": "कमल बढ़ता है, भोजन बनाता है और फूलता है: यह जीवित है।"
+            }
+          },
+          {
+            "id": "frog",
+            "text": {
+              "en": "Frog on a leaf",
+              "hi": "पत्ते पर मेंढक"
+            },
+            "bin": "biotic",
+            "why": {
+              "en": "A frog eats, breathes and has young: it is alive.",
+              "hi": "मेंढक खाता है, साँस लेता है और बच्चे पैदा करता है: यह जीवित है।"
+            }
+          },
+          {
+            "id": "heron",
+            "text": {
+              "en": "Heron at the edge",
+              "hi": "किनारे पर बगुला"
+            },
+            "bin": "biotic",
+            "why": {
+              "en": "A bird is an animal, so it is biotic.",
+              "hi": "पक्षी जंतु है, इसलिए जैव है।"
+            }
+          },
+          {
+            "id": "bact",
+            "text": {
+              "en": "Bacteria in the mud",
+              "hi": "कीचड़ के जीवाणु"
+            },
+            "bin": "biotic",
+            "why": {
+              "en": "You cannot see them, but bacteria are alive, so they are biotic.",
+              "hi": "वे दिखते नहीं, पर जीवाणु जीवित हैं, इसलिए जैव हैं।"
+            }
+          },
+          {
+            "id": "fungus",
+            "text": {
+              "en": "Fungus on a log",
+              "hi": "लट्ठे पर कवक"
+            },
+            "bin": "biotic",
+            "why": {
+              "en": "A fungus is a living microbe.",
+              "hi": "कवक एक जीवित सूक्ष्मजीव है।"
+            }
+          },
+          {
+            "id": "sun",
+            "text": {
+              "en": "Sunlight",
+              "hi": "धूप"
+            },
+            "bin": "abiotic",
+            "why": {
+              "en": "Sunlight is a physical factor, not a living thing.",
+              "hi": "धूप एक भौतिक कारक है, जीवित चीज़ नहीं।"
+            }
+          },
+          {
+            "id": "water",
+            "text": {
+              "en": "Pond water",
+              "hi": "तालाब का पानी"
+            },
+            "bin": "abiotic",
+            "why": {
+              "en": "Water is needed by every living thing, but it is not alive itself.",
+              "hi": "पानी हर जीव को चाहिए, पर वह ख़ुद जीवित नहीं है।"
+            }
+          },
+          {
+            "id": "mud",
+            "text": {
+              "en": "Mud and soil",
+              "hi": "कीचड़ और मिट्टी"
+            },
+            "bin": "abiotic",
+            "why": {
+              "en": "Soil is abiotic. Only the bacteria living in it are biotic.",
+              "hi": "मिट्टी अजैव है। सिर्फ़ उसमें रहने वाले जीवाणु जैव हैं।"
+            }
+          },
+          {
+            "id": "temp",
+            "text": {
+              "en": "Temperature of the water",
+              "hi": "पानी का तापमान"
+            },
+            "bin": "abiotic",
+            "why": {
+              "en": "Temperature is a physical factor.",
+              "hi": "तापमान एक भौतिक कारक है।"
+            }
+          },
+          {
+            "id": "wind",
+            "text": {
+              "en": "Wind",
+              "hi": "हवा"
+            },
+            "bin": "abiotic",
+            "why": {
+              "en": "Wind is moving air, not a living thing.",
+              "hi": "हवा चलती हुई गैसें हैं, जीवित चीज़ नहीं।"
+            }
+          },
+          {
+            "id": "rock",
+            "text": {
+              "en": "A rock",
+              "hi": "चट्टान"
+            },
+            "bin": "abiotic",
+            "why": {
+              "en": "A rock does not grow, eat or breathe.",
+              "hi": "चट्टान न बढ़ती है, न खाती है, न साँस लेती है।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:lotus",
+          "expect": "placed:lotus",
+          "say": {
+            "en": "Tap the lotus card, then tap a group to put it in.",
+            "hi": "कमल वाले कार्ड पर टैप करो, फिर किसी समूह पर टैप करके उसे रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Bacteria in the mud are too small to see. Are they biotic or abiotic?",
+            "hi": "कीचड़ के जीवाणु इतने छोटे हैं कि दिखते नहीं। वे जैव हैं या अजैव?"
+          },
+          "options": [
+            {
+              "id": "bio",
+              "en": "Biotic: they are alive",
+              "hi": "जैव: वे जीवित हैं"
+            },
+            {
+              "id": "abio",
+              "en": "Abiotic: they are too small to be alive",
+              "hi": "अजैव: वे इतने छोटे हैं कि जीवित नहीं हो सकते"
+            },
+            {
+              "id": "mud",
+              "en": "Abiotic: they are part of the mud",
+              "hi": "अजैव: वे कीचड़ का ही हिस्सा हैं"
+            }
+          ],
+          "answer": "bio"
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort all the cards, then tap Check.",
+            "hi": "सारे कार्ड छाँटो, फिर \"जाँचो\" बटन दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Ask one question about every card: is it alive? If yes, it is biotic. If no, it is abiotic. Water, sunlight, soil and temperature are abiotic, yet every living thing in the pond needs them. Bacteria are too small to see, but they are alive, so they are biotic. Together they make the pond ecosystem.",
+            "hi": "हर कार्ड से एक ही सवाल पूछो: क्या यह जीवित है? हाँ तो जैव, नहीं तो अजैव। पानी, धूप, मिट्टी और तापमान अजैव हैं, फिर भी तालाब के हर जीव को इनकी ज़रूरत है। जीवाणु दिखते नहीं, पर जीवित हैं, इसलिए जैव हैं। ये सब मिलकर तालाब का पारितंत्र बनाते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which of these is a biotic component?",
+                "hi": "इनमें से कौन-सा जैव घटक है?"
+              },
+              "options": [
+                {
+                  "en": "Wind",
+                  "hi": "हवा"
+                },
+                {
+                  "en": "Sunlight",
+                  "hi": "धूप"
+                },
+                {
+                  "en": "Bacteria in soil",
+                  "hi": "मिट्टी के जीवाणु"
+                },
+                {
+                  "en": "A rock",
+                  "hi": "चट्टान"
+                }
+              ],
+              "answer": 2,
+              "why": {
+                "en": "Bacteria are living microbes, so they are biotic.",
+                "hi": "जीवाणु जीवित सूक्ष्मजीव हैं, इसलिए जैव हैं।"
+              },
+              "wrong": [
+                {
+                  "en": "Wind is a physical factor, not alive.",
+                  "hi": "हवा भौतिक कारक है, जीवित नहीं।"
+                },
+                {
+                  "en": "Sunlight is a physical factor, not alive.",
+                  "hi": "धूप भौतिक कारक है, जीवित नहीं।"
+                },
+                "",
+                {
+                  "en": "A rock is not alive.",
+                  "hi": "चट्टान जीवित नहीं है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "A scarecrow stands in a crop field. Is it biotic or abiotic?",
+                "hi": "फ़सल के खेत में एक बिजूका खड़ा है। वह जैव है या अजैव?"
+              },
+              "options": [
+                {
+                  "en": "Biotic, because it stands in a living field",
+                  "hi": "जैव, क्योंकि वह जीवित खेत में खड़ा है"
+                },
+                {
+                  "en": "Biotic, because it looks like a person",
+                  "hi": "जैव, क्योंकि वह इंसान जैसा दिखता है"
+                },
+                {
+                  "en": "Abiotic, because it is made by people and is not alive",
+                  "hi": "अजैव, क्योंकि उसे इंसान ने बनाया है और वह जीवित नहीं है"
+                }
+              ],
+              "answer": 2,
+              "why": {
+                "en": "A scarecrow does not grow, eat or breed, so it is abiotic.",
+                "hi": "बिजूका न बढ़ता है, न खाता है, न बच्चे पैदा करता है, इसलिए अजैव है।"
+              },
+              "wrong": [
+                {
+                  "en": "Where a thing stands does not make it alive.",
+                  "hi": "कोई चीज़ कहाँ खड़ी है, इससे वह जीवित नहीं हो जाती।"
+                },
+                {
+                  "en": "Looking like a person does not make it alive.",
+                  "hi": "इंसान जैसा दिखने से वह जीवित नहीं हो जाता।"
+                },
+                ""
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Explore: look at the cards that were hardest. Which one made you stop and think? Say why it is biotic or abiotic.",
+            "hi": "आज़माओ: सबसे मुश्किल लगे कार्डों को देखो। किसने तुम्हें रुककर सोचने पर मजबूर किया? बताओ कि वह जैव है या अजैव, और क्यों।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c10-science-jesc1-ch13-roles",
+      "topic": "13.1",
+      "template": "sort",
+      "title": {
+        "en": "Producer, consumer or decomposer?",
+        "hi": "उत्पादक, उपभोक्ता या अपघटक?"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "prod",
+            "label": {
+              "en": "Producer",
+              "hi": "उत्पादक"
+            }
+          },
+          {
+            "id": "cons",
+            "label": {
+              "en": "Consumer",
+              "hi": "उपभोक्ता"
+            }
+          },
+          {
+            "id": "decomp",
+            "label": {
+              "en": "Decomposer",
+              "hi": "अपघटक"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "grass",
+            "text": {
+              "en": "Grass",
+              "hi": "घास"
+            },
+            "bin": "prod",
+            "why": {
+              "en": "Grass makes its own food from sunlight, water and carbon dioxide.",
+              "hi": "घास धूप, पानी और कार्बन डाइऑक्साइड से अपना भोजन ख़ुद बनाती है।"
+            }
+          },
+          {
+            "id": "algae",
+            "text": {
+              "en": "Algae in the pond",
+              "hi": "तालाब के शैवाल"
+            },
+            "bin": "prod",
+            "why": {
+              "en": "Algae photosynthesise, so they are producers.",
+              "hi": "शैवाल प्रकाश-संश्लेषण करते हैं, इसलिए उत्पादक हैं।"
+            }
+          },
+          {
+            "id": "goat",
+            "text": {
+              "en": "Goat",
+              "hi": "बकरी"
+            },
+            "bin": "cons",
+            "why": {
+              "en": "A goat cannot make food; it eats plants (a herbivore).",
+              "hi": "बकरी भोजन नहीं बना सकती; वह पौधे खाती है (शाकाहारी)।"
+            }
+          },
+          {
+            "id": "frog",
+            "text": {
+              "en": "Frog",
+              "hi": "मेंढक"
+            },
+            "bin": "cons",
+            "why": {
+              "en": "A frog eats insects, so it is a consumer (a carnivore).",
+              "hi": "मेंढक कीट खाता है, इसलिए उपभोक्ता (मांसाहारी) है।"
+            }
+          },
+          {
+            "id": "human",
+            "text": {
+              "en": "Human",
+              "hi": "इंसान"
+            },
+            "bin": "cons",
+            "why": {
+              "en": "People eat plants and animals: an omnivore, which is a consumer.",
+              "hi": "इंसान पौधे और जंतु दोनों खाता है: सर्वाहारी, यानी उपभोक्ता।"
+            }
+          },
+          {
+            "id": "tape",
+            "text": {
+              "en": "Tapeworm in a gut",
+              "hi": "आँत का फ़ीता कृमि"
+            },
+            "bin": "cons",
+            "why": {
+              "en": "A parasite lives in a host and feeds on it: a consumer.",
+              "hi": "परजीवी किसी जीव के अंदर रहकर उसी से भोजन लेता है: उपभोक्ता।"
+            }
+          },
+          {
+            "id": "vulture",
+            "text": {
+              "en": "Vulture eating a dead animal",
+              "hi": "मरा जंतु खाता गिद्ध"
+            },
+            "bin": "cons",
+            "why": {
+              "en": "A vulture is an animal that eats food: a consumer (scavenger). It is not a decomposer.",
+              "hi": "गिद्ध भोजन खाने वाला जंतु है: उपभोक्ता (मृतभक्षी)। वह अपघटक नहीं है।"
+            }
+          },
+          {
+            "id": "bact",
+            "text": {
+              "en": "Bacteria in the soil",
+              "hi": "मिट्टी के जीवाणु"
+            },
+            "bin": "decomp",
+            "why": {
+              "en": "Bacteria break dead remains into simple substances: decomposers.",
+              "hi": "जीवाणु मरे अवशेषों को सरल पदार्थों में तोड़ते हैं: अपघटक।"
+            }
+          },
+          {
+            "id": "mush",
+            "text": {
+              "en": "Mushroom on a log",
+              "hi": "लट्ठे पर खुंभी"
+            },
+            "bin": "decomp",
+            "why": {
+              "en": "A mushroom is a fungus; fungi break down dead matter: decomposers.",
+              "hi": "खुंभी कवक है; कवक मरे पदार्थ को तोड़ते हैं: अपघटक।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:grass",
+          "expect": "placed:grass",
+          "say": {
+            "en": "Tap the grass card, then tap the group where it belongs.",
+            "hi": "घास वाले कार्ड पर टैप करो, फिर उस समूह पर टैप करो जहाँ वह आती है।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "A vulture eats a dead animal. Which group is it in?",
+            "hi": "गिद्ध मरा हुआ जंतु खाता है। वह किस समूह में आएगा?"
+          },
+          "options": [
+            {
+              "id": "cons",
+              "en": "Consumer: it is an animal that eats food",
+              "hi": "उपभोक्ता: वह भोजन खाने वाला जंतु है"
+            },
+            {
+              "id": "decomp",
+              "en": "Decomposer: it eats dead things",
+              "hi": "अपघटक: वह मरी चीज़ें खाता है"
+            },
+            {
+              "id": "prod",
+              "en": "Producer: it gives food to others",
+              "hi": "उत्पादक: वह दूसरों को भोजन देता है"
+            }
+          ],
+          "answer": "cons"
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort all the cards, then tap Check.",
+            "hi": "सारे कार्ड छाँटो, फिर \"जाँचो\" बटन दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Ask how it gets its food. If it makes its own food from sunlight, it is a producer. If it eats plants or animals, it is a consumer, even a vulture eating a dead body. Only bacteria and fungi that break down dead remains and wastes into simple substances are decomposers. Their minerals go back to the soil for the producers.",
+            "hi": "पूछो कि उसे भोजन कैसे मिलता है। जो धूप से अपना भोजन ख़ुद बनाए, वह उत्पादक है। जो पौधे या जंतु खाए, वह उपभोक्ता है, मरा जंतु खाने वाला गिद्ध भी। अपघटक सिर्फ़ जीवाणु और कवक हैं, जो मरे अवशेषों और कचरे को सरल पदार्थों में तोड़ते हैं। उनके खनिज वापस मिट्टी में जाकर उत्पादकों के काम आते हैं।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Which group can make its own food using sunlight?",
+                "hi": "कौन-सा समूह धूप से अपना भोजन ख़ुद बना सकता है?"
+              },
+              "options": [
+                {
+                  "en": "Consumers",
+                  "hi": "उपभोक्ता"
+                },
+                {
+                  "en": "Producers",
+                  "hi": "उत्पादक"
+                },
+                {
+                  "en": "Decomposers",
+                  "hi": "अपघटक"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "Green plants, algae and some bacteria photosynthesise: they are producers.",
+                "hi": "हरे पौधे, शैवाल और कुछ जीवाणु प्रकाश-संश्लेषण करते हैं: वे उत्पादक हैं।"
+              },
+              "wrong": [
+                {
+                  "en": "Consumers eat other living things; they cannot make food.",
+                  "hi": "उपभोक्ता दूसरे जीवों को खाते हैं; वे भोजन नहीं बना सकते।"
+                },
+                "",
+                {
+                  "en": "Decomposers break down dead matter; they do not make food from sunlight.",
+                  "hi": "अपघटक मरे पदार्थ को तोड़ते हैं; वे धूप से भोजन नहीं बनाते।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "What happens to the minerals in dead remains because of decomposers?",
+                "hi": "अपघटकों की वजह से मरे अवशेषों के खनिजों का क्या होता है?"
+              },
+              "options": [
+                {
+                  "en": "They stay locked in the dead body",
+                  "hi": "वे मरे शरीर में बंद रह जाते हैं"
+                },
+                {
+                  "en": "They go back to the soil, and plants use them again",
+                  "hi": "वे वापस मिट्टी में जाते हैं और पौधे उन्हें फिर इस्तेमाल करते हैं"
+                },
+                {
+                  "en": "They disappear from the Earth",
+                  "hi": "वे धरती से ग़ायब हो जाते हैं"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "Decomposers turn dead remains into simple substances that return to the soil.",
+                "hi": "अपघटक मरे अवशेषों को सरल पदार्थों में बदलते हैं, जो मिट्टी में लौट जाते हैं।"
+              },
+              "wrong": [
+                {
+                  "en": "Without decomposers this would happen, and plants would run short of minerals.",
+                  "hi": "अपघटकों के बिना ऐसा होता, और पौधों को खनिज कम पड़ जाते।"
+                },
+                "",
+                {
+                  "en": "Matter is not destroyed; it goes back into the soil.",
+                  "hi": "पदार्थ नष्ट नहीं होता; वह वापस मिट्टी में चला जाता है।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Explore: which card was hardest to place? Think about the vulture and the mushroom. What question settles it?",
+            "hi": "आज़माओ: कौन-सा कार्ड रखना सबसे मुश्किल लगा? गिद्ध और खुंभी के बारे में सोचो। कौन-सा सवाल फ़ैसला कर देता है?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c10-science-jesc1-ch13-chain-build",
+      "topic": "13.1",
+      "template": "eco",
+      "title": {
+        "en": "Build a food chain: who eats whom?",
+        "hi": "आहार शृंखला बनाओ: कौन किसे खाता है?"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "mode": "chain",
+        "habitat": "grassland",
+        "organisms": [
+          "grass",
+          "grasshopper",
+          "frog",
+          "snake"
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:grass",
+          "expect": "picked:grass",
+          "say": {
+            "en": "Tap Grass in the tray. A food chain starts with a producer.",
+            "hi": "ट्रे में घास पर टैप करो। आहार शृंखला उत्पादक से शुरू होती है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "link",
+          "expect": "linked",
+          "say": {
+            "en": "Tap Link to start the chain.",
+            "hi": "शृंखला शुरू करने के लिए \"जोड़ें\" पर टैप करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:grasshopper",
+          "expect": "picked:grasshopper",
+          "say": {
+            "en": "Tap the grasshopper, which eats grass.",
+            "hi": "टिड्डे पर टैप करो, जो घास खाता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "link",
+          "expect": "linked",
+          "say": {
+            "en": "Tap Link to add it.",
+            "hi": "उसे जोड़ने के लिए \"जोड़ें\" पर टैप करो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Look at the arrow between grass and grasshopper. Which way does it point?",
+            "hi": "घास और टिड्डे के बीच का तीर देखो। वह किस तरफ़ जाता है?"
+          },
+          "options": [
+            {
+              "id": "eater",
+              "en": "From the grass to the grasshopper, the eater",
+              "hi": "घास से टिड्डे की ओर, यानी खाने वाले की ओर"
+            },
+            {
+              "id": "food",
+              "en": "From the grasshopper to the grass",
+              "hi": "टिड्डे से घास की ओर"
+            },
+            {
+              "id": "none",
+              "en": "It does not matter which way",
+              "hi": "किस ओर है, इससे फ़र्क़ नहीं पड़ता"
+            }
+          ],
+          "answer": "eater"
+        },
+        {
+          "kind": "do",
+          "target": "card:frog",
+          "expect": "picked:frog",
+          "say": {
+            "en": "Now tap the frog, which eats grasshoppers.",
+            "hi": "अब मेंढक पर टैप करो, जो टिड्डे खाता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "link",
+          "expect": "linked",
+          "say": {
+            "en": "Tap Link to add the frog.",
+            "hi": "मेंढक को जोड़ने के लिए \"जोड़ें\" पर टैप करो।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "A food chain is a line of who eats whom. It starts with a producer, here the grass, and each arrow points from the food to the one that eats it. The grass is at the first trophic level, the grasshopper is the primary consumer at the second, and the frog is the secondary consumer at the third. A snake that eats the frog would be a tertiary consumer at the fourth.",
+            "hi": "आहार शृंखला एक लाइन है जो बताती है कि कौन किसे खाता है। यह उत्पादक से शुरू होती है, यहाँ घास से, और हर तीर भोजन से उसे खाने वाले की ओर जाता है। घास पहले पोषी स्तर पर है, टिड्डा दूसरे पर प्राथमिक उपभोक्ता है, और मेंढक तीसरे पर द्वितीयक उपभोक्ता। मेंढक को खाने वाला साँप चौथे स्तर पर तृतीयक उपभोक्ता होगा।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "In grass → grasshopper → frog → snake, which is the secondary consumer?",
+                "hi": "घास → टिड्डा → मेंढक → साँप में द्वितीयक उपभोक्ता कौन है?"
+              },
+              "options": [
+                {
+                  "en": "Grasshopper",
+                  "hi": "टिड्डा"
+                },
+                {
+                  "en": "Frog",
+                  "hi": "मेंढक"
+                },
+                {
+                  "en": "Snake",
+                  "hi": "साँप"
+                },
+                {
+                  "en": "Grass",
+                  "hi": "घास"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "The frog eats the primary consumer, so it is the secondary consumer at the third level.",
+                "hi": "मेंढक प्राथमिक उपभोक्ता को खाता है, इसलिए वह तीसरे स्तर का द्वितीयक उपभोक्ता है।"
+              },
+              "wrong": [
+                {
+                  "en": "The grasshopper eats the grass, so it is the primary consumer.",
+                  "hi": "टिड्डा घास खाता है, इसलिए वह प्राथमिक उपभोक्ता है।"
+                },
+                "",
+                {
+                  "en": "The snake eats the frog, so it is the tertiary consumer.",
+                  "hi": "साँप मेंढक को खाता है, इसलिए वह तृतीयक उपभोक्ता है।"
+                },
+                {
+                  "en": "The grass is the producer at the first level.",
+                  "hi": "घास पहले स्तर का उत्पादक है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "What does the arrow in a food chain mean?",
+                "hi": "आहार शृंखला में तीर का मतलब क्या है?"
+              },
+              "options": [
+                {
+                  "en": "The eater is eaten by the food",
+                  "hi": "खाने वाला भोजन को खाता है"
+                },
+                {
+                  "en": "Food and energy go to the one the arrow points at",
+                  "hi": "भोजन और ऊर्जा उसे मिलती है जिसकी ओर तीर है"
+                },
+                {
+                  "en": "The animal with the arrow is bigger",
+                  "hi": "जिसकी ओर तीर है, वह जानवर बड़ा है"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "The arrow points from the food to the eater: energy moves that way.",
+                "hi": "तीर भोजन से खाने वाले की ओर जाता है: ऊर्जा उसी तरफ़ जाती है।"
+              },
+              "wrong": [
+                {
+                  "en": "That reads the arrow backwards.",
+                  "hi": "यह तीर को उलटा पढ़ना है।"
+                },
+                "",
+                {
+                  "en": "An arrow does not show size.",
+                  "hi": "तीर आकार नहीं दिखाता।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Explore: add the snake to finish a four-step chain. Which level is it on? Then tap Play and watch the energy go up the chain.",
+            "hi": "आज़माओ: चार स्टेप की शृंखला पूरी करने के लिए साँप भी जोड़ो। वह किस स्तर पर है? फिर प्ले दबाओ और ऊर्जा को शृंखला में ऊपर जाते देखो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c10-science-jesc1-ch13-food-web",
+      "topic": "13.1",
+      "template": "eco",
+      "title": {
+        "en": "From food chains to a food web",
+        "hi": "आहार शृंखलाओं से आहार जाल तक"
+      },
+      "minutes": 7,
+      "level": "core",
+      "config": {
+        "mode": "web",
+        "habitat": "grassland",
+        "organisms": [
+          "grass",
+          "grasshopper",
+          "rabbit",
+          "frog",
+          "snake",
+          "eagle"
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:grass",
+          "expect": "picked:grass",
+          "say": {
+            "en": "Tap Grass. It is the food for more than one animal.",
+            "hi": "घास पर टैप करो। वह एक से ज़्यादा जंतुओं का भोजन है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:grasshopper",
+          "expect": "picked:grasshopper",
+          "say": {
+            "en": "Now tap the grasshopper, which eats grass.",
+            "hi": "अब टिड्डे पर टैप करो, जो घास खाता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "link",
+          "expect": "linked",
+          "say": {
+            "en": "Tap Link to join them with an arrow.",
+            "hi": "उन्हें तीर से जोड़ने के लिए \"जोड़ें\" पर टैप करो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The grass is also eaten by the rabbit. What will the web look like when you join them too?",
+            "hi": "घास को खरगोश भी खाता है। उसे भी जोड़ने पर जाल कैसा दिखेगा?"
+          },
+          "options": [
+            {
+              "id": "branch",
+              "en": "The grass will have two arrows going out: a branch",
+              "hi": "घास से दो तीर निकलेंगे: एक शाखा बनेगी"
+            },
+            {
+              "id": "one",
+              "en": "The grass can have only one arrow",
+              "hi": "घास से सिर्फ़ एक तीर निकल सकता है"
+            },
+            {
+              "id": "back",
+              "en": "An arrow will come back to the grass",
+              "hi": "एक तीर घास की ओर लौटेगा"
+            }
+          ],
+          "answer": "branch"
+        },
+        {
+          "kind": "do",
+          "target": "card:grass",
+          "expect": "picked:grass",
+          "say": {
+            "en": "Tap Grass again.",
+            "hi": "घास पर फिर से टैप करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "card:rabbit",
+          "expect": "picked:rabbit",
+          "say": {
+            "en": "Tap the rabbit, which also eats grass.",
+            "hi": "खरगोश पर टैप करो, जो घास खाता है।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "link",
+          "expect": "linked",
+          "say": {
+            "en": "Tap Link. Your chains are now branching.",
+            "hi": "\"जोड़ें\" पर टैप करो। तुम्हारी शृंखलाएँ अब शाखाओं में बँट रही हैं।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "In real life an animal rarely eats only one thing, so single food chains join into a net called a food web. The grass feeds two animals here, and an eagle can eat several kinds of animals. A web gives a hungry animal other choices: if one food becomes scarce it can eat another. That is why a food web keeps the ecosystem steadier than a single chain.",
+            "hi": "असल ज़िंदगी में कोई जंतु शायद ही सिर्फ़ एक चीज़ खाता है, इसलिए अकेली आहार शृंखलाएँ जुड़कर जाल बन जाती हैं, जिसे आहार जाल कहते हैं। यहाँ घास दो जंतुओं को भोजन देती है, और बाज़ कई तरह के जंतु खा सकता है। जाल भूखे जंतु को दूसरे विकल्प देता है: एक भोजन कम पड़े तो वह दूसरा खा सकता है। इसीलिए आहार जाल पारितंत्र को अकेली शृंखला से ज़्यादा स्थिर रखता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why is a food web steadier than a single food chain?",
+                "hi": "आहार जाल अकेली आहार शृंखला से ज़्यादा स्थिर क्यों होता है?"
+              },
+              "options": [
+                {
+                  "en": "Every animal in a web eats only one food",
+                  "hi": "जाल में हर जंतु सिर्फ़ एक भोजन खाता है"
+                },
+                {
+                  "en": "An animal can switch to another food when one runs short",
+                  "hi": "एक भोजन कम पड़े तो जंतु दूसरे भोजन पर जा सकता है"
+                },
+                {
+                  "en": "A web has no producers",
+                  "hi": "जाल में उत्पादक नहीं होते"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "Choices spread the risk, so one missing food does not starve everyone.",
+                "hi": "विकल्प जोखिम बाँट देते हैं, इसलिए एक भोजन ख़त्म होने से सब भूखे नहीं मरते।"
+              },
+              "wrong": [
+                {
+                  "en": "That describes a single chain, the opposite of a web.",
+                  "hi": "यह तो अकेली शृंखला है, जाल का उलटा।"
+                },
+                "",
+                {
+                  "en": "Every web has producers at its base.",
+                  "hi": "हर जाल की नींव में उत्पादक होते हैं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "In this web, which animals eat the frog?",
+                "hi": "इस जाल में मेंढक को कौन-से जंतु खाते हैं?"
+              },
+              "options": [
+                {
+                  "en": "The snake and the eagle",
+                  "hi": "साँप और बाज़"
+                },
+                {
+                  "en": "The grass and the grasshopper",
+                  "hi": "घास और टिड्डा"
+                },
+                {
+                  "en": "The rabbit only",
+                  "hi": "सिर्फ़ खरगोश"
+                }
+              ],
+              "answer": 0,
+              "why": {
+                "en": "Look at the arrows leaving the frog: they go to the snake and the eagle.",
+                "hi": "मेंढक से निकलते तीर देखो: वे साँप और बाज़ की ओर जाते हैं।"
+              },
+              "wrong": [
+                "",
+                {
+                  "en": "Those are eaten by others; they are food, not eaters of the frog.",
+                  "hi": "इन्हें दूसरे खाते हैं; ये मेंढक को खाने वाले नहीं हैं।"
+                },
+                {
+                  "en": "The rabbit eats grass, not frogs.",
+                  "hi": "खरगोश घास खाता है, मेंढक नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Explore: tap \"What if?\" and take away the grasshopper. Which animals lose all their food? Which only lose some? Then try taking away the grass.",
+            "hi": "आज़माओ: \"अगर हटा दें तो?\" दबाओ और टिड्डे को हटाओ। किन जंतुओं का सारा भोजन चला गया? किनका सिर्फ़ थोड़ा? फिर घास को हटाकर देखो।"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c10-science-jesc1-ch13-biomagnification",
+      "topic": "13.1",
+      "template": "data",
+      "title": {
+        "en": "Pesticide up the food chain (imaginary numbers)",
+        "hi": "आहार शृंखला में ऊपर बढ़ता कीटनाशक (काल्पनिक संख्याएँ)"
+      },
+      "minutes": 5,
+      "level": "core",
+      "config": {
+        "chart": "bar",
+        "title": {
+          "en": "Pesticide in an imaginary pond",
+          "hi": "काल्पनिक तालाब में कीटनाशक"
+        },
+        "ylabel": {
+          "en": "Imaginary units per kg",
+          "hi": "काल्पनिक यूनिट प्रति kg"
+        },
+        "data": [
+          {
+            "label": {
+              "en": "Water",
+              "hi": "पानी"
+            },
+            "value": 1
+          },
+          {
+            "label": {
+              "en": "Algae",
+              "hi": "शैवाल"
+            },
+            "value": 5
+          },
+          {
+            "label": {
+              "en": "Small fish",
+              "hi": "छोटी मछली"
+            },
+            "value": 25
+          },
+          {
+            "label": {
+              "en": "Large fish",
+              "hi": "बड़ी मछली"
+            },
+            "value": 125
+          },
+          {
+            "label": {
+              "en": "Heron",
+              "hi": "बगुला"
+            },
+            "value": 625
+          }
+        ],
+        "ask": "max"
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "bar:0",
+          "expect": "selected:*",
+          "say": {
+            "en": "Tap the first bar, the pond water. It holds a tiny amount of pesticide.",
+            "hi": "पहले बार पर टैप करो, यानी तालाब के पानी पर। उसमें कीटनाशक बहुत थोड़ा है।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "The algae take in the pesticide, small fish eat the algae, large fish eat the small fish, and a heron eats the large fish. How will the bars change as you go up?",
+            "hi": "शैवाल कीटनाशक ले लेते हैं, छोटी मछली शैवाल खाती है, बड़ी मछली छोटी मछली खाती है, और बगुला बड़ी मछली खाता है। ऊपर जाने पर बार कैसे बदलेंगे?"
+          },
+          "options": [
+            {
+              "id": "up",
+              "en": "Each bar gets taller than the one before",
+              "hi": "हर बार पिछले से ऊँचा होता जाएगा"
+            },
+            {
+              "id": "same",
+              "en": "All the bars stay the same height",
+              "hi": "सारे बार एक जितने ऊँचे रहेंगे"
+            },
+            {
+              "id": "down",
+              "en": "Each bar gets shorter",
+              "hi": "हर बार छोटा होता जाएगा"
+            }
+          ],
+          "answer": "up"
+        },
+        {
+          "kind": "do",
+          "target": "bar:4",
+          "expect": "selected:*",
+          "say": {
+            "en": "Tap the last bar, the heron. Compare it with the pond water.",
+            "hi": "आख़िरी बार पर टैप करो, यानी बगुले पर। उसकी तुलना तालाब के पानी से करो।"
+          }
+        },
+        {
+          "kind": "do",
+          "target": "answer",
+          "expect": "answered:right",
+          "say": {
+            "en": "Answer the question: which bar is the biggest?",
+            "hi": "सवाल का जवाब दो: सबसे बड़ा बार कौन-सा है?"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Pesticides do not break down, so each animal keeps what it takes in, and the next one collects it from many meals. So the amount grows at every step up the food chain. This build-up is called biological magnification. The numbers here are imaginary, only to show the pattern. People are at the top of many chains, so we collect the most.",
+            "hi": "कीटनाशक टूटते नहीं, इसलिए हर जंतु जो ले लेता है उसे रख लेता है, और अगला जंतु उसे कई भोजनों से इकट्ठा करता है। इसलिए आहार शृंखला में हर स्टेप ऊपर जाने पर मात्रा बढ़ती जाती है। इस जमा होने को जैव आवर्धन कहते हैं। यहाँ की संख्याएँ काल्पनिक हैं, सिर्फ़ पैटर्न दिखाने के लिए। इंसान कई शृंखलाओं में सबसे ऊपर है, इसलिए हमारे शरीर में सबसे ज़्यादा जमा होता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why does the heron hold the most pesticide in this chart?",
+                "hi": "इस चार्ट में बगुले में सबसे ज़्यादा कीटनाशक क्यों है?"
+              },
+              "options": [
+                {
+                  "en": "It drinks the most water",
+                  "hi": "वह सबसे ज़्यादा पानी पीता है"
+                },
+                {
+                  "en": "It eats many fish, and each fish already carries pesticide that does not break down",
+                  "hi": "वह कई मछलियाँ खाता है, और हर मछली में पहले से कीटनाशक है जो टूटता नहीं"
+                },
+                {
+                  "en": "Herons make pesticide in their bodies",
+                  "hi": "बगुले अपने शरीर में कीटनाशक बनाते हैं"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "A non-degradable chemical builds up at every step, so the top of the chain collects the most.",
+                "hi": "न टूटने वाला रसायन हर स्टेप पर जमा होता है, इसलिए शृंखला के ऊपर वाले में सबसे ज़्यादा इकट्ठा होता है।"
+              },
+              "wrong": [
+                {
+                  "en": "The water holds the least; drinking does not explain it.",
+                  "hi": "पानी में सबसे कम है; पानी पीना इसकी वजह नहीं।"
+                },
+                "",
+                {
+                  "en": "Pesticide is made in factories, not in animals.",
+                  "hi": "कीटनाशक फ़ैक्टरी में बनता है, जंतुओं के शरीर में नहीं।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "If the pesticide broke down quickly in the pond, what would happen to the bars?",
+                "hi": "अगर तालाब में कीटनाशक जल्दी टूट जाता, तो बार का क्या होता?"
+              },
+              "options": [
+                {
+                  "en": "They would still grow taller at each step",
+                  "hi": "वे फिर भी हर स्टेप पर ऊँचे होते जाते"
+                },
+                {
+                  "en": "The top bars would be much smaller, because nothing would build up",
+                  "hi": "ऊपर के बार बहुत छोटे होते, क्योंकि कुछ जमा नहीं होता"
+                },
+                {
+                  "en": "The water bar would become the tallest",
+                  "hi": "पानी वाला बार सबसे ऊँचा हो जाता"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "Build-up happens only because the chemical stays; if it broke down there would be no magnification.",
+                "hi": "जमा होना तभी होता है जब रसायन बना रहता है; टूट जाता तो आवर्धन नहीं होता।"
+              },
+              "wrong": [
+                {
+                  "en": "The growth depends on the chemical staying in the body.",
+                  "hi": "बढ़ना इस पर टिका है कि रसायन शरीर में बना रहे।"
+                },
+                "",
+                {
+                  "en": "Breaking down would make every bar smaller, not the water bar bigger.",
+                  "hi": "टूटने से हर बार छोटा होता, पानी वाला बड़ा नहीं।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Explore: drag the bars to try your own numbers. Can you make a chart where the top of the chain is not the biggest? What would the chemical have to be like?",
+            "hi": "आज़माओ: बारों को खींचकर अपनी संख्याएँ आज़माओ। क्या तुम ऐसा चार्ट बना सकते हो जिसमें शृंखला का सबसे ऊपर वाला सबसे बड़ा न हो? तब रसायन कैसा होना चाहिए?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "c10-science-jesc1-ch13-biodegradable",
+      "topic": "13.2",
+      "template": "sort",
+      "title": {
+        "en": "Will microbes break it down?",
+        "hi": "क्या सूक्ष्मजीव इसे तोड़ देंगे?"
+      },
+      "minutes": 6,
+      "level": "core",
+      "config": {
+        "bins": [
+          {
+            "id": "bio",
+            "label": {
+              "en": "Biodegradable",
+              "hi": "जैव निम्नीकरणीय"
+            }
+          },
+          {
+            "id": "non",
+            "label": {
+              "en": "Non-biodegradable",
+              "hi": "अजैव निम्नीकरणीय"
+            }
+          }
+        ],
+        "cards": [
+          {
+            "id": "peel",
+            "text": {
+              "en": "Vegetable and fruit peels",
+              "hi": "सब्ज़ी और फल के छिलके"
+            },
+            "bin": "bio",
+            "why": {
+              "en": "Microbes have enzymes for plant matter, so peels rot in days.",
+              "hi": "सूक्ष्मजीवों के पास पौधों की चीज़ों के लिए एंज़ाइम हैं, इसलिए छिलके कुछ दिनों में सड़ जाते हैं।"
+            }
+          },
+          {
+            "id": "tea",
+            "text": {
+              "en": "Used tea leaves",
+              "hi": "इस्तेमाल की हुई चायपत्ती"
+            },
+            "bin": "bio",
+            "why": {
+              "en": "Tea leaves are plant matter and rot into compost.",
+              "hi": "चायपत्ती पौधे की चीज़ है और सड़कर कंपोस्ट बनती है।"
+            }
+          },
+          {
+            "id": "leaves",
+            "text": {
+              "en": "Dry leaves",
+              "hi": "सूखे पत्ते"
+            },
+            "bin": "bio",
+            "why": {
+              "en": "Leaves have been rotting in forests for millions of years.",
+              "hi": "जंगलों में पत्ते करोड़ों साल से सड़ते आ रहे हैं।"
+            }
+          },
+          {
+            "id": "paper",
+            "text": {
+              "en": "Newspaper",
+              "hi": "अख़बार"
+            },
+            "bin": "bio",
+            "why": {
+              "en": "Paper is made from plant fibre, so microbes can break it down.",
+              "hi": "काग़ज़ पौधे के रेशों से बनता है, इसलिए सूक्ष्मजीव उसे तोड़ सकते हैं।"
+            }
+          },
+          {
+            "id": "dung",
+            "text": {
+              "en": "Cow dung",
+              "hi": "गोबर"
+            },
+            "bin": "bio",
+            "why": {
+              "en": "Cow dung is broken down by microbes and is used as manure.",
+              "hi": "गोबर को सूक्ष्मजीव तोड़ देते हैं और उसे खाद की तरह इस्तेमाल करते हैं।"
+            }
+          },
+          {
+            "id": "cotton",
+            "text": {
+              "en": "Cotton cloth",
+              "hi": "सूती कपड़ा"
+            },
+            "bin": "bio",
+            "why": {
+              "en": "Cotton is a plant fibre, so it is biodegradable.",
+              "hi": "कपास पौधे का रेशा है, इसलिए जैव निम्नीकरणीय है।"
+            }
+          },
+          {
+            "id": "bag",
+            "text": {
+              "en": "Polythene bag",
+              "hi": "पॉलिथीन की थैली"
+            },
+            "bin": "non",
+            "why": {
+              "en": "Microbes have no enzymes for plastic, so it lasts a very long time.",
+              "hi": "सूक्ष्मजीवों के पास प्लास्टिक के लिए एंज़ाइम नहीं हैं, इसलिए वह बहुत लंबे समय तक रहता है।"
+            }
+          },
+          {
+            "id": "bottle",
+            "text": {
+              "en": "Plastic bottle",
+              "hi": "प्लास्टिक की बोतल"
+            },
+            "bin": "non",
+            "why": {
+              "en": "Plastic is not broken down by microbes.",
+              "hi": "प्लास्टिक को सूक्ष्मजीव नहीं तोड़ते।"
+            }
+          },
+          {
+            "id": "glass",
+            "text": {
+              "en": "Glass bottle",
+              "hi": "काँच की बोतल"
+            },
+            "bin": "non",
+            "why": {
+              "en": "Glass is not broken down by living things.",
+              "hi": "काँच को जीव नहीं तोड़ते।"
+            }
+          },
+          {
+            "id": "can",
+            "text": {
+              "en": "Metal can",
+              "hi": "धातु का डिब्बा"
+            },
+            "bin": "non",
+            "why": {
+              "en": "Metal is not broken down by microbes; it can be recycled instead.",
+              "hi": "धातु को सूक्ष्मजीव नहीं तोड़ते; उसे रीसायकल किया जा सकता है।"
+            }
+          },
+          {
+            "id": "synth",
+            "text": {
+              "en": "Synthetic fabric",
+              "hi": "सिंथेटिक कपड़ा"
+            },
+            "bin": "non",
+            "why": {
+              "en": "Synthetic fabric is a plastic-like material, so it does not rot.",
+              "hi": "सिंथेटिक कपड़ा प्लास्टिक जैसी चीज़ है, इसलिए वह नहीं सड़ता।"
+            }
+          }
+        ]
+      },
+      "steps": [
+        {
+          "kind": "do",
+          "target": "card:peel",
+          "expect": "placed:peel",
+          "say": {
+            "en": "Tap the peels card and put it in a group.",
+            "hi": "छिलकों वाला कार्ड चुनो और उसे किसी समूह में रखो।"
+          }
+        },
+        {
+          "kind": "predict",
+          "say": {
+            "en": "Paper is made from plant fibre. Is it biodegradable or not?",
+            "hi": "काग़ज़ पौधे के रेशों से बनता है। वह जैव निम्नीकरणीय है या नहीं?"
+          },
+          "options": [
+            {
+              "id": "bio",
+              "en": "Biodegradable: microbes can break plant fibre down",
+              "hi": "जैव निम्नीकरणीय: सूक्ष्मजीव पौधे के रेशे तोड़ सकते हैं"
+            },
+            {
+              "id": "non",
+              "en": "Non-biodegradable: paper is man-made",
+              "hi": "अजैव निम्नीकरणीय: काग़ज़ इंसान ने बनाया है"
+            }
+          ],
+          "answer": "bio"
+        },
+        {
+          "kind": "do",
+          "target": "check",
+          "expect": "sorted",
+          "say": {
+            "en": "Sort all the cards, then tap Check.",
+            "hi": "सारे कार्ड छाँटो, फिर \"जाँचो\" बटन दबाओ।"
+          }
+        },
+        {
+          "kind": "explain",
+          "say": {
+            "en": "Each enzyme works on one kind of substance. Microbes have enzymes for natural things such as peels, leaves, paper and dung, which have existed for millions of years, so these rot and can become compost. Plastic is new to them, so they have no enzyme for it and it stays for a very long time, piling up and harming drains, animals, soil and water.",
+            "hi": "हर एंज़ाइम किसी एक ही तरह के पदार्थ पर काम करता है। सूक्ष्मजीवों के पास छिलके, पत्ते, काग़ज़ और गोबर जैसी प्राकृतिक चीज़ों के एंज़ाइम हैं, जो करोड़ों साल से हैं, इसलिए ये सड़ जाती हैं और इनसे कंपोस्ट बन सकता है। प्लास्टिक उनके लिए नया है, इसलिए उसके एंज़ाइम नहीं हैं और वह बहुत लंबे समय तक पड़ा रहता है, ढेर लगाता है और नालियों, जंतुओं, मिट्टी और पानी को नुक़सान पहुँचाता है।"
+          }
+        },
+        {
+          "kind": "check",
+          "items": [
+            {
+              "q": {
+                "en": "Why do microbes not break down a plastic bag?",
+                "hi": "सूक्ष्मजीव प्लास्टिक की थैली को क्यों नहीं तोड़ते?"
+              },
+              "options": [
+                {
+                  "en": "The bag is too light",
+                  "hi": "थैली बहुत हल्की है"
+                },
+                {
+                  "en": "They have no enzyme that fits plastic",
+                  "hi": "उनके पास प्लास्टिक पर फ़िट होने वाला एंज़ाइम नहीं है"
+                },
+                {
+                  "en": "Plastic is alive",
+                  "hi": "प्लास्टिक जीवित है"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "An enzyme works only on the substance it fits, and plastic is new to microbes.",
+                "hi": "एंज़ाइम सिर्फ़ उसी पदार्थ पर काम करता है जिस पर वह फ़िट हो, और प्लास्टिक सूक्ष्मजीवों के लिए नया है।"
+              },
+              "wrong": [
+                {
+                  "en": "Weight has nothing to do with it.",
+                  "hi": "वज़न का इससे कोई लेना-देना नहीं।"
+                },
+                "",
+                {
+                  "en": "Plastic is not living.",
+                  "hi": "प्लास्टिक जीवित नहीं है।"
+                }
+              ]
+            },
+            {
+              "q": {
+                "en": "Which of these can become compost?",
+                "hi": "इनमें से किससे कंपोस्ट बन सकता है?"
+              },
+              "options": [
+                {
+                  "en": "Plastic wrappers",
+                  "hi": "प्लास्टिक के रैपर"
+                },
+                {
+                  "en": "Vegetable peels",
+                  "hi": "सब्ज़ी के छिलके"
+                },
+                {
+                  "en": "Glass bottles",
+                  "hi": "काँच की बोतलें"
+                }
+              ],
+              "answer": 1,
+              "why": {
+                "en": "Peels are plant matter that microbes break down into manure.",
+                "hi": "छिलके पौधे की चीज़ हैं, जिन्हें सूक्ष्मजीव तोड़कर खाद बना देते हैं।"
+              },
+              "wrong": [
+                {
+                  "en": "Plastic does not rot, so it cannot make compost.",
+                  "hi": "प्लास्टिक सड़ता नहीं, इसलिए उससे कंपोस्ट नहीं बनता।"
+                },
+                "",
+                {
+                  "en": "Glass does not rot.",
+                  "hi": "काँच नहीं सड़ता।"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "explore",
+          "say": {
+            "en": "Explore: which card made you stop? Think about cotton and synthetic cloth. Both are cloth, so what decides which one rots?",
+            "hi": "आज़माओ: किस कार्ड पर तुम रुके? सूती और सिंथेटिक कपड़े के बारे में सोचो। दोनों कपड़े हैं, तो कौन-सा सड़ेगा, यह किससे तय होता है?"
+          }
+        }
+      ]
     }
-   ]
-  }
- ],
- "images": [
-  {
-   "n": 1,
-   "kind": "SCN",
-   "topic": "13.1",
-   "use": "Hook: a pond ecosystem",
-   "shows": "A village pond in India with lotus, reeds, a heron, frogs and fish visible near the surface",
-   "view": "Wide, morning light",
-   "right": "Both living and non-living parts visible",
-   "avoid": "Plastic litter in this image"
-  },
-  {
-   "n": 2,
-   "kind": "OBJ",
-   "topic": "13.1.1",
-   "use": "Food chain cards",
-   "shows": "Separate cut-outs: grass, a grasshopper, a frog, a snake, an eagle; also a deer and a tiger, a phytoplankton cluster, a small fish and a large fish",
-   "view": "Each in profile, same lighting",
-   "right": "Species found in India",
-   "avoid": "Animals eating each other"
-  },
-  {
-   "n": 3,
-   "kind": "SCN",
-   "topic": "13.1",
-   "use": "A man-made ecosystem",
-   "shows": "A green crop field with a farmer's scarecrow and birds",
-   "view": "Wide landscape",
-   "right": "Irrigation channel visible",
-   "avoid": "Pesticide brands"
-  },
-  {
-   "n": 4,
-   "kind": "SCN",
-   "topic": "13.2.2",
-   "use": "Segregating waste",
-   "shows": "Green and blue household waste bins: peels and leaves in the green, plastic bottles and wrappers in the blue",
-   "view": "From slightly above",
-   "right": "Correct items in each bin",
-   "avoid": "Brand logos on the waste"
-  },
-  {
-   "n": 5,
-   "kind": "SEQ",
-   "topic": "13.2.2",
-   "use": "Composting",
-   "shows": "A backyard compost pit on day 1 (fresh peels and leaves) and after two months (dark crumbly compost)",
-   "view": "From above, two frames",
-   "right": "Finished compost dark brown and crumbly",
-   "avoid": "Plastic in the compost"
-  },
-  {
-   "n": 6,
-   "kind": "SCN",
-   "topic": "13.2.2",
-   "use": "Non-biodegradable waste",
-   "shows": "Plastic waste choking a drain beside a road",
-   "view": "Eye level",
-   "right": "Realistic, not exaggerated",
-   "avoid": "People"
-  },
-  {
-   "n": 7,
-   "kind": "DIA",
-   "topic": "13.2.1",
-   "use": "The ozone layer",
-   "shows": "The Earth from space with a thin glowing layer high in the atmosphere and the Sun's ultraviolet rays approaching",
-   "view": "Realistic render",
-   "right": "Thin layer in the upper atmosphere",
-   "avoid": "Labels"
-  },
-  {
-   "n": 8,
-   "kind": "OBJ",
-   "topic": "13.2.2",
-   "use": "Biodegradable choices",
-   "shows": "Separate cut-outs: a kulhad, a leaf plate (pattal), a jute bag; and a plastic cup, a plastic plate, a polythene bag",
-   "view": "From slightly above, same scale",
-   "right": "Real materials",
-   "avoid": "Brands"
-  }
- ]
+  ],
+  "images": [
+    {
+      "n": 1,
+      "kind": "SCN",
+      "topic": "13.1",
+      "use": "Hook: a pond ecosystem",
+      "shows": "A village pond in India with lotus, reeds, a heron, frogs and fish visible near the surface",
+      "view": "Wide, morning light",
+      "right": "Both living and non-living parts visible",
+      "avoid": "Plastic litter in this image"
+    },
+    {
+      "n": 2,
+      "kind": "OBJ",
+      "topic": "13.1.1",
+      "use": "Food chain cards",
+      "shows": "Separate cut-outs: grass, a grasshopper, a frog, a snake, an eagle; also a deer and a tiger, a phytoplankton cluster, a small fish and a large fish",
+      "view": "Each in profile, same lighting",
+      "right": "Species found in India",
+      "avoid": "Animals eating each other"
+    },
+    {
+      "n": 3,
+      "kind": "SCN",
+      "topic": "13.1",
+      "use": "A man-made ecosystem",
+      "shows": "A green crop field with a farmer's scarecrow and birds",
+      "view": "Wide landscape",
+      "right": "Irrigation channel visible",
+      "avoid": "Pesticide brands"
+    },
+    {
+      "n": 4,
+      "kind": "SCN",
+      "topic": "13.2.2",
+      "use": "Segregating waste",
+      "shows": "Green and blue household waste bins: peels and leaves in the green, plastic bottles and wrappers in the blue",
+      "view": "From slightly above",
+      "right": "Correct items in each bin",
+      "avoid": "Brand logos on the waste"
+    },
+    {
+      "n": 5,
+      "kind": "SEQ",
+      "topic": "13.2.2",
+      "use": "Composting",
+      "shows": "A backyard compost pit on day 1 (fresh peels and leaves) and after two months (dark crumbly compost)",
+      "view": "From above, two frames",
+      "right": "Finished compost dark brown and crumbly",
+      "avoid": "Plastic in the compost"
+    },
+    {
+      "n": 6,
+      "kind": "SCN",
+      "topic": "13.2.2",
+      "use": "Non-biodegradable waste",
+      "shows": "Plastic waste choking a drain beside a road",
+      "view": "Eye level",
+      "right": "Realistic, not exaggerated",
+      "avoid": "People"
+    },
+    {
+      "n": 7,
+      "kind": "DIA",
+      "topic": "13.2.1",
+      "use": "The ozone layer",
+      "shows": "The Earth from space with a thin glowing layer high in the atmosphere and the Sun's ultraviolet rays approaching",
+      "view": "Realistic render",
+      "right": "Thin layer in the upper atmosphere",
+      "avoid": "Labels"
+    },
+    {
+      "n": 8,
+      "kind": "OBJ",
+      "topic": "13.2.2",
+      "use": "Biodegradable choices",
+      "shows": "Separate cut-outs: a kulhad, a leaf plate (pattal), a jute bag; and a plastic cup, a plastic plate, a polythene bag",
+      "view": "From slightly above, same scale",
+      "right": "Real materials",
+      "avoid": "Brands"
+    }
+  ]
 }

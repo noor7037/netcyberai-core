@@ -19,7 +19,9 @@
     "c10-science-jesc1-ch08-f2-ratio",
     "c10-science-jesc1-ch08-two-traits",
     "c10-science-jesc1-ch08-boy-or-girl",
-    "c10-science-jesc1-ch08-test-cross"
+    "c10-science-jesc1-ch08-test-cross",
+    "c10-science-jesc1-ch08-dna-protein",
+    "c10-science-jesc1-ch08-evidence"
    ],
    "why_no_lab": null
   }
@@ -50,7 +52,7 @@
      "expect": "crossed",
      "say": {
       "en": "A pure tall pea plant (TT) and a pure dwarf one (tt) are the parents. Tap Cross.",
-      "hi": "शुद्ध लंबा मटर का पौधा (TT) और शुद्ध बौना पौधा (tt) जनक हैं। संकरण पर टैप करो।"
+      "hi": "शुद्ध लंबा मटर का पौधा (TT) और शुद्ध बौना पौधा (tt) जनक हैं। \"संकरण कराओ\" पर टैप करो।"
      }
     },
     {
@@ -89,14 +91,14 @@
      "expect": "ratio",
      "say": {
       "en": "Tap Grow to raise sixteen F1 plants.",
-      "hi": "सोलह F1 पौधे उगाने के लिए उगाओ पर टैप करो।"
+      "hi": "F1 के 16 पौधे देखने के लिए \"16 संतति उगाओ\" पर टैप करो।"
      }
     },
     {
      "kind": "explain",
      "say": {
       "en": "Every F1 plant is Tt, and every one is tall. The trait T shows even when only one copy is present: it is dominant. The trait t hides when T is present: it is recessive. The dwarf trait is not lost; it is still carried inside the F1 plants, and the next cross will show it.",
-      "hi": "हर F1 पौधा Tt है, और हर एक लंबा है। T का लक्षण एक प्रति होने पर भी दिखता है: यह प्रभावी है। T के रहते t का लक्षण छिप जाता है: यह अप्रभावी है। बौनेपन का लक्षण खोया नहीं; वह F1 पौधों के अंदर मौजूद है, और अगला संकरण इसे दिखाएगा।"
+      "hi": "हर F1 पौधा Tt है, और हर एक लंबा है। T का लक्षण एक कॉपी होने पर भी दिखता है: यह प्रभावी (dominant) है। T के रहते t का लक्षण छिप जाता है: यह अप्रभावी (recessive) है। बौनेपन का लक्षण खोया नहीं; वह F1 पौधों के अंदर मौजूद है, और अगला संकरण उसे दिखा देगा।"
      }
     },
     {
@@ -118,13 +120,13 @@
         },
         {
          "en": "Only the mother passes on traits",
-         "hi": "केवल माँ लक्षण देती है"
+         "hi": "सिर्फ़ माँ लक्षण देती है"
         }
        ],
        "answer": 0,
        "why": {
         "en": "Traits do not blend: one dominant copy is enough to make the plant tall.",
-        "hi": "लक्षण मिश्रित नहीं होते: एक प्रभावी प्रति पौधे को लंबा करने के लिए काफ़ी है।"
+        "hi": "लक्षण मिश्रित नहीं होते: एक प्रभावी कॉपी पौधे को लंबा करने के लिए काफ़ी है।"
        },
        "wrong": [
         "",
@@ -134,7 +136,7 @@
         },
         {
          "en": "Each parent gives one copy of every gene.",
-         "hi": "हर जनक हर जीन की एक प्रति देता है।"
+         "hi": "हर जनक हर जीन की एक कॉपी देता है।"
         }
        ]
       },
@@ -157,7 +159,7 @@
         "",
         {
          "en": "TT would need a T from both parents; the dwarf gives only t.",
-         "hi": "TT के लिए दोनों जनकों से T चाहिए; बौना जनक केवल t देता है।"
+         "hi": "TT के लिए दोनों जनकों से T चाहिए; बौना जनक सिर्फ़ t देता है।"
         },
         {
          "en": "tt plants are dwarf, and every F1 plant was tall.",
@@ -201,7 +203,7 @@
      "expect": "crossed",
      "say": {
       "en": "Now both parents are F1 plants, Tt. Tap Cross.",
-      "hi": "अब दोनों जनक F1 पौधे, Tt, हैं। संकरण पर टैप करो।"
+      "hi": "अब दोनों जनक F1 पौधे, Tt, हैं। \"संकरण कराओ\" पर टैप करो।"
      }
     },
     {
@@ -235,7 +237,7 @@
      "expect": "ratio",
      "say": {
       "en": "Tap Grow to raise sixteen plants.",
-      "hi": "सोलह पौधे उगाने के लिए उगाओ पर टैप करो।"
+      "hi": "16 पौधे उगाने के लिए \"16 संतति उगाओ\" पर टैप करो।"
      }
     },
     {
@@ -244,7 +246,7 @@
      "expect": "ratio",
      "say": {
       "en": "Tap Grow again for sixteen more. The more you grow, the closer to 3 : 1.",
-      "hi": "सोलह और के लिए फिर उगाओ पर टैप करो। जितने ज़्यादा उगाओगे, अनुपात 3 : 1 के उतना पास होगा।"
+      "hi": "16 और पौधों के लिए फिर से \"16 संतति उगाओ\" पर टैप करो। जितने ज़्यादा पौधे उगाओगे, अनुपात 3 : 1 के उतना ही क़रीब होगा।"
      }
     },
     {
@@ -260,7 +262,7 @@
       {
        "q": {
         "en": "In F2, what fraction of the plants are pure tall (TT)?",
-        "hi": "F2 में कितने भाग पौधे शुद्ध लंबे (TT) होते हैं?"
+        "hi": "F2 में कितने हिस्से के पौधे शुद्ध लंबे (TT) होते हैं?"
        },
        "options": [
         {
@@ -279,7 +281,7 @@
        "answer": 0,
        "why": {
         "en": "Only one square of four is TT; two are Tt and one is tt.",
-        "hi": "चार में से केवल एक खाना TT है; दो Tt हैं और एक tt।"
+        "hi": "चार में से सिर्फ़ एक खाना TT है; दो Tt हैं और एक tt।"
        },
        "wrong": [
         "",
@@ -301,7 +303,7 @@
        "options": [
         {
          "en": "Cross it with a dwarf plant and see if any dwarf children appear",
-         "hi": "उसे बौने पौधे से संकरित करो और देखो कि कोई बौनी संतति आती है या नहीं"
+         "hi": "उसका बौने पौधे से संकरण कराओ और देखो कि कोई बौनी संतति आती है या नहीं"
         },
         {
          "en": "Measure how tall it is",
@@ -365,7 +367,7 @@
      "expect": "crossed",
      "say": {
       "en": "Both parents have round, yellow seeds and are RrYy. Tap Cross.",
-      "hi": "दोनों जनकों के बीज गोल और पीले हैं और वे RrYy हैं। संकरण पर टैप करो।"
+      "hi": "दोनों जनकों के बीज गोल और पीले हैं और वे RrYy हैं। \"संकरण कराओ\" पर टैप करो।"
      }
     },
     {
@@ -383,7 +385,7 @@
       {
        "id": "same",
        "en": "Only round-yellow and wrinkled-green",
-       "hi": "केवल गोल-पीले और झुर्रीदार-हरे"
+       "hi": "सिर्फ़ गोल-पीले और झुर्रीदार-हरे"
       },
       {
        "id": "all",
@@ -399,7 +401,7 @@
      "expect": "ratio",
      "say": {
       "en": "Tap Grow to raise sixteen plants.",
-      "hi": "सोलह पौधे उगाने के लिए उगाओ पर टैप करो।"
+      "hi": "16 पौधे उगाने के लिए \"16 संतति उगाओ\" पर टैप करो।"
      }
     },
     {
@@ -408,7 +410,7 @@
      "expect": "ratio",
      "say": {
       "en": "Grow sixteen more and look at the four kinds of seed.",
-      "hi": "सोलह और उगाओ और चारों तरह के बीज देखो।"
+      "hi": "फिर से \"16 संतति उगाओ\" पर टैप करो और चारों तरह के बीज देखो।"
      }
     },
     {
@@ -424,7 +426,7 @@
       {
        "q": {
         "en": "Out of 16, how many seeds are expected to be wrinkled and green?",
-        "hi": "16 में से कितने बीज झुर्रीदार और हरे होने की आशा है?"
+        "hi": "16 में से कितने बीज झुर्रीदार और हरे होने की उम्मीद है?"
        },
        "options": [
         "1",
@@ -444,7 +446,7 @@
         },
         {
          "en": "3 is the share of each mixed type, like round-green.",
-         "hi": "3 हर मिश्रित प्रकार का हिस्सा है, जैसे गोल-हरे।"
+         "hi": "3 हर मिश्रित टाइप का हिस्सा है, जैसे गोल-हरे।"
         }
        ]
       },
@@ -476,11 +478,11 @@
         "",
         {
          "en": "If they stayed together, we would see only the two parent types.",
-         "hi": "अगर वे साथ रहते, तो केवल जनकों जैसे दो प्रकार दिखते।"
+         "hi": "अगर वे साथ रहते, तो सिर्फ़ जनकों जैसे दो टाइप दिखते।"
         },
         {
          "en": "Only RrYy parents can give all four kinds of seed.",
-         "hi": "केवल RrYy जनक चारों तरह के बीज दे सकते हैं।"
+         "hi": "सिर्फ़ RrYy जनक चारों तरह के बीज दे सकते हैं।"
         }
        ]
       }
@@ -519,7 +521,7 @@
      "expect": "crossed",
      "say": {
       "en": "The mother is XX and the father is XY. Tap Cross.",
-      "hi": "माँ XX है और पिता XY। संकरण पर टैप करो।"
+      "hi": "माँ XX है और पिता XY। \"संकरण कराओ\" पर टैप करो।"
      }
     },
     {
@@ -553,7 +555,7 @@
      "expect": "ratio",
      "say": {
       "en": "Tap Grow to see sixteen babies.",
-      "hi": "सोलह बच्चे देखने के लिए उगाओ पर टैप करो।"
+      "hi": "16 बच्चे देखने के लिए \"16 बच्चे पैदा करो\" पर टैप करो।"
      }
     },
     {
@@ -598,7 +600,7 @@
         },
         {
          "en": "Once the sperm is known, the result is fixed, not left to chance.",
-         "hi": "शुक्राणु तय होने के बाद परिणाम तय है, संयोग पर नहीं।"
+         "hi": "शुक्राणु तय होने के बाद नतीजा तय है, संयोग पर नहीं।"
         }
        ]
       },
@@ -644,7 +646,7 @@
      "kind": "explore",
      "say": {
       "en": "Explore: tap the squares to fill in the cross and tap Grow many times. Does the count of boys and girls stay close to equal?",
-      "hi": "आज़माओ: खानों पर टैप करके संकरण भरो और कई बार उगाओ दबाओ। क्या लड़कों और लड़कियों की गिनती लगभग बराबर रहती है?"
+      "hi": "आज़माओ: खानों पर टैप करके वर्ग भरो और \"16 बच्चे पैदा करो\" पर कई बार टैप करो। क्या लड़कों और लड़कियों की गिनती लगभग बराबर रहती है?"
      }
     }
    ]
@@ -655,7 +657,7 @@
    "template": "cross",
    "title": {
     "en": "Test cross: is the tall plant pure?",
-    "hi": "परीक्षण संकरण: क्या लंबा पौधा शुद्ध है?"
+    "hi": "टेस्ट क्रॉस (परीक्षण संकरण): क्या लंबा पौधा शुद्ध है?"
    },
    "minutes": 6,
    "level": "stretch",
@@ -674,14 +676,14 @@
      "expect": "crossed",
      "say": {
       "en": "A tall pea plant is crossed with a short plant (tt). We do not know if the tall plant is TT or Tt. Tap Cross.",
-      "hi": "एक लंबे मटर के पौधे का संकरण बौने पौधे (tt) से कराया जाता है। हमें नहीं पता कि लंबा पौधा TT है या Tt। संकरण पर टैप करो।"
+      "hi": "एक लंबे मटर के पौधे का संकरण बौने पौधे (tt) से कराया जाता है। हमें नहीं पता कि लंबा पौधा TT है या Tt। \"संकरण कराओ\" पर टैप करो।"
      }
     },
     {
      "kind": "predict",
      "say": {
       "en": "The short plant gives only t gametes. If half of the offspring come out short, what are the genes of the tall plant?",
-      "hi": "बौना पौधा केवल t युग्मक देता है। यदि आधी संतति बौनी निकले, तो लंबे पौधे के जीन क्या हैं?"
+      "hi": "बौना पौधा सिर्फ़ t युग्मक देता है। अगर आधी संतति बौनी निकले, तो लंबे पौधे के जीन क्या हैं?"
      },
      "options": [
       {
@@ -708,14 +710,14 @@
      "expect": "grown",
      "say": {
       "en": "Tap Grow to raise the offspring.",
-      "hi": "संतति उगाने के लिए उगाओ पर टैप करो।"
+      "hi": "संतति उगाने के लिए \"16 संतति उगाओ\" पर टैप करो।"
      }
     },
     {
      "kind": "explain",
      "say": {
       "en": "A tall plant can be TT or Tt, and both look the same. Crossing it with a short plant (tt) reveals it. If the tall plant is TT, all offspring are Tt and tall. If it is Tt, about half of the offspring are short (tt). The short offspring show that the tall plant carried a hidden t.",
-      "hi": "हर लंबा पौधा TT या Tt हो सकता है, और दोनों एक जैसे दिखते हैं। उसका बौने पौधे (tt) से संकरण उसे प्रकट कर देता है। यदि लंबा पौधा TT हो, तो सारी संतति Tt और लंबी होगी। यदि Tt हो, तो लगभग आधी संतति बौनी (tt) होगी। बौनी संतति दिखाती है कि लंबे पौधे में छिपा t था।"
+      "hi": "हर लंबा पौधा TT या Tt हो सकता है, और दोनों एक जैसे दिखते हैं। उसका बौने पौधे (tt) से संकरण उसे सामने ला देता है। अगर लंबा पौधा TT हो, तो सारी संतति Tt और लंबी होगी। अगर Tt हो, तो लगभग आधी संतति बौनी (tt) होगी। बौनी संतति दिखाती है कि लंबे पौधे में छिपा t था।"
      }
     },
     {
@@ -724,7 +726,7 @@
       {
        "q": {
         "en": "If a cross with a short plant gives only tall offspring, the tall plant is most likely",
-        "hi": "यदि बौने पौधे से संकरण पर सारी संतति लंबी आए, तो लंबा पौधा संभवतः है"
+        "hi": "अगर बौने पौधे से संकरण पर सारी संतति लंबी आए, तो लंबा पौधा शायद है"
        },
        "options": [
         {
@@ -743,7 +745,7 @@
        "answer": 0,
        "why": {
         "en": "A TT plant gives only T gametes, so every offspring is Tt and tall.",
-        "hi": "TT पौधा केवल T युग्मक देता है, इसलिए हर संतति Tt और लंबी होती है।"
+        "hi": "TT पौधा सिर्फ़ T युग्मक देता है, इसलिए हर संतति Tt और लंबी होती है।"
        },
        "wrong": [
         "",
@@ -765,11 +767,11 @@
        "options": [
         {
          "en": "The short plant gives only t, so any hidden t of the tall plant shows",
-         "hi": "बौना पौधा केवल t देता है, इसलिए लंबे पौधे का छिपा t दिख जाता है"
+         "hi": "बौना पौधा सिर्फ़ t देता है, इसलिए लंबे पौधे का छिपा t दिख जाता है"
         },
         {
          "en": "Short plants make more seeds",
-         "hi": "बौने पौधे अधिक बीज बनाते हैं"
+         "hi": "बौने पौधे ज़्यादा बीज बनाते हैं"
         },
         {
          "en": "Short plants are dominant",
@@ -779,13 +781,13 @@
        "answer": 0,
        "why": {
         "en": "With only t from the short plant, the offspring show what the tall plant gave.",
-        "hi": "बौने पौधे से केवल t मिलने पर संतति दिखाती है कि लंबे पौधे ने क्या दिया।"
+        "hi": "बौने पौधे से सिर्फ़ t मिलने पर संतति दिखाती है कि लंबे पौधे ने क्या दिया।"
        },
        "wrong": [
         "",
         {
          "en": "Seed number has nothing to do with it.",
-         "hi": "बीजों की संख्या का इससे संबंध नहीं।"
+         "hi": "बीजों की संख्या का इससे कोई लेना-देना नहीं।"
         },
         {
          "en": "Short is the recessive trait, not the dominant one.",
@@ -799,7 +801,320 @@
      "kind": "explore",
      "say": {
       "en": "Explore: tap the tall plant to change it between TT and Tt and cross again. What offspring would show a pure tall plant?",
-      "hi": "आज़माओ: लंबे पौधे को छूकर उसे TT और Tt के बीच बदलो और फिर संकरण कराओ। शुद्ध लंबे पौधे को कौन-सी संतति दिखाएगी?"
+      "hi": "आज़माओ: लंबे पौधे पर टैप करके उसे TT और Tt के बीच बदलो और फिर संकरण कराओ। शुद्ध लंबे पौधे की संतति कैसी दिखेगी?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch08-dna-protein",
+   "topic": "8.2",
+   "template": "cross",
+   "title": {
+    "en": "DNA: copy it, then read it",
+    "hi": "DNA: कॉपी बनाओ, फिर पढ़ो"
+   },
+   "minutes": 6,
+   "level": "stretch",
+   "config": {
+    "mode": "dna"
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "cell:0-0",
+     "expect": "filled",
+     "say": {
+      "en": "This is a piece of DNA. Tap each empty box until its partner base fits the template: A pairs with T, and G pairs with C.",
+      "hi": "यह DNA का एक टुकड़ा है। हर ख़ाली खाने पर टैप करते रहो, जब तक उसका साथी क्षारक (base) टेम्पलेट से मेल न खाए: A का साथी T है और G का साथी C।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "The order of the bases is the information in a gene. What does that order decide?",
+      "hi": "क्षारकों का क्रम जीन की जानकारी है। यह क्रम किस बात को तय करता है?"
+     },
+     "options": [
+      {
+       "id": "protein",
+       "en": "Which protein is made",
+       "hi": "कौन-सा प्रोटीन बनेगा"
+      },
+      {
+       "id": "size",
+       "en": "How big the cell is",
+       "hi": "कोशिका कितनी बड़ी होगी"
+      },
+      {
+       "id": "parent",
+       "en": "Which parent the DNA came from",
+       "hi": "DNA किस जनक से आया"
+      }
+     ],
+     "answer": "protein"
+    },
+    {
+     "kind": "do",
+     "target": "cross",
+     "expect": "crossed",
+     "say": {
+      "en": "Tap \"Unzip and copy\". The two strands come apart and each one builds a new partner.",
+      "hi": "\"खोलो और प्रतिलिपि बनाओ\" पर टैप करो। दोनों लड़ियाँ अलग होती हैं और हर एक अपना नया साथी बना लेती है।"
+     }
+    },
+    {
+     "kind": "do",
+     "target": "grow",
+     "expect": "grown",
+     "say": {
+      "en": "Tap \"Make mRNA and protein\" to read the gene.",
+      "hi": "जीन को पढ़ने के लिए \"mRNA और प्रोटीन बनाओ\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "The order of the bases is the information. Before a cell divides it copies its DNA, so both new cells get every gene. To use a gene, the cell reads its bases in threes. Each three picks one amino acid, and the chain of amino acids folds into a protein. Change a base and the protein can change, which is how a changed gene can change a trait.",
+      "hi": "क्षारकों का क्रम ही जानकारी है। कोशिका बँटने से पहले अपने DNA की कॉपी बना लेती है, इसलिए दोनों नई कोशिकाओं को हर जीन मिलता है। जीन को इस्तेमाल करने के लिए कोशिका उसके क्षारक तीन-तीन करके पढ़ती है। हर तीन क्षारक एक अमीनो अम्ल चुनते हैं, और अमीनो अम्लों की लड़ी मुड़कर प्रोटीन बन जाती है। एक क्षारक बदलो तो प्रोटीन बदल सकता है, और इसी तरह बदला हुआ जीन लक्षण बदल सकता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "What does the order of bases in a gene decide?",
+        "hi": "जीन में क्षारकों का क्रम किस बात को तय करता है?"
+       },
+       "options": [
+        {
+         "en": "Which protein the cell makes",
+         "hi": "कोशिका कौन-सा प्रोटीन बनाएगी"
+        },
+        {
+         "en": "How big the nucleus is",
+         "hi": "केंद्रक कितना बड़ा होगा"
+        },
+        {
+         "en": "Which parent the gene came from",
+         "hi": "जीन किस जनक से आया"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The bases are read in threes to pick amino acids, so their order decides the protein.",
+        "hi": "क्षारक तीन-तीन करके पढ़े जाते हैं और अमीनो अम्ल चुनते हैं, इसलिए उनका क्रम प्रोटीन तय करता है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Cell size is not written in the order of one gene's bases.",
+         "hi": "कोशिका का आकार एक जीन के क्षारकों के क्रम में नहीं लिखा होता।"
+        },
+        {
+         "en": "The order of bases does not record which parent gave the gene.",
+         "hi": "क्षारकों का क्रम यह नहीं बताता कि जीन किस जनक ने दिया।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "Why does a cell copy its DNA before it divides?",
+        "hi": "कोशिका बँटने से पहले अपने DNA की कॉपी क्यों बनाती है?"
+       },
+       "options": [
+        {
+         "en": "So each new cell gets a full set of genes",
+         "hi": "ताकि हर नई कोशिका को पूरे जीन मिलें"
+        },
+        {
+         "en": "To make the DNA shorter",
+         "hi": "ताकि DNA छोटा हो जाए"
+        },
+        {
+         "en": "To turn the DNA into a protein",
+         "hi": "ताकि DNA प्रोटीन में बदल जाए"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "Each strand builds a new partner, giving two identical DNA molecules, one for each new cell.",
+        "hi": "हर लड़ी अपना नया साथी बनाती है, जिससे दो एक जैसे DNA अणु बनते हैं, हर नई कोशिका के लिए एक।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Copying makes a second DNA of the same length; it does not shorten it.",
+         "hi": "कॉपी बनने से उतने ही लंबे DNA का दूसरा अणु बनता है; DNA छोटा नहीं होता।"
+        },
+        {
+         "en": "DNA is read, not turned into a protein; the protein is built from amino acids.",
+         "hi": "DNA पढ़ा जाता है, प्रोटीन में बदला नहीं जाता; प्रोटीन अमीनो अम्लों से बनता है।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: look at the new DNA molecules after copying. Each one keeps one old strand and one new strand. Why does that make the copies so accurate?",
+      "hi": "आज़माओ: कॉपी के बाद बने नए DNA अणुओं को देखो। हर एक में एक पुरानी और एक नई लड़ी रहती है। इससे कॉपियाँ इतनी सही क्यों बनती हैं?"
+     }
+    }
+   ]
+  },
+  {
+   "id": "c10-science-jesc1-ch08-evidence",
+   "topic": "8.2",
+   "template": "cross",
+   "title": {
+    "en": "Reading a family: who hides a trait?",
+    "hi": "परिवार पढ़ना: किसमें लक्षण छिपा है?"
+   },
+   "minutes": 5,
+   "level": "core",
+   "config": {
+    "mode": "pedigree",
+    "parents": [
+     "Aa",
+     "Aa"
+    ]
+   },
+   "steps": [
+    {
+     "kind": "do",
+     "target": "cross",
+     "expect": "crossed",
+     "say": {
+      "en": "Both parents show the same trait, A. Tap \"Cross the parents\" to meet their first four children.",
+      "hi": "दोनों जनकों में एक ही लक्षण A दिखता है। उनके पहले चार बच्चों से मिलने के लिए \"संकरण कराओ\" पर टैप करो।"
+     }
+    },
+    {
+     "kind": "predict",
+     "say": {
+      "en": "Both parents show trait A. Can a child show the other trait, a?",
+      "hi": "दोनों जनकों में लक्षण A दिखता है। क्या किसी बच्चे में दूसरा लक्षण a दिख सकता है?"
+     },
+     "options": [
+      {
+       "id": "yes",
+       "en": "Yes, if both parents hide a copy of a",
+       "hi": "हाँ, अगर दोनों जनकों में a की एक कॉपी छिपी हो"
+      },
+      {
+       "id": "no",
+       "en": "No, children always look like their parents",
+       "hi": "नहीं, बच्चे हमेशा जनकों जैसे दिखते हैं"
+      },
+      {
+       "id": "one",
+       "en": "Only if one parent shows a",
+       "hi": "सिर्फ़ तब, जब एक जनक में a दिखता हो"
+      }
+     ],
+     "answer": "yes"
+    },
+    {
+     "kind": "do",
+     "target": "cell:0-0",
+     "expect": "filled",
+     "say": {
+      "en": "Tap each child to reveal the genes. Dark symbols are children who show the other trait, a.",
+      "hi": "जीन देखने के लिए हर बच्चे पर टैप करो। गहरे निशान उन बच्चों के हैं जिनमें दूसरा लक्षण a दिखता है।"
+     }
+    },
+    {
+     "kind": "explain",
+     "say": {
+      "en": "A child who shows trait a is aa: it got an a from each parent. So both parents carry a hidden copy of a, yet they show A. That means A covers a: A is dominant. If every child looked like the parents you could not tell, because that fits both ideas.",
+      "hi": "जिस बच्चे में लक्षण a दिखता है वह aa है: उसे हर जनक से एक a मिला। यानी दोनों जनकों में a की छिपी कॉपी है, फिर भी उनमें A दिखता है। इसका मतलब A, a को ढक देता है: A प्रभावी है। अगर हर बच्चा जनकों जैसा दिखता, तो पता नहीं चलता, क्योंकि वह दोनों बातों से मेल खाता है।"
+     }
+    },
+    {
+     "kind": "check",
+     "items": [
+      {
+       "q": {
+        "en": "Two parents show trait A and a child shows trait a. What does this show?",
+        "hi": "दो जनकों में लक्षण A दिखता है और एक बच्चे में लक्षण a। इससे क्या पता चलता है?"
+       },
+       "options": [
+        {
+         "en": "A is dominant, and both parents hide a copy of a",
+         "hi": "A प्रभावी है, और दोनों जनकों में a की कॉपी छिपी है"
+        },
+        {
+         "en": "a is dominant",
+         "hi": "a प्रभावी है"
+        },
+        {
+         "en": "The child is not theirs",
+         "hi": "बच्चा उनका नहीं है"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "The child needed an a from each parent. The parents show A, so A must cover a.",
+        "hi": "बच्चे को हर जनक से एक a चाहिए था। जनकों में A दिखता है, इसलिए A ने a को ढका है।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "If a were dominant, the parents carrying it would show a.",
+         "hi": "अगर a प्रभावी होता, तो उसे रखने वाले जनकों में a दिखता।"
+        },
+        {
+         "en": "A child can show a hidden trait; nothing here suggests it is not theirs.",
+         "hi": "बच्चे में छिपा लक्षण दिख सकता है; यहाँ ऐसा कुछ नहीं जो बताए कि वह उनका नहीं है।"
+        }
+       ]
+      },
+      {
+       "q": {
+        "en": "All four children show trait A, like their parents. Can we say A is dominant?",
+        "hi": "चारों बच्चों में लक्षण A दिखता है, जनकों की तरह। क्या हम कह सकते हैं कि A प्रभावी है?"
+       },
+       "options": [
+        {
+         "en": "No, because this fits A being dominant and also recessive",
+         "hi": "नहीं, क्योंकि यह A के प्रभावी होने से भी मेल खाता है और अप्रभावी होने से भी"
+        },
+        {
+         "en": "Yes, because the children match their parents",
+         "hi": "हाँ, क्योंकि बच्चे जनकों जैसे हैं"
+        },
+        {
+         "en": "Yes, because four children are enough",
+         "hi": "हाँ, क्योंकि चार बच्चे काफ़ी हैं"
+        }
+       ],
+       "answer": 0,
+       "why": {
+        "en": "If A were recessive, two parents with A would give only A children too. The data cannot decide.",
+        "hi": "अगर A अप्रभावी होता, तो A वाले दो जनकों के बच्चे भी सब A वाले ही होते। इस डेटा से तय नहीं हो सकता।"
+       },
+       "wrong": [
+        "",
+        {
+         "en": "Matching the parents happens with a recessive trait too, so it proves nothing.",
+         "hi": "अप्रभावी लक्षण में भी बच्चे जनकों जैसे होते हैं, इसलिए इससे कुछ साबित नहीं होता।"
+        },
+        {
+         "en": "Four children give a small sample; even many matching children would fit both ideas.",
+         "hi": "चार बच्चे बहुत छोटा सैंपल हैं; बहुत सारे बच्चे जनकों जैसे हों तब भी दोनों बातें सही बैठतीं।"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "kind": "explore",
+     "say": {
+      "en": "Explore: tap \"Add a child\" until a child shows the other trait. How many children did it take? Would a small family always show it?",
+      "hi": "आज़माओ: जब तक किसी बच्चे में दूसरा लक्षण न दिखे, \"एक बच्चा जोड़ो\" पर टैप करते रहो। कितने बच्चे लगे? क्या छोटे परिवार में वह हमेशा दिखेगा?"
      }
     }
    ]

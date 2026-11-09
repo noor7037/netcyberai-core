@@ -45,8 +45,8 @@ for (const c of chapters) {
       await page.addInitScript(() => { try { localStorage.setItem('nca.reader.v1.parentOpen', '1'); } catch (e) {} });
       const views = [['home', ''], ...ch.topics.map((t) => [t.id, '~' + t.id]), ['test', '~test']];
       for (const [name, suffix] of views) {
+        await page.goto('about:blank');
         await page.goto(`${base}?lang=${lang}#${slug}${suffix}`, { timeout: 20000 }).catch((e) => errs.push('load: ' + e.message.slice(0, 120)));
-        await page.evaluate(() => location.reload()).catch(() => {});
         await page.waitForTimeout(500);
         if (suffix && suffix !== '~test') { await page.click('[data-mode="read"]').catch(() => {}); await page.waitForTimeout(250); }
         await page.evaluate(async () => { for (const im of document.querySelectorAll('img')) { im.loading = 'eager'; } window.scrollTo(0, document.body.scrollHeight); await new Promise((r) => setTimeout(r, 400)); });

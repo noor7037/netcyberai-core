@@ -12,23 +12,23 @@
 
   // ---------- words ----------
   const U = {
-    brand: { en: 'NetCyberAI Learn', hi: 'NetCyberAI सीखो' },
-    cls: { en: 'Class', hi: 'कक्षा' }, science: { en: 'Science', hi: 'विज्ञान' }, chapter: { en: 'Chapter', hi: 'अध्याय' },
-    topic: { en: 'Topic', hi: 'विषय' }, of: { en: 'of', hi: 'में से' }, min: { en: 'min', hi: 'मिनट' },
-    topics: { en: 'Topics', hi: 'विषय-सूची' }, terms: { en: 'Key terms', hi: 'मुख्य शब्द' }, inTopic: { en: 'In this topic', hi: 'इस विषय में' },
-    start: { en: 'Start', hi: 'शुरू करो' }, cont: { en: 'Continue', hi: 'आगे बढ़ो' }, next: { en: 'Next topic', hi: 'अगला विषय' }, prev: { en: 'Previous topic', hi: 'पिछला विषय' },
+    brand: { en: 'NetCyberAI Learn', hi: 'NetCyberAI Learn' },
+    cls: { en: 'Class', hi: 'कक्षा' }, science: { en: 'Science', hi: 'विज्ञान' }, chapter: { en: 'Chapter', hi: 'चैप्टर' },
+    topic: { en: 'Topic', hi: 'टॉपिक' }, of: { en: 'of', hi: 'में से' }, min: { en: 'min', hi: 'मिनट' },
+    topics: { en: 'Topics', hi: 'टॉपिक' }, terms: { en: 'Key terms', hi: 'मुख्य शब्द' }, inTopic: { en: 'In this topic', hi: 'इस टॉपिक में' },
+    start: { en: 'Start', hi: 'शुरू करो' }, cont: { en: 'Continue', hi: 'आगे बढ़ो' }, next: { en: 'Next topic', hi: 'अगला टॉपिक' }, prev: { en: 'Previous topic', hi: 'पिछला टॉपिक' },
     teach: { en: 'Teach me', hi: 'मुझे सिखाओ' }, read: { en: 'Read all', hi: 'पूरा पढ़ो' }, listen: { en: 'Listen', hi: 'सुनो' }, lang: { en: 'Language', hi: 'भाषा' },
     bigIdea: { en: 'What you will be able to do', hi: 'तुम क्या कर पाओगे' }, hookQ: { en: 'Think about it', hi: 'सोचो' },
     retrieve: { en: 'Remember from before', hi: 'पहले से याद करो' }, hook: { en: 'Look around you', hi: 'अपने आस-पास देखो' },
     explain: { en: 'The idea', hi: 'मुख्य बात' }, inSimple: { en: 'In simple words', hi: 'आसान शब्दों में' }, boardWords: { en: 'Board wording', hi: 'बोर्ड की भाषा में' },
-    figure: { en: 'Look closely', hi: 'ध्यान से देखो' }, notice: { en: 'What to notice', hi: 'क्या ध्यान देना है' }, frame: { en: 'Picture', hi: 'चित्र' },
+    figure: { en: 'Look closely', hi: 'ध्यान से देखो' }, diagram: { en: 'See the whole idea', hi: 'पूरी बात एक नज़र में' }, notice: { en: 'What to notice', hi: 'क्या ध्यान देना है' }, frame: { en: 'Picture', hi: 'चित्र' },
     equation: { en: 'Equation', hi: 'समीकरण' }, table: { en: 'Compare', hi: 'तुलना करो' },
     activity: { en: 'Activity', hi: 'क्रियाकलाप' }, materials: { en: 'You need', hi: 'सामग्री' }, doThis: { en: 'Do this', hi: 'ऐसे करो' }, observe: { en: 'What you see', hi: 'तुम क्या देखते हो' }, why: { en: 'Why it happens', hi: 'ऐसा क्यों होता है' }, safety: { en: 'Safety', hi: 'सावधानी' },
-    worked: { en: 'Worked example', hi: 'हल किया हुआ उदाहरण' }, solution: { en: 'Step by step', hi: 'क़दम-दर-क़दम' }, answer: { en: 'Answer', hi: 'उत्तर' }, yourTurn: { en: 'Your turn', hi: 'अब तुम्हारी बारी' },
-    lab: { en: 'Lab', hi: 'लैब' }, openLab: { en: 'Open the lab', hi: 'लैब खोलो' }, closeLab: { en: 'Close the lab', hi: 'लैब बंद करो' }, labDone: { en: 'Lab finished. Well observed.', hi: 'लैब पूरी हुई। बहुत अच्छा देखा।' }, labAfter: { en: 'What the lab showed', hi: 'लैब ने क्या दिखाया' }, labData: { en: 'The lab loads about 1 MB the first time.', hi: 'पहली बार लैब लगभग 1 MB डेटा लेती है।' },
+    worked: { en: 'Worked example', hi: 'हल किया हुआ उदाहरण' }, solution: { en: 'Step by step', hi: 'स्टेप बाय स्टेप' }, answer: { en: 'Answer', hi: 'उत्तर' }, yourTurn: { en: 'Your turn', hi: 'अब तुम्हारी बारी' },
+    lab: { en: 'Lab', hi: 'लैब' }, openLab: { en: 'Open the lab', hi: 'लैब खोलो' }, closeLab: { en: 'Close the lab', hi: 'लैब बंद करो' }, labDone: { en: 'Lab finished. Well observed.', hi: 'लैब पूरी हुई। बहुत अच्छा देखा।' }, labAfter: { en: 'What the lab showed', hi: 'लैब ने क्या दिखाया' }, labData: { en: 'The lab loads about 1 MB the first time.', hi: 'पहली बार लैब करीब 1 MB डेटा लेती है।' },
     guided: { en: 'Try it with a hint', hi: 'संकेत के साथ करो' }, showHint: { en: 'Show a hint', hi: 'संकेत दिखाओ' },
     misconception: { en: 'Common mix-up', hi: 'आम ग़लतफ़हमी' }, wrongIdea: { en: 'Many students think', hi: 'कई विद्यार्थी सोचते हैं' }, rightIdea: { en: 'Actually', hi: 'असल में' },
-    keypoints: { en: 'Key points', hi: 'मुख्य बातें' }, examtip: { en: 'How the board asks this', hi: 'बोर्ड परीक्षा में यह कैसे पूछा जाता है' }, marks: { en: 'Marks', hi: 'अंक' },
+    keypoints: { en: 'Key points', hi: 'मुख्य बातें' }, examtip: { en: 'How the board asks this', hi: 'बोर्ड एग्ज़ाम में यह कैसे पूछा जाता है' }, marks: { en: 'Marks', hi: 'मार्क्स' },
     close: { en: 'Now you can answer', hi: 'अब तुम जवाब दे सकते हो' },
     right: { en: 'Right.', hi: 'सही।' }, notQuite: { en: 'Not quite.', hi: 'पूरी तरह सही नहीं।' }, yourPick: { en: 'Your choice', hi: 'तुम्हारा चुनाव' }, correctIs: { en: 'Correct answer', hi: 'सही उत्तर' },
     assertion: { en: 'Assertion (A)', hi: 'अभिकथन (A)' }, reason: { en: 'Reason (R)', hi: 'कारण (R)' },
@@ -38,21 +38,21 @@
       { en: 'A is true, but R is false.', hi: 'A सही है, पर R ग़लत है।' },
       { en: 'A is false, but R is true.', hi: 'A ग़लत है, पर R सही है।' },
     ],
-    writeHere: { en: 'Write your answer here (optional), then compare.', hi: 'अपना उत्तर यहाँ लिखो (चाहो तो), फिर मिलाओ।' }, showModel: { en: 'Show the model answer', hi: 'आदर्श उत्तर दिखाओ' }, model: { en: 'Model answer', hi: 'आदर्श उत्तर' }, tick: { en: 'Tick each point your answer has. One mark each.', hi: 'तुम्हारे उत्तर में जो बिंदु हैं, उन पर सही का निशान लगाओ। हर बिंदु का एक अंक।' },
-    check: { en: 'Check your understanding', hi: 'अपनी समझ जाँचो' }, checkNote: { en: '5 questions. Get 4 right to open the next topic. You can try again as often as you like.', hi: '5 प्रश्न। अगला विषय खोलने के लिए 4 सही करो। जितनी बार चाहो, फिर से कोशिश कर सकते हो।' },
-    startCheck: { en: 'Start the check', hi: 'जाँच शुरू करो' }, score: { en: 'You got {a} of {b}.', hi: 'तुमने {b} में से {a} सही किए।' },
-    passed: { en: 'Topic complete. The next topic is open.', hi: 'विषय पूरा हुआ। अगला विषय खुल गया है।' }, again: { en: 'Not yet. Read the explanations above, then try a fresh set. Every try helps you learn.', hi: 'अभी नहीं। ऊपर की व्याख्याएँ पढ़ो, फिर नए प्रश्नों के साथ फिर कोशिश करो। हर कोशिश से सीखते हो।' },
-    tryFresh: { en: 'Try a fresh set', hi: 'नए प्रश्नों से फिर करो' }, reviewTopic: { en: 'Go over the topic again', hi: 'विषय फिर से देखो' },
-    locked: { en: 'Finish the topic before to open this one.', hi: 'इसे खोलने के लिए पिछला विषय पूरा करो।' }, done: { en: 'Done', hi: 'पूरा' }, open: { en: 'Open', hi: 'खुला' },
-    test: { en: 'Chapter test', hi: 'अध्याय परीक्षा' }, testNote: { en: '20 questions in the board pattern: case-based, assertion-reason, multiple choice, short and long answers. 70% passes. Mark your written answers honestly against the model.', hi: 'बोर्ड पैटर्न में 20 प्रश्न: केस-आधारित, अभिकथन-कारण, बहुविकल्पी, लघु और दीर्घ उत्तर। 70% पर उत्तीर्ण। अपने लिखे उत्तरों को आदर्श उत्तर से ईमानदारी से मिलाओ।' },
-    testLocked: { en: 'Opens when every topic is complete.', hi: 'सभी विषय पूरे होने पर खुलेगी।' }, startTest: { en: 'Start the chapter test', hi: 'अध्याय परीक्षा शुरू करो' }, finishTest: { en: 'See my result', hi: 'मेरा परिणाम दिखाओ' },
-    testPass: { en: 'Chapter complete. You understood this chapter.', hi: 'अध्याय पूरा हुआ। तुमने यह अध्याय समझ लिया।' }, testAgain: { en: 'Not yet. Look at the explanations, revisit the topics you missed, and try again.', hi: 'अभी नहीं। व्याख्याएँ देखो, छूटे विषय दोबारा पढ़ो, और फिर कोशिश करो।' },
-    answerAll: { en: 'Answer every question first ({n} left).', hi: 'पहले सभी प्रश्नों के उत्तर दो ({n} बाक़ी)।' },
-    remember: { en: 'Remember it?', hi: 'याद है?' }, rememberNote: { en: 'You finished “{t}” a week ago. Three quick questions keep it in your memory.', hi: 'तुमने एक हफ़्ता पहले “{t}” पूरा किया था। तीन छोटे प्रश्न इसे याद रखने में मदद करेंगे।' }, rememberGo: { en: 'Quick review', hi: 'झटपट दोहराओ' }, later: { en: 'Later', hi: 'बाद में' },
-    parent: { en: 'Parent or teacher: open every topic', hi: 'अभिभावक या शिक्षक: सभी विषय खोलें' }, settings: { en: 'Settings', hi: 'सेटिंग्स' }, textSize: { en: 'Text size', hi: 'अक्षर का आकार' },
-    back: { en: 'Back', hi: 'वापस' }, home: { en: 'All chapters', hi: 'सभी अध्याय' }, chOverview: { en: 'Chapter home', hi: 'अध्याय का मुख्य पृष्ठ' }, closeX: { en: 'Close', hi: 'बंद करो' },
-    loading: { en: 'Loading…', hi: 'लोड हो रहा है…' }, failed: { en: 'This could not load. Check the connection and try again.', hi: 'यह लोड नहीं हो सका। कनेक्शन जाँचकर फिर कोशिश करो।' },
-    soon: { en: 'Coming soon', hi: 'जल्द आ रहा है' }, topicsN: { en: '{n} topics', hi: '{n} विषय' }, tapZoom: { en: 'Tap the picture to enlarge it.', hi: 'चित्र बड़ा देखने के लिए उस पर टैप करो।' },
+    writeHere: { en: 'Write your answer here (optional), then compare.', hi: 'अपना जवाब यहाँ लिखो (चाहो तो), फिर मिलाओ।' }, showModel: { en: 'Show the model answer', hi: 'मॉडल आंसर दिखाओ' }, model: { en: 'Model answer', hi: 'मॉडल आंसर' }, tick: { en: 'Tick each point your answer has. One mark each.', hi: 'तुम्हारे उत्तर में जो पॉइंट हैं, उन पर टिक लगाओ। हर पॉइंट का एक मार्क।' },
+    check: { en: 'Check your understanding', hi: 'अपनी समझ चेक करो' }, checkNote: { en: '5 questions. Get 4 right to open the next topic. You can try again as often as you like.', hi: '5 सवाल। अगला टॉपिक खोलने के लिए 4 सही करो। जितनी बार चाहो, फिर से कोशिश कर सकते हो।' },
+    startCheck: { en: 'Start the check', hi: 'चेक शुरू करो' }, score: { en: 'You got {a} of {b}.', hi: 'तुमने {b} में से {a} सही किए।' },
+    passed: { en: 'Topic complete. The next topic is open.', hi: 'टॉपिक पूरा हुआ। अगला टॉपिक खुल गया है।' }, again: { en: 'Not yet. Read the explanations above, then try a fresh set. Every try helps you learn.', hi: 'अभी नहीं। ऊपर के जवाब और समझाने वाली बातें पढ़ो, फिर नए सवालों के साथ फिर कोशिश करो। हर कोशिश से कुछ सीखते हो।' },
+    tryFresh: { en: 'Try a fresh set', hi: 'नए सवालों से फिर करो' }, reviewTopic: { en: 'Go over the topic again', hi: 'टॉपिक फिर से देखो' },
+    locked: { en: 'Finish the topic before to open this one.', hi: 'इसे खोलने के लिए पिछला टॉपिक पूरा करो।' }, done: { en: 'Done', hi: 'पूरा' }, open: { en: 'Open', hi: 'खुला' },
+    test: { en: 'Chapter test', hi: 'चैप्टर टेस्ट' }, testNote: { en: '20 questions in the board pattern: case-based, assertion-reason, multiple choice, short and long answers. 70% passes. Mark your written answers honestly against the model.', hi: 'बोर्ड पैटर्न में 20 सवाल: केस-बेस्ड, अभिकथन-कारण, MCQ, छोटे और लंबे उत्तर। 70% पर पास। अपने लिखे उत्तरों को मॉडल आंसर से ईमानदारी से मिलाओ।' },
+    testLocked: { en: 'Opens when every topic is complete.', hi: 'सारे टॉपिक पूरे होने पर खुलेगा।' }, startTest: { en: 'Start the chapter test', hi: 'चैप्टर टेस्ट शुरू करो' }, finishTest: { en: 'See my result', hi: 'मेरा रिज़ल्ट दिखाओ' },
+    testPass: { en: 'Chapter complete. You understood this chapter.', hi: 'चैप्टर पूरा हुआ। तुमने यह चैप्टर समझ लिया।' }, testAgain: { en: 'Not yet. Look at the explanations, revisit the topics you missed, and try again.', hi: 'अभी नहीं। जवाब समझो, जो टॉपिक कमज़ोर रहे उन्हें दोबारा पढ़ो, और फिर कोशिश करो।' },
+    answerAll: { en: 'Answer every question first ({n} left).', hi: 'पहले सारे सवालों के जवाब दो ({n} बाक़ी)।' },
+    remember: { en: 'Remember it?', hi: 'याद है?' }, rememberNote: { en: 'You finished “{t}” a week ago. Three quick questions keep it in your memory.', hi: 'तुमने एक हफ़्ता पहले “{t}” पूरा किया था। 3 छोटे सवाल इसे याद रखने में मदद करेंगे।' }, rememberGo: { en: 'Quick review', hi: 'झटपट दोहराओ' }, later: { en: 'Later', hi: 'बाद में' },
+    parent: { en: 'Parent or teacher: open every topic', hi: 'पेरेंट या टीचर: सारे टॉपिक खोलो' }, settings: { en: 'Settings', hi: 'सेटिंग्स' }, textSize: { en: 'Text size', hi: 'टेक्स्ट साइज़' },
+    back: { en: 'Back', hi: 'वापस' }, home: { en: 'All chapters', hi: 'सारे चैप्टर' }, chOverview: { en: 'Chapter home', hi: 'चैप्टर होम' }, closeX: { en: 'Close', hi: 'बंद करो' },
+    loading: { en: 'Loading…', hi: 'लोड हो रहा है…' }, failed: { en: 'This could not load. Check the connection and try again.', hi: 'यह लोड नहीं हो सका। इंटरनेट कनेक्शन चेक करके फिर कोशिश करो।' },
+    soon: { en: 'Coming soon', hi: 'जल्द आ रहा है' }, topicsN: { en: '{n} topics', hi: '{n} टॉपिक' }, tapZoom: { en: 'Tap the picture to enlarge it.', hi: 'चित्र बड़ा देखने के लिए उस पर टैप करो।' },
   };
   const t = (x) => (x == null ? '' : typeof x === 'string' ? x : x[S.lang] || x.en || '');
   const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -61,7 +61,7 @@
 
   // ---------- equations ----------
   // Words written over an arrow. A content file can also give its own pair as -[english|हिंदी]->.
-  const COND = { heat: 'ऊष्मा', sunlight: 'सूर्य का प्रकाश', light: 'प्रकाश', electricity: 'विद्युत', 'electric current': 'विद्युत धारा', catalyst: 'उत्प्रेरक', 'conc. H2SO4': 'सांद्र H2SO4', 'Ni catalyst': 'Ni उत्प्रेरक', 'sunlight, chlorophyll': 'सूर्य का प्रकाश, क्लोरोफिल', 'alkaline KMnO4': 'क्षारीय KMnO4', 'acidified K2Cr2O7': 'अम्लीकृत K2Cr2O7', 'acid': 'अम्ल', 'enzyme': 'एंज़ाइम', 'yeast': 'यीस्ट', 'chlorophyll': 'क्लोरोफिल', 'high temperature': 'उच्च ताप', 'warm': 'गर्म करना', 'H+': 'H+', 'NaOH': 'NaOH', 'in the absence of oxygen': 'ऑक्सीजन की अनुपस्थिति में', 'in the presence of oxygen': 'ऑक्सीजन की उपस्थिति में', 'lack of oxygen': 'ऑक्सीजन की कमी', 'in yeast': 'यीस्ट में', 'in muscle cells': 'पेशी कोशिकाओं में', 'in mitochondria': 'माइटोकॉन्ड्रिया में', 'in cytoplasm': 'कोशिकाद्रव्य में', 'glucose': 'ग्लूकोज़' };
+  const COND = { heat: 'ऊष्मा', sunlight: 'सूर्य का प्रकाश', light: 'प्रकाश', electricity: 'विद्युत', 'electric current': 'विद्युत धारा', catalyst: 'उत्प्रेरक', 'conc. H2SO4': 'सांद्र H2SO4', 'Ni catalyst': 'Ni उत्प्रेरक', 'sunlight, chlorophyll': 'सूर्य का प्रकाश, क्लोरोफिल', 'alkaline KMnO4': 'क्षारीय KMnO4', 'acidified K2Cr2O7': 'अम्लीकृत K2Cr2O7', 'acid': 'अम्ल', 'enzyme': 'एंज़ाइम', 'yeast': 'यीस्ट', 'chlorophyll': 'क्लोरोफिल', 'high temperature': 'तेज़ गर्मी', 'warm': 'गर्म करना', 'H+': 'H+', 'NaOH': 'NaOH', 'in the absence of oxygen': 'ऑक्सीजन की अनुपस्थिति में', 'in the presence of oxygen': 'ऑक्सीजन की उपस्थिति में', 'lack of oxygen': 'ऑक्सीजन की कमी', 'in yeast': 'यीस्ट में', 'in muscle cells': 'पेशी कोशिकाओं में', 'in mitochondria': 'माइटोकॉन्ड्रिया में', 'in cytoplasm': 'कोशिकाद्रव्य में', 'glucose': 'ग्लूकोज़' };
   const condText = (c) => { const [en, hi] = c.split('|'); return S.lang === 'hi' ? hi || COND[en] || en : en; };
   function species(s) {
     s = s.trim();
@@ -198,6 +198,7 @@
           <figcaption>${rt(s.caption)}</figcaption><p class="mini">${esc(t(U.tapZoom))}</p></figure>
           <div class="notice"><b>${esc(t(U.notice))}</b><ul class="pts">${s.notice.map((n) => `<li>${rt(n)}</li>`).join('')}</ul></div>`);
       }
+      case 'diagram': return w('diagram', `${tag(U.diagram)}<h3>${rt(s.title)}</h3><div class="dgm" role="img" aria-label="${esc(t(s.alt))}">${svgFill(s)}</div><p class="dgmcap">${rt(s.caption)}</p>${s.notice && s.notice.length ? `<div class="notice"><b>${esc(t(U.notice))}</b><ul class="pts">${s.notice.map((n) => `<li>${rt(n)}</li>`).join('')}</ul></div>` : ''}`);
       case 'equation': return w('equation', `${tag(U.equation)}<div class="eqbox">${eq(s.eq)}</div><p>${rt(s.say)}</p>${s.note ? `<p class="mini">${rt(s.note)}</p>` : ''}`);
       case 'table': return w('table', `${tag(U.table)}<h3>${rt(s.caption)}</h3><div class="tblwrap"><table class="tbl stack"><thead><tr>${s.head.map((h) => `<th>${rt(h)}</th>`).join('')}</tr></thead><tbody>${s.rows.map((r) => `<tr>${r.map((c, j) => `<td data-h="${esc(t(s.head[j]))}">${rt(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`);
       case 'activity': return w('activity', `${tag(U.activity, s.ncert.replace('Activity', S.lang === 'hi' ? 'क्रियाकलाप' : 'Activity'))}<h3>${rt(s.title)}</h3>${s.image ? `<div class="hookimg">${pic(s.image, '')}</div>` : ''}<div class="cols2"><div><b>${esc(t(U.materials))}</b><ul class="pts">${s.materials.map((m) => `<li>${rt(m)}</li>`).join('')}</ul></div><div><b>${esc(t(U.doThis))}</b><ol>${s.steps.map((m) => `<li>${rt(m)}</li>`).join('')}</ol></div></div><p><b>${esc(t(U.observe))}:</b> ${rt(s.observe)}</p><p><b>${esc(t(U.why))}:</b> ${rt(s.explain)}</p>${s.safety ? `<div class="safety"><b>${esc(t(U.safety))}:</b> ${rt(s.safety)}</div>` : ''}`);
@@ -220,6 +221,12 @@
       case 'close': return w('close', `${tag(U.close)}<p>${rt(s.text)}</p>`);
     }
     return '';
+  }
+  // A diagram's SVG comes from our own content; still strip anything active, then fill every <text data-t="key"> with
+  // the current language's words so labels and equations switch with the toggle.
+  function svgFill(s) {
+    let svg = String(s.svg || '').replace(/<script[\s\S]*?<\/script>/gi, '').replace(/<foreignObject[\s\S]*?<\/foreignObject>/gi, '').replace(/\son\w+\s*=\s*("[^"]*"|'[^']*')/gi, '').replace(/(href|xlink:href)\s*=\s*("(?!#)[^"]*"|'(?!#)[^']*')/gi, '');
+    return svg.replace(/<text([^>]*?)\sdata-t="([^"]+)"([^>]*?)(\/>|>\s*<\/text>)/g, (_, a, k, b) => `<text${a} data-t="${k}"${b}>${esc(t((s.texts || {})[k]))}</text>`);
   }
   const stepTitle = (s) => t(s.title || s.caption || U[s.type] || { en: s.type, hi: s.type });
   const needsAnswer = (s, si, tp) => {
